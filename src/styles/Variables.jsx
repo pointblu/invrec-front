@@ -1,5 +1,5 @@
 export const v = {
-  sidebarWidth: `200px`,
+  sidebarWidth: `220px`,
   sidebarWidthInitial: `10vw`,
   ssmSpacing: `4px`,
   smSpacing: `8px`,

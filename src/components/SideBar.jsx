@@ -2,9 +2,16 @@ import styled from "styled-components";
 import logo from "../assets/react.svg";
 import { v } from "../styles/Variables";
 import PropTypes from "prop-types";
-import { AiOutlineLeft, AiOutlineHome } from "react-icons/ai";
-import { MdLogin, MdLogout } from "react-icons/md";
-import { HiUsers, HiUserAdd } from "react-icons/hi";
+import { AiOutlineLeft } from "react-icons/ai";
+import { HiOutlineUserGroup } from "react-icons/hi";
+import {
+  MdOutlineInventory2,
+  MdOutlineEventNote,
+  MdOutlineHome,
+  MdOutlineShoppingCart,
+} from "react-icons/md";
+import { IoStatsChartOutline } from "react-icons/io5";
+import { TbCashRegister } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
@@ -23,7 +30,7 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }) {
   };
 
   return (
-    <Container $isOpen={sidebarOpen} themeUse={theme}>
+    <Container $isOpen={sidebarOpen} $themeUse={theme}>
       <button className="sidebarbutton" onClick={ModSidebaropen}>
         <AiOutlineLeft />
       </button>
@@ -38,7 +45,7 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }) {
         <div className="LinkContainer" key={label}>
           <NavLink
             to={to}
-            className={({ isActive }) => `Links${isActive ? ` active` : ``}`}
+            className={({ isActive }) => `Links${isActive ? " active" : ""}`}
           >
             <div className="Linkicon">{icon}</div>
             {sidebarOpen && <span>{label}</span>}
@@ -50,7 +57,7 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }) {
         <div className="LinkContainer" key={label}>
           <NavLink
             to={to}
-            className={({ isActive }) => `Links${isActive ? ` active` : ``}`}
+            className={({ isActive }) => `Links${isActive ? " active" : ""}`}
           >
             <div className="Linkicon">{icon}</div>
             {sidebarOpen && <span>{label}</span>}
@@ -68,6 +75,7 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     type="checkbox"
                     className="theme-swither"
                     onClick={CambiarTheme}
+                    aria-label="Cambiar tema"
                   ></input>
                   <span className="slider round"></span>
                 </label>
@@ -82,34 +90,46 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }) {
 //#region links
 const linksArray = [
   {
-    label: "Home",
-    icon: <AiOutlineHome />,
+    label: "Inicio",
+    icon: <MdOutlineHome />,
     to: "/",
   },
+
   {
-    label: "Registro",
-    icon: <HiUserAdd />,
-    to: "/registro",
+    label: "Inventario",
+    icon: <MdOutlineInventory2 />,
+    to: "/inventario",
   },
   {
-    label: "Ingreso",
-    icon: <MdLogin />,
-    to: "/ingreso",
+    label: "Recetas",
+    icon: <MdOutlineEventNote />,
+    to: "/recetas",
   },
   {
-    label: "UsuArios",
-    icon: <HiUsers />,
-    to: "/usuarios",
+    label: "Compras",
+    icon: <MdOutlineShoppingCart />,
+    to: "/compras",
+  },
+  {
+    label: "Ventas",
+    icon: <TbCashRegister />,
+    to: "/ventas",
+  },
+  {
+    label: "Estadisticas",
+    icon: <IoStatsChartOutline />,
+    to: "/estadisticas",
   },
 ];
+
 //#endregion
 
 //#region secondary links
 const secondarylinksArray = [
   {
-    label: "Salir",
-    icon: <MdLogout />,
-    to: "/null",
+    label: "Usuarios",
+    icon: <HiOutlineUserGroup />,
+    to: "/usuarios",
   },
 ];
 //#endregion
@@ -119,6 +139,7 @@ const Container = styled.div`
   background: ${(props) => props.theme.bg};
   color: ${(props) => props.theme.text};
   position: sticky;
+
   .sidebarbutton {
     position: absolute;
     top: ${v.xxlSpacing};
@@ -147,6 +168,7 @@ const Container = styled.div`
   .logocontent {
     display: flex;
     justify-content: center;
+    margin: -3.2rem 0 0 0;
     align-items: center;
     padding: ${v.smSpacing};
     gap: ${v.ssmSpacing};
@@ -170,6 +192,8 @@ const Container = styled.div`
     padding: 0 15%;
     :hover {
       background: ${(props) => props.theme.bg3};
+      border-radius: 5px;
+      transition: background-color 0.3s;
     }
     .Links {
       display: flex;
@@ -250,8 +274,8 @@ const Container = styled.div`
               left: 0;
               right: 0;
               bottom: 0;
-              background: ${({ themeUse }) =>
-                themeUse === "light" ? v.lightcheckbox : v.checkbox};
+              background: ${({ $themeUse }) =>
+                $themeUse === "light" ? v.lightcheckbox : v.checkbox};
 
               transition: 0.4s;
               &::before {
