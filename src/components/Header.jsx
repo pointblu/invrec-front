@@ -32,7 +32,7 @@ export function Header() {
       ))}
       <Divider />
       {secondarylinksArray.map(({ icon, label, to }) => (
-        <div className="Linkcontainer" key={label}>
+        <div className="Linkcontainer" key={to}>
           <NavLink
             to={to}
             className={({ isActive }) => `Link${isActive ? " active" : ""}`}
