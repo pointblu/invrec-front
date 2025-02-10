@@ -12,13 +12,14 @@ export function CustomInput({
   onChange,
   toggleVisibilityIcon,
   isPassword = false,
+  maxWidth,
 }) {
   const [visible, setVisible] = useState(false);
 
   const handleToggleVisibility = () => setVisible(!visible);
 
   return (
-    <InputContainer>
+    <InputContainer $maxWidth={maxWidth}>
       <Input
         type={isPassword && visible ? "text" : type}
         id={id}
@@ -26,7 +27,7 @@ export function CustomInput({
         value={value}
         onChange={onChange}
         required
-        autocomplete="off"
+        autoComplete="off"
       />
       <Label htmlFor={id}>{label}</Label>
       {icon && <Icon>{icon}</Icon>}
@@ -56,12 +57,14 @@ CustomInput.propTypes = {
     hidden: PropTypes.element.isRequired,
   }),
   isPassword: PropTypes.bool,
+  maxWidth: PropTypes.string,
 };
 
 const InputContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  max-width: ${({ $maxWidth }) => $maxWidth || "100%"};
 `;
 
 const Input = styled.input`

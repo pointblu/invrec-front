@@ -6,15 +6,16 @@ import { AiOutlineLeft } from "react-icons/ai";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import {
   MdOutlineInventory2,
-  MdOutlineEventNote,
   MdOutlineHome,
   MdOutlineShoppingCart,
+  MdOutlineBuild,
 } from "react-icons/md";
 import { IoStatsChartOutline } from "react-icons/io5";
 import { TbCashRegister } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 Sidebar.propTypes = {
   sidebarOpen: PropTypes.bool.isRequired,
@@ -96,14 +97,19 @@ const linksArray = [
   },
 
   {
-    label: "Inventario",
+    label: "Insumos",
     icon: <MdOutlineInventory2 />,
-    to: "/inventario",
+    to: "/insumos",
   },
   {
-    label: "Recetas",
-    icon: <MdOutlineEventNote />,
-    to: "/recetas",
+    label: "Producción",
+    icon: <MdOutlineBuild />,
+    to: "/produccion",
+  },
+  {
+    label: "Devolución",
+    icon: <FaRegTrashCan />,
+    to: "/devolucion",
   },
   {
     label: "Compras",

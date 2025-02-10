@@ -1,4 +1,12 @@
-import { Home, Login, Register, Users } from "../pages";
+import {
+  Home,
+  Login,
+  Register,
+  Users,
+  Raws,
+  Processed,
+  Returned,
+} from "../pages";
 import { Route, Routes } from "react-router-dom";
 
 export const AppRouter = () => {
@@ -8,6 +16,9 @@ export const AppRouter = () => {
       <Route path="/usuarios" element={<Users />} />
       <Route path="/registro" element={<Register />} />
       <Route path="/ingreso" element={<Login />} />
+      <Route path="/insumos" element={<Raws />} />
+      <Route path="/produccion" element={<Processed />} />
+      <Route path="/devolucion" element={<Returned />} />
     </Routes>
   );
 };

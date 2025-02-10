@@ -1,11 +1,46 @@
-import styled from "styled-components";
+import { CustomTable, CustomContainer, CustomButton } from "./../components";
+import data from "../users_data.json";
+import { HiOutlineUserAdd } from "react-icons/hi";
 export function Users() {
+  const columns = [
+    {
+      header: "Id",
+      accessorKey: "id",
+    },
+    {
+      header: "Nombre",
+      accessorKey: "name",
+    },
+    {
+      header: "Rol",
+      accessorKey: "role",
+    },
+    {
+      header: "Correo electrónico",
+      accessorKey: "email",
+    },
+    {
+      header: "Fecha de registro",
+      accessorKey: "createdAt",
+    },
+    {
+      header: "Tipo de suscripción",
+      accessorKey: "suscriptionId",
+    },
+  ];
   return (
-    <Container>
-      <h1>Users</h1>
-    </Container>
+    <CustomContainer>
+      <h1>Usuarios</h1>
+      <CustomTable
+        data={data}
+        columns={columns}
+        customButtons={
+          <CustomButton
+            icon={<HiOutlineUserAdd />}
+            onClick={() => console.log("Agregar usuario")}
+          ></CustomButton>
+        }
+      />
+    </CustomContainer>
   );
 }
-const Container = styled.div`
-  height: 100vh;
-`;
