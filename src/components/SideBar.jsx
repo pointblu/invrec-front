@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import logo from "../assets/react.svg";
+import logo from "../assets/logo-invrec.png";
 import { v } from "../styles/Variables";
 import PropTypes from "prop-types";
 import { AiOutlineLeft } from "react-icons/ai";
@@ -144,7 +144,12 @@ const secondarylinksArray = [
 const Container = styled.div`
   background: ${(props) => props.theme.bg};
   color: ${(props) => props.theme.text};
-  position: sticky;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: ${({ $isOpen }) => ($isOpen ? "220px" : "90px")};
+  height: calc(100vh - 60px);
+  transition: width 0.5s ease-in-out;
 
   .sidebarbutton {
     position: absolute;
@@ -181,6 +186,7 @@ const Container = styled.div`
     .imgcontent {
       display: flex;
       img {
+        width: 2rem;
         max-width: 100%;
         height: auto;
       }

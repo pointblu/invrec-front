@@ -18,4 +18,9 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.bg};
   color: ${({ theme }) => theme.text};
   font-family: Arial, sans-serif;
+  h1 {
+    position: fixed;
+    z-index: 999;
+    margin-top: -3.5rem;
+  }
 `;

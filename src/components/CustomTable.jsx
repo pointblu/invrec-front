@@ -109,6 +109,26 @@ export function CustomTable({ data, columns, customButtons }) {
           <span></span>
         </PaginationButton>
 
+        <PageInputContainer>
+          Página{" "}
+          <PageInput
+            type="number"
+            value={table.getState().pagination.pageIndex + 1}
+            onChange={(e) => {
+              let page = e.target.value ? Number(e.target.value) - 1 : 0;
+              const maxPage = table.getPageCount() - 1;
+
+              if (page > maxPage) {
+                page = maxPage;
+              } else if (page < 0) {
+                page = 0;
+              }
+              table.setPageIndex(page);
+            }}
+          />
+          de {table.getPageCount()}
+        </PageInputContainer>
+
         <PaginationButton
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
@@ -197,7 +217,6 @@ const PaginationButton = styled.button`
   font-family: Arial, sans-serif;
   font-size: 14px;
   transition: background-color 0.3s ease, color 0.3s ease;
-
   &:hover:not(:disabled) {
     background-color: ${({ theme }) => theme.primary};
     color: white;
@@ -216,4 +235,34 @@ const ButtonGroup = styled.div`
   display: flex;
   gap: 10px;
   margin-left: 15px;
+`;
+
+const PageInputContainer = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0 10px;
+  font-size: 14px;
+`;
+
+const PageInput = styled.input`
+  width: 50px;
+  padding: 5px;
+  border: 1px solid ${({ theme }) => theme.border};
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+  background-color: ${({ theme }) => theme.bg2};
+  color: ${({ theme }) => theme.text};
+
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.primary};
+  }
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  -moz-appearance: textfield;
 `;

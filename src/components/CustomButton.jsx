@@ -11,7 +11,7 @@ export const CustomButton = ({ children, onClick, type = "button", icon }) => {
 };
 
 CustomButton.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   onClick: PropTypes.func,
   type: PropTypes.oneOf(["button", "submit", "reset"]),
   icon: PropTypes.node,

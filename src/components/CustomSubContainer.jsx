@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 export const CustomSubContainer = ({ children, align = "left" }) => {
-  return <Container align={align}>{children}</Container>;
+  return <Container $align={align}>{children}</Container>;
 };
 
 CustomSubContainer.propTypes = {
@@ -12,13 +12,14 @@ CustomSubContainer.propTypes = {
 
 const Container = styled.div`
   width: 97%;
+  margin-top: 1rem;
   display: flex;
   padding: 1rem;
   flex-direction: row;
-  justify-content: ${({ align }) =>
-    align === "left"
+  justify-content: ${({ $align }) =>
+    $align === "left"
       ? "flex-start"
-      : align === "center"
+      : $align === "center"
       ? "center"
       : "flex-end"};
   align-items: center;

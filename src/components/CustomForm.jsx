@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export const CustomForm = ({ children, onSubmit }) => {
   return (
-    <Form autocomplete="off" onSubmit={onSubmit}>
+    <Form autoComplete="off" onSubmit={onSubmit}>
       {children}
     </Form>
   );

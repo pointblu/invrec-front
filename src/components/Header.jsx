@@ -54,6 +54,10 @@ const Container = styled.header`
   display: flex;
   justify-content: flex-end;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  position: fixed; // Fija el Header en la parte superior
+  top: 0;
+  left: 0;
+  right: 0;
 
   .Linkcontainer {
     .Link {

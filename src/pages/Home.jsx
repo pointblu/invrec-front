@@ -8,4 +8,7 @@ export function Home() {
 }
 const Container = styled.div`
   height: 100vh;
+  h1 {
+    position: fixed;
+  }
 `;

@@ -20,7 +20,9 @@ function App() {
               sidebarOpen={sidebarOpen}
               setSidebarOpen={setSidebarOpen}
             />
-            <AppRouter />
+            <ContentContainer $sidebarOpen={sidebarOpen}>
+              <AppRouter />
+            </ContentContainer>
           </Container>
         </AppContainer>
       </ThemeProvider>
@@ -28,14 +30,12 @@ function App() {
   );
 }
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: 90px auto;
   background: ${({ theme }) => theme.bgtotal};
-  transition: all 0.3s;
-  &.active {
-    grid-template-columns: 220px auto;
-  }
   color: ${({ theme }) => theme.text};
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  margin-top: 60px;
 `;
 
 const AppContainer = styled.div`
@@ -44,4 +44,15 @@ const AppContainer = styled.div`
   height: 100vh;
 `;
 
+const ContentContainer = styled.div`
+  flex: 1;
+  padding: 2px;
+  background: ${({ theme }) => theme.bgtotal};
+  overflow: auto;
+  margin-left: ${({ $sidebarOpen }) => ($sidebarOpen ? "220px" : "90px")};
+  transition: margin-left 0.5s ease-in-out;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+`;
 export default App;
