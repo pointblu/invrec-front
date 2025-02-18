@@ -5,3 +5,5 @@ export * from "./Login";
 export * from "./Raws";
 export * from "./Processed";
 export * from "./Returned";
+export * from "./Sales";
+export * from "./Purchases";

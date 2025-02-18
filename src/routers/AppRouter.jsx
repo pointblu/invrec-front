@@ -6,6 +6,8 @@ import {
   Raws,
   Processed,
   Returned,
+  Sales,
+  Purchases,
 } from "../pages";
 import { Route, Routes } from "react-router-dom";
 
@@ -19,6 +21,8 @@ export const AppRouter = () => {
       <Route path="/insumos" element={<Raws />} />
       <Route path="/produccion" element={<Processed />} />
       <Route path="/devolucion" element={<Returned />} />
+      <Route path="/ventas" element={<Sales />} />
+      <Route path="/compras" element={<Purchases />} />
     </Routes>
   );
 };

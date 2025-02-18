@@ -1,5 +1,6 @@
 import { GiFlour } from "react-icons/gi";
 import { FaBook, FaRecycle } from "react-icons/fa6";
+import { HiPlus } from "react-icons/hi";
 import {
   CustomTable,
   CustomContainer,
@@ -34,8 +35,37 @@ function renderImageCell({ getValue }) {
 }
 
 renderImageCell.propTypes = {
-  getValue: PropTypes.func.isRequired, // getValue es una función que obtiene el valor de la celda
+  getValue: PropTypes.func.isRequired,
 };
+
+function renderActionsCell({ row }, filterType) {
+  if (filterType === "processed" || filterType === "returned") {
+    return (
+      <CustomButton
+        icon={<HiPlus />}
+        onClick={() => console.log("Agregar cantidad", row.original)}
+        customStyle={{
+          default: {
+            backgroundColor: "#4CAF50",
+            border: "1px solid white",
+            color: "white",
+            width: "1.8rem",
+            height: "1.8rem",
+          },
+          hover: {
+            backgroundColor: "#4caf82",
+            transform: "scale(1.05)",
+          },
+          active: {
+            backgroundColor: "#af4cab",
+            transform: "scale(0.95)",
+          },
+        }}
+      />
+    );
+  }
+  return null; // No mostrar nada para "raw"
+}
 export function Inventories({ title, filterType }) {
   const columns = [
     {
@@ -68,6 +98,15 @@ export function Inventories({ title, filterType }) {
       header: "Costo promedio",
       accessorKey: "cost",
     },
+    ...(filterType !== "raw"
+      ? [
+          {
+            header: "Acciones",
+            accessorKey: "actions",
+            cell: ({ row }) => renderActionsCell({ row }, filterType),
+          },
+        ]
+      : []),
   ];
 
   const iconsMap = {

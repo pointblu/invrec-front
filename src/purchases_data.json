@@ -1,0 +1,4002 @@
+[
+  {
+    "id": 1,
+    "rawId": "42291-225",
+    "name": "Ice Cream Bar - Rolo Cone",
+    "quantity": 87,
+    "cost": "$18988.52",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 2,
+    "rawId": "52125-794",
+    "name": "Beef - Rib Roast, Cap On",
+    "quantity": 10,
+    "cost": "$30167.97",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 3,
+    "rawId": "60429-576",
+    "name": "Cup - 8oz Coffee Perforated",
+    "quantity": 92,
+    "cost": "$44670.36",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 4,
+    "rawId": "43419-857",
+    "name": "C - Plus, Orange",
+    "quantity": 55,
+    "cost": "$24178.26",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 5,
+    "rawId": "65162-679",
+    "name": "Tart Shells - Savory, 2",
+    "quantity": 9,
+    "cost": "$31645.94",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 6,
+    "rawId": "37205-763",
+    "name": "Cheese - Marble",
+    "quantity": 61,
+    "cost": "$27545.16",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 7,
+    "rawId": "45963-559",
+    "name": "Milk Powder",
+    "quantity": 3,
+    "cost": "$31003.62",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 8,
+    "rawId": "59048-000",
+    "name": "Icecream Bar - Del Monte",
+    "quantity": 3,
+    "cost": "$19776.15",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 9,
+    "rawId": "0006-0106",
+    "name": "Beef - Sushi Flat Iron Steak",
+    "quantity": 32,
+    "cost": "$48269.21",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 10,
+    "rawId": "21130-456",
+    "name": "Turnip - Mini",
+    "quantity": 59,
+    "cost": "$28481.55",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 11,
+    "rawId": "63739-510",
+    "name": "Nantucket Cranberry Juice",
+    "quantity": 75,
+    "cost": "$42567.02",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 12,
+    "rawId": "21695-327",
+    "name": "Fennel",
+    "quantity": 44,
+    "cost": "$27170.97",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 13,
+    "rawId": "57844-215",
+    "name": "Soup Campbells - Tomato Bisque",
+    "quantity": 37,
+    "cost": "$19791.67",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 14,
+    "rawId": "63629-5321",
+    "name": "Lettuce - Lolla Rosa",
+    "quantity": 65,
+    "cost": "$23238.68",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 15,
+    "rawId": "62750-033",
+    "name": "Beer - Mill St Organic",
+    "quantity": 73,
+    "cost": "$30384.29",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 16,
+    "rawId": "62011-0060",
+    "name": "Shopper Bag - S - 4",
+    "quantity": 75,
+    "cost": "$30652.18",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 17,
+    "rawId": "54569-0406",
+    "name": "Roe - Lump Fish, Black",
+    "quantity": 11,
+    "cost": "$15122.91",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 18,
+    "rawId": "21695-422",
+    "name": "Pan Grease",
+    "quantity": 23,
+    "cost": "$33043.93",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 19,
+    "rawId": "16714-420",
+    "name": "Wine - Crozes Hermitage E.",
+    "quantity": 14,
+    "cost": "$25694.20",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 20,
+    "rawId": "59390-036",
+    "name": "Bread - Frozen Basket Variety",
+    "quantity": 88,
+    "cost": "$34697.18",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 21,
+    "rawId": "54575-907",
+    "name": "Bread Base - Toscano",
+    "quantity": 24,
+    "cost": "$19768.26",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 22,
+    "rawId": "63830-855",
+    "name": "Wine - Fontanafredda Barolo",
+    "quantity": 80,
+    "cost": "$47965.89",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 23,
+    "rawId": "36987-2276",
+    "name": "Berry Brulee",
+    "quantity": 37,
+    "cost": "$28548.12",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 24,
+    "rawId": "42637-803",
+    "name": "Lamb - Loin Chops",
+    "quantity": 14,
+    "cost": "$43839.78",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 25,
+    "rawId": "55319-897",
+    "name": "Monkfish - Fresh",
+    "quantity": 49,
+    "cost": "$35695.94",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 26,
+    "rawId": "68712-027",
+    "name": "Spring Roll Wrappers",
+    "quantity": 14,
+    "cost": "$18590.74",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 27,
+    "rawId": "50063-003",
+    "name": "Wine - Red, Marechal Foch",
+    "quantity": 87,
+    "cost": "$40997.12",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 28,
+    "rawId": "0641-6029",
+    "name": "Longos - Chicken Curried",
+    "quantity": 23,
+    "cost": "$29918.53",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 29,
+    "rawId": "48951-1056",
+    "name": "Chick Peas - Dried",
+    "quantity": 51,
+    "cost": "$36105.72",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 30,
+    "rawId": "52125-666",
+    "name": "Plasticforkblack",
+    "quantity": 69,
+    "cost": "$30469.04",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 31,
+    "rawId": "64679-155",
+    "name": "Fish - Halibut, Cold Smoked",
+    "quantity": 56,
+    "cost": "$43315.07",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 32,
+    "rawId": "0268-0835",
+    "name": "Cheese - St. Paulin",
+    "quantity": 93,
+    "cost": "$39971.09",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 33,
+    "rawId": "0268-6128",
+    "name": "Spice - Peppercorn Melange",
+    "quantity": 92,
+    "cost": "$45567.01",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 34,
+    "rawId": "24236-004",
+    "name": "Vinegar - Balsamic",
+    "quantity": 66,
+    "cost": "$46799.02",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 35,
+    "rawId": "49288-0240",
+    "name": "Muffin Puck Ww Carrot",
+    "quantity": 70,
+    "cost": "$18920.48",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 36,
+    "rawId": "42086-101",
+    "name": "Wine - Pinot Noir Pond Haddock",
+    "quantity": 14,
+    "cost": "$20732.93",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 37,
+    "rawId": "64679-942",
+    "name": "Cookies - Englishbay Wht",
+    "quantity": 83,
+    "cost": "$38635.31",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 38,
+    "rawId": "0093-0812",
+    "name": "Wine - Cahors Ac 2000, Clos",
+    "quantity": 98,
+    "cost": "$44697.87",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 39,
+    "rawId": "0054-0251",
+    "name": "Wine - Fino Tio Pepe Gonzalez",
+    "quantity": 37,
+    "cost": "$39431.07",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 40,
+    "rawId": "46362-003",
+    "name": "Steampan - Foil",
+    "quantity": 49,
+    "cost": "$34012.82",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 41,
+    "rawId": "62296-0026",
+    "name": "Steampan - Half Size Shallow",
+    "quantity": 56,
+    "cost": "$29069.01",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 42,
+    "rawId": "76270-108",
+    "name": "Appetizer - Mushroom Tart",
+    "quantity": 42,
+    "cost": "$21243.81",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 43,
+    "rawId": "65862-073",
+    "name": "Amarula Cream",
+    "quantity": 76,
+    "cost": "$34891.19",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 44,
+    "rawId": "0363-9171",
+    "name": "Blueberries",
+    "quantity": 26,
+    "cost": "$19754.68",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 45,
+    "rawId": "33261-010",
+    "name": "Beef - Tongue, Fresh",
+    "quantity": 39,
+    "cost": "$19086.85",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 46,
+    "rawId": "21695-098",
+    "name": "Seaweed Green Sheets",
+    "quantity": 27,
+    "cost": "$38152.08",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 47,
+    "rawId": "24385-357",
+    "name": "Muskox - French Rack",
+    "quantity": 92,
+    "cost": "$31778.30",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 48,
+    "rawId": "48951-8164",
+    "name": "Pasta - Elbows, Macaroni, Dry",
+    "quantity": 57,
+    "cost": "$22719.38",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 49,
+    "rawId": "36987-1910",
+    "name": "Pie Box - Cello Window 2.5",
+    "quantity": 40,
+    "cost": "$47300.61",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 50,
+    "rawId": "0904-6338",
+    "name": "Mix - Cocktail Strawberry Daiquiri",
+    "quantity": 34,
+    "cost": "$45343.74",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 51,
+    "rawId": "0093-2210",
+    "name": "Cookie - Dough Variety",
+    "quantity": 50,
+    "cost": "$20269.59",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 52,
+    "rawId": "59746-324",
+    "name": "Sauce - Cranberry",
+    "quantity": 60,
+    "cost": "$43903.89",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 53,
+    "rawId": "69244-1001",
+    "name": "Lamb - Whole Head Off",
+    "quantity": 52,
+    "cost": "$45962.17",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 54,
+    "rawId": "35356-362",
+    "name": "Fudge - Chocolate Fudge",
+    "quantity": 77,
+    "cost": "$30045.44",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 55,
+    "rawId": "43406-0017",
+    "name": "Crawfish",
+    "quantity": 98,
+    "cost": "$22916.65",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 56,
+    "rawId": "35356-724",
+    "name": "Pail - 15l White, With Handle",
+    "quantity": 80,
+    "cost": "$32833.42",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 57,
+    "rawId": "42549-658",
+    "name": "Yukon Jack",
+    "quantity": 51,
+    "cost": "$16186.63",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 58,
+    "rawId": "0031-2234",
+    "name": "Glycerine",
+    "quantity": 41,
+    "cost": "$37307.69",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 59,
+    "rawId": "68016-286",
+    "name": "Wine - Conde De Valdemar",
+    "quantity": 29,
+    "cost": "$15895.62",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 60,
+    "rawId": "36987-3243",
+    "name": "Cheese - Gouda",
+    "quantity": 97,
+    "cost": "$30470.95",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 61,
+    "rawId": "60429-166",
+    "name": "Trueblue - Blueberry 12x473ml",
+    "quantity": 98,
+    "cost": "$18273.20",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 62,
+    "rawId": "49349-128",
+    "name": "Flour - Masa De Harina Mexican",
+    "quantity": 37,
+    "cost": "$21249.45",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 63,
+    "rawId": "49349-586",
+    "name": "Soupcontfoam16oz 116con",
+    "quantity": 2,
+    "cost": "$33562.78",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 64,
+    "rawId": "60429-310",
+    "name": "Fireball Whisky",
+    "quantity": 23,
+    "cost": "$30651.88",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 65,
+    "rawId": "41520-979",
+    "name": "Arizona - Plum Green Tea",
+    "quantity": 37,
+    "cost": "$43468.01",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 66,
+    "rawId": "48102-111",
+    "name": "Coffee - Espresso",
+    "quantity": 2,
+    "cost": "$42024.24",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 67,
+    "rawId": "58411-134",
+    "name": "Sauce - Cranberry",
+    "quantity": 56,
+    "cost": "$19090.69",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 68,
+    "rawId": "53145-059",
+    "name": "Fiddlehead - Frozen",
+    "quantity": 80,
+    "cost": "$21276.32",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 69,
+    "rawId": "40032-551",
+    "name": "Ecolab - Mikroklene 4/4 L",
+    "quantity": 81,
+    "cost": "$17010.59",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 70,
+    "rawId": "57915-005",
+    "name": "Turkey - Ground. Lean",
+    "quantity": 81,
+    "cost": "$45890.36",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 71,
+    "rawId": "63629-5131",
+    "name": "Veal - Insides Provini",
+    "quantity": 100,
+    "cost": "$42425.13",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 72,
+    "rawId": "43406-0099",
+    "name": "Bread Crumbs - Japanese Style",
+    "quantity": 36,
+    "cost": "$47815.85",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 73,
+    "rawId": "43547-224",
+    "name": "Raspberries - Frozen",
+    "quantity": 51,
+    "cost": "$25392.03",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 74,
+    "rawId": "64376-630",
+    "name": "Pepper - Green Thai",
+    "quantity": 73,
+    "cost": "$25515.77",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 75,
+    "rawId": "24306-123",
+    "name": "Quail - Whole, Boneless",
+    "quantity": 22,
+    "cost": "$34841.18",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 76,
+    "rawId": "11673-334",
+    "name": "Lettuce - Red Leaf",
+    "quantity": 73,
+    "cost": "$29726.77",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 77,
+    "rawId": "11822-0406",
+    "name": "Pork - Tenderloin, Frozen",
+    "quantity": 64,
+    "cost": "$27772.92",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 78,
+    "rawId": "67457-584",
+    "name": "Pepper - Paprika, Spanish",
+    "quantity": 4,
+    "cost": "$15374.30",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 79,
+    "rawId": "0268-0078",
+    "name": "Sobe - Lizard Fuel",
+    "quantity": 30,
+    "cost": "$22318.66",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 80,
+    "rawId": "50383-796",
+    "name": "Juice - Orange, 341 Ml",
+    "quantity": 12,
+    "cost": "$39529.74",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 81,
+    "rawId": "49562-515",
+    "name": "Mushroom - Lg - Cello",
+    "quantity": 79,
+    "cost": "$25444.83",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 82,
+    "rawId": "53499-3571",
+    "name": "Mushroom - King Eryingii",
+    "quantity": 1,
+    "cost": "$36586.15",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 83,
+    "rawId": "68788-0453",
+    "name": "Flower - Potmums",
+    "quantity": 86,
+    "cost": "$20016.90",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 84,
+    "rawId": "52533-005",
+    "name": "Turkey - Oven Roast Breast",
+    "quantity": 91,
+    "cost": "$19608.18",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 85,
+    "rawId": "0527-1325",
+    "name": "Wine - Lamancha Do Crianza",
+    "quantity": 77,
+    "cost": "$28386.91",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 86,
+    "rawId": "39892-0603",
+    "name": "Cinnamon Rolls",
+    "quantity": 53,
+    "cost": "$24025.94",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 87,
+    "rawId": "52371-100",
+    "name": "Rum - Mount Gay Eclipes",
+    "quantity": 71,
+    "cost": "$47773.58",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 88,
+    "rawId": "54738-912",
+    "name": "Rum - Mount Gay Eclipes",
+    "quantity": 84,
+    "cost": "$46708.08",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 89,
+    "rawId": "68472-127",
+    "name": "Wine - Vidal Icewine Magnotta",
+    "quantity": 83,
+    "cost": "$33073.12",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 90,
+    "rawId": "15127-210",
+    "name": "Yogurt - Plain",
+    "quantity": 2,
+    "cost": "$26583.95",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 91,
+    "rawId": "48951-9179",
+    "name": "Banana - Leaves",
+    "quantity": 15,
+    "cost": "$21822.61",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 92,
+    "rawId": "11822-0950",
+    "name": "Chicken - Whole Roasting",
+    "quantity": 89,
+    "cost": "$48753.37",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 93,
+    "rawId": "58518-020",
+    "name": "Beans - Wax",
+    "quantity": 13,
+    "cost": "$22950.77",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 94,
+    "rawId": "55154-7717",
+    "name": "Miso - Soy Bean Paste",
+    "quantity": 40,
+    "cost": "$33619.30",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 95,
+    "rawId": "12830-739",
+    "name": "Dried Peach",
+    "quantity": 14,
+    "cost": "$18714.00",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 96,
+    "rawId": "36987-2187",
+    "name": "Nut - Almond, Blanched, Whole",
+    "quantity": 95,
+    "cost": "$38897.03",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 97,
+    "rawId": "16729-150",
+    "name": "Blouse / Shirt / Sweater",
+    "quantity": 2,
+    "cost": "$23485.31",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 98,
+    "rawId": "43288-108",
+    "name": "Pur Value",
+    "quantity": 37,
+    "cost": "$20315.35",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 99,
+    "rawId": "40057-6001",
+    "name": "Cassis",
+    "quantity": 48,
+    "cost": "$42936.63",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 100,
+    "rawId": "62670-4793",
+    "name": "Beer - Heinekin",
+    "quantity": 94,
+    "cost": "$41068.74",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 101,
+    "rawId": "60512-9068",
+    "name": "Pork - Loin, Center Cut",
+    "quantity": 59,
+    "cost": "$20520.48",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 102,
+    "rawId": "48951-8221",
+    "name": "Paper Cocktail Umberlla 80 - 180",
+    "quantity": 12,
+    "cost": "$47752.71",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 103,
+    "rawId": "59011-261",
+    "name": "Triple Sec - Mcguinness",
+    "quantity": 3,
+    "cost": "$27484.37",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 104,
+    "rawId": "50458-541",
+    "name": "Onions - Red",
+    "quantity": 11,
+    "cost": "$49186.51",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 105,
+    "rawId": "66975-425",
+    "name": "Lotus Root",
+    "quantity": 88,
+    "cost": "$38980.50",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 106,
+    "rawId": "49349-810",
+    "name": "Peppercorns - Pink",
+    "quantity": 73,
+    "cost": "$34115.80",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 107,
+    "rawId": "59579-001",
+    "name": "Wine - Harrow Estates, Vidal",
+    "quantity": 71,
+    "cost": "$29803.71",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 108,
+    "rawId": "55154-7552",
+    "name": "Chicken - Leg / Back Attach",
+    "quantity": 37,
+    "cost": "$27077.82",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 109,
+    "rawId": "62191-004",
+    "name": "Juice - Apple 284ml",
+    "quantity": 6,
+    "cost": "$47197.36",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 110,
+    "rawId": "49349-705",
+    "name": "Cake - Cake Sheet Macaroon",
+    "quantity": 97,
+    "cost": "$26742.65",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 111,
+    "rawId": "50436-2608",
+    "name": "Cheese - Le Cru Du Clocher",
+    "quantity": 57,
+    "cost": "$42518.02",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 112,
+    "rawId": "0536-3086",
+    "name": "Cleaner - Lime Away",
+    "quantity": 20,
+    "cost": "$31018.82",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 113,
+    "rawId": "10544-380",
+    "name": "Grouper - Fresh",
+    "quantity": 4,
+    "cost": "$49359.99",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 114,
+    "rawId": "42023-136",
+    "name": "Syrup - Monin, Amaretta",
+    "quantity": 27,
+    "cost": "$47589.84",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 115,
+    "rawId": "43269-814",
+    "name": "Rice - Long Grain",
+    "quantity": 65,
+    "cost": "$40599.75",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 116,
+    "rawId": "0781-3003",
+    "name": "Lamb - Leg, Diced",
+    "quantity": 32,
+    "cost": "$38819.19",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 117,
+    "rawId": "0440-1617",
+    "name": "Soup Campbells Split Pea And Ham",
+    "quantity": 55,
+    "cost": "$31372.49",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 118,
+    "rawId": "53808-0205",
+    "name": "Clam - Cherrystone",
+    "quantity": 10,
+    "cost": "$17345.68",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 119,
+    "rawId": "10812-361",
+    "name": "Rosemary - Dry",
+    "quantity": 75,
+    "cost": "$25388.52",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 120,
+    "rawId": "0054-0097",
+    "name": "Peppercorns - Green",
+    "quantity": 98,
+    "cost": "$18486.32",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 121,
+    "rawId": "76436-133",
+    "name": "Olives - Black, Pitted",
+    "quantity": 74,
+    "cost": "$23142.26",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 122,
+    "rawId": "59779-409",
+    "name": "Rice - Wild",
+    "quantity": 41,
+    "cost": "$26160.11",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 123,
+    "rawId": "63868-807",
+    "name": "Squid Ink",
+    "quantity": 94,
+    "cost": "$38340.96",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 124,
+    "rawId": "75878-004",
+    "name": "Apple - Royal Gala",
+    "quantity": 92,
+    "cost": "$38085.54",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 125,
+    "rawId": "64778-0215",
+    "name": "Paper - Brown Paper Mini Cups",
+    "quantity": 60,
+    "cost": "$49989.07",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 126,
+    "rawId": "75909-150",
+    "name": "Beer - Guiness",
+    "quantity": 63,
+    "cost": "$45018.93",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 127,
+    "rawId": "53808-0829",
+    "name": "Sponge Cake Mix - Vanilla",
+    "quantity": 45,
+    "cost": "$26433.46",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 128,
+    "rawId": "0179-0071",
+    "name": "Chocolate - Unsweetened",
+    "quantity": 14,
+    "cost": "$36484.18",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 129,
+    "rawId": "60505-2539",
+    "name": "Cake - Box Window 10x10x2.5",
+    "quantity": 83,
+    "cost": "$42528.93",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 130,
+    "rawId": "48951-8111",
+    "name": "Flour - Masa De Harina Mexican",
+    "quantity": 71,
+    "cost": "$46129.15",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 131,
+    "rawId": "58668-0679",
+    "name": "Munchies Honey Sweet Trail Mix",
+    "quantity": 99,
+    "cost": "$45846.86",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 132,
+    "rawId": "0409-3507",
+    "name": "Creme De Cacao White",
+    "quantity": 29,
+    "cost": "$23041.79",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 133,
+    "rawId": "50991-222",
+    "name": "Grenadine",
+    "quantity": 4,
+    "cost": "$42320.86",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 134,
+    "rawId": "75884-100",
+    "name": "Foie Gras",
+    "quantity": 61,
+    "cost": "$15868.80",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 135,
+    "rawId": "60760-901",
+    "name": "Wine - Ej Gallo Sonoma",
+    "quantity": 79,
+    "cost": "$19418.46",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 136,
+    "rawId": "65044-9941",
+    "name": "Bread - Italian Roll With Herbs",
+    "quantity": 43,
+    "cost": "$15036.21",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 137,
+    "rawId": "36987-2811",
+    "name": "Bread - Olive Dinner Roll",
+    "quantity": 81,
+    "cost": "$35784.57",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 138,
+    "rawId": "54868-6157",
+    "name": "Pasta - Agnolotti - Butternut",
+    "quantity": 40,
+    "cost": "$43046.40",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 139,
+    "rawId": "49348-362",
+    "name": "Energy - Boo - Koo",
+    "quantity": 99,
+    "cost": "$15273.72",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 140,
+    "rawId": "43353-133",
+    "name": "Coconut Milk - Unsweetened",
+    "quantity": 81,
+    "cost": "$30104.32",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 141,
+    "rawId": "43353-693",
+    "name": "Cup - 4oz Translucent",
+    "quantity": 37,
+    "cost": "$38619.55",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 142,
+    "rawId": "59316-104",
+    "name": "Parsley - Fresh",
+    "quantity": 84,
+    "cost": "$21830.41",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 143,
+    "rawId": "55714-4555",
+    "name": "Beans - Yellow",
+    "quantity": 79,
+    "cost": "$26368.00",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 144,
+    "rawId": "0409-6030",
+    "name": "Shrimp - Prawn",
+    "quantity": 80,
+    "cost": "$49633.01",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 145,
+    "rawId": "11410-106",
+    "name": "Lychee - Canned",
+    "quantity": 52,
+    "cost": "$29332.05",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 146,
+    "rawId": "13668-014",
+    "name": "Sauce - Hoisin",
+    "quantity": 38,
+    "cost": "$18811.38",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 147,
+    "rawId": "48951-3104",
+    "name": "Bread - Assorted Rolls",
+    "quantity": 38,
+    "cost": "$23891.87",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 148,
+    "rawId": "55154-5627",
+    "name": "Cookie Dough - Double",
+    "quantity": 36,
+    "cost": "$16565.65",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 149,
+    "rawId": "59062-1304",
+    "name": "Strawberries - California",
+    "quantity": 60,
+    "cost": "$25340.07",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 150,
+    "rawId": "68645-320",
+    "name": "Beef Flat Iron Steak",
+    "quantity": 98,
+    "cost": "$21784.52",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 151,
+    "rawId": "42884-854",
+    "name": "Crab - Dungeness, Whole",
+    "quantity": 14,
+    "cost": "$27251.88",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 152,
+    "rawId": "55154-8295",
+    "name": "Prunes - Pitted",
+    "quantity": 6,
+    "cost": "$20828.38",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 153,
+    "rawId": "0781-1046",
+    "name": "Cheese - Brick With Onion",
+    "quantity": 52,
+    "cost": "$38114.51",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 154,
+    "rawId": "68703-103",
+    "name": "Iced Tea - Lemon, 460 Ml",
+    "quantity": 98,
+    "cost": "$18787.03",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 155,
+    "rawId": "67296-0584",
+    "name": "Chicken - Tenderloin",
+    "quantity": 52,
+    "cost": "$27391.71",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 156,
+    "rawId": "54575-906",
+    "name": "Chef Hat 20cm",
+    "quantity": 20,
+    "cost": "$18389.03",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 157,
+    "rawId": "41250-266",
+    "name": "Muffin Mix - Raisin Bran",
+    "quantity": 25,
+    "cost": "$25273.22",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 158,
+    "rawId": "12634-264",
+    "name": "Clams - Littleneck, Whole",
+    "quantity": 50,
+    "cost": "$44873.30",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 159,
+    "rawId": "58930-065",
+    "name": "Coffee - 10oz Cup 92961",
+    "quantity": 85,
+    "cost": "$39472.98",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 160,
+    "rawId": "36987-1729",
+    "name": "Tea - Lemon Green Tea",
+    "quantity": 11,
+    "cost": "$43304.06",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 161,
+    "rawId": "64942-1340",
+    "name": "Sauce - Chili",
+    "quantity": 10,
+    "cost": "$29830.86",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 162,
+    "rawId": "0186-4050",
+    "name": "Praline Paste",
+    "quantity": 25,
+    "cost": "$25382.29",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 163,
+    "rawId": "10096-0212",
+    "name": "Muffin Batt - Carrot Spice",
+    "quantity": 95,
+    "cost": "$43368.02",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 164,
+    "rawId": "50268-451",
+    "name": "Paper - Brown Paper Mini Cups",
+    "quantity": 10,
+    "cost": "$48138.02",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 165,
+    "rawId": "49349-635",
+    "name": "Bread - English Muffin",
+    "quantity": 43,
+    "cost": "$48761.94",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 166,
+    "rawId": "52667-003",
+    "name": "Soup - Campbells - Chicken Noodle",
+    "quantity": 32,
+    "cost": "$49485.29",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 167,
+    "rawId": "68258-7992",
+    "name": "Aspic - Amber",
+    "quantity": 87,
+    "cost": "$19549.93",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 168,
+    "rawId": "0185-4057",
+    "name": "Pasta - Cannelloni, Sheets, Fresh",
+    "quantity": 3,
+    "cost": "$25409.13",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 169,
+    "rawId": "49999-004",
+    "name": "Sausage - Breakfast",
+    "quantity": 78,
+    "cost": "$30914.65",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 170,
+    "rawId": "54973-2158",
+    "name": "Vinegar - Raspberry",
+    "quantity": 1,
+    "cost": "$39733.21",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 171,
+    "rawId": "52125-761",
+    "name": "Lettuce - Lambs Mash",
+    "quantity": 6,
+    "cost": "$30541.11",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 172,
+    "rawId": "49035-318",
+    "name": "Pork - Bones",
+    "quantity": 21,
+    "cost": "$34715.37",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 173,
+    "rawId": "52125-590",
+    "name": "Chicken - Whole",
+    "quantity": 51,
+    "cost": "$20792.66",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 174,
+    "rawId": "66530-255",
+    "name": "Wine - Bourgogne 2002, La",
+    "quantity": 92,
+    "cost": "$47610.95",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 175,
+    "rawId": "0869-0004",
+    "name": "Sandwich Wrap",
+    "quantity": 32,
+    "cost": "$30916.20",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 176,
+    "rawId": "36987-1974",
+    "name": "Rum - White, Gg White",
+    "quantity": 4,
+    "cost": "$15326.70",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 177,
+    "rawId": "51079-147",
+    "name": "Chicken - Whole Roasting",
+    "quantity": 21,
+    "cost": "$41184.37",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 178,
+    "rawId": "51393-7611",
+    "name": "Water - Mineral, Natural",
+    "quantity": 89,
+    "cost": "$28085.62",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 179,
+    "rawId": "54973-3179",
+    "name": "Leeks - Large",
+    "quantity": 90,
+    "cost": "$33509.00",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 180,
+    "rawId": "57237-006",
+    "name": "Wine - Valpolicella Masi",
+    "quantity": 37,
+    "cost": "$37285.04",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 181,
+    "rawId": "60505-0209",
+    "name": "Munchies Honey Sweet Trail Mix",
+    "quantity": 35,
+    "cost": "$36716.66",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 182,
+    "rawId": "37000-234",
+    "name": "Cheese - Pont Couvert",
+    "quantity": 44,
+    "cost": "$40801.26",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 183,
+    "rawId": "10742-1233",
+    "name": "Chicken - Leg / Back Attach",
+    "quantity": 32,
+    "cost": "$21287.67",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 184,
+    "rawId": "42926-030",
+    "name": "Calypso - Black Cherry Lemonade",
+    "quantity": 84,
+    "cost": "$18233.66",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 185,
+    "rawId": "61748-220",
+    "name": "Trout - Smoked",
+    "quantity": 59,
+    "cost": "$43137.31",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 186,
+    "rawId": "63187-008",
+    "name": "Cookies Cereal Nut",
+    "quantity": 5,
+    "cost": "$23091.77",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 187,
+    "rawId": "0075-0621",
+    "name": "Lychee",
+    "quantity": 11,
+    "cost": "$19515.44",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 188,
+    "rawId": "37205-672",
+    "name": "Pie Pecan",
+    "quantity": 3,
+    "cost": "$46847.55",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 189,
+    "rawId": "53808-0837",
+    "name": "Steam Pan Full Lid",
+    "quantity": 74,
+    "cost": "$24186.76",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 190,
+    "rawId": "60846-809",
+    "name": "Rum - Dark, Bacardi, Black",
+    "quantity": 26,
+    "cost": "$44592.62",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 191,
+    "rawId": "49825-121",
+    "name": "Pasta - Fettuccine, Egg, Fresh",
+    "quantity": 24,
+    "cost": "$41871.20",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 192,
+    "rawId": "55154-3877",
+    "name": "Bay Leaf Ground",
+    "quantity": 94,
+    "cost": "$28647.07",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 193,
+    "rawId": "10742-8473",
+    "name": "Chevere Logs",
+    "quantity": 17,
+    "cost": "$20554.34",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 194,
+    "rawId": "48871-180",
+    "name": "Oil - Avocado",
+    "quantity": 73,
+    "cost": "$32190.59",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 195,
+    "rawId": "41190-619",
+    "name": "Prunes - Pitted",
+    "quantity": 45,
+    "cost": "$19535.96",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 196,
+    "rawId": "76214-031",
+    "name": "Crab - Dungeness, Whole, live",
+    "quantity": 96,
+    "cost": "$21936.51",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 197,
+    "rawId": "66336-786",
+    "name": "Fennel - Seeds",
+    "quantity": 21,
+    "cost": "$33030.95",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 198,
+    "rawId": "65649-553",
+    "name": "Potatoes - Yukon Gold 5 Oz",
+    "quantity": 40,
+    "cost": "$46055.47",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 199,
+    "rawId": "61245-083",
+    "name": "Oats Large Flake",
+    "quantity": 94,
+    "cost": "$18313.84",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 200,
+    "rawId": "0781-7090",
+    "name": "Juice - Ocean Spray Kiwi",
+    "quantity": 29,
+    "cost": "$45592.51",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 201,
+    "rawId": "49781-081",
+    "name": "Trueblue - Blueberry Cranberry",
+    "quantity": 100,
+    "cost": "$28332.58",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 202,
+    "rawId": "44911-0111",
+    "name": "Sugar Thermometer",
+    "quantity": 12,
+    "cost": "$26542.37",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 203,
+    "rawId": "54868-6036",
+    "name": "Cumin - Whole",
+    "quantity": 71,
+    "cost": "$30325.11",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 204,
+    "rawId": "43063-379",
+    "name": "Potatoes - Fingerling 4 Oz",
+    "quantity": 80,
+    "cost": "$18969.25",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 205,
+    "rawId": "67253-200",
+    "name": "Strawberries",
+    "quantity": 96,
+    "cost": "$35215.13",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 206,
+    "rawId": "55154-4427",
+    "name": "Sauce Tomato Pouch",
+    "quantity": 21,
+    "cost": "$36865.06",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 207,
+    "rawId": "60637-012",
+    "name": "Wine - Pinot Grigio Collavini",
+    "quantity": 32,
+    "cost": "$44395.22",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 208,
+    "rawId": "0781-5076",
+    "name": "Pop - Club Soda Can",
+    "quantity": 69,
+    "cost": "$34365.11",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 209,
+    "rawId": "0173-0774",
+    "name": "Coffee - Decafenated",
+    "quantity": 47,
+    "cost": "$24399.09",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 210,
+    "rawId": "68026-101",
+    "name": "Appetizer - Lobster Phyllo Roll",
+    "quantity": 61,
+    "cost": "$28493.96",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 211,
+    "rawId": "76173-1002",
+    "name": "Marjoram - Fresh",
+    "quantity": 34,
+    "cost": "$45114.65",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 212,
+    "rawId": "60429-108",
+    "name": "Cheese - Mozzarella, Buffalo",
+    "quantity": 37,
+    "cost": "$31375.65",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 213,
+    "rawId": "41250-709",
+    "name": "Bamboo Shoots - Sliced",
+    "quantity": 9,
+    "cost": "$15603.06",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 214,
+    "rawId": "0615-7590",
+    "name": "Orange Roughy 6/8 Oz",
+    "quantity": 50,
+    "cost": "$42187.03",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 215,
+    "rawId": "60512-6005",
+    "name": "Creamers - 10%",
+    "quantity": 50,
+    "cost": "$33518.37",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 216,
+    "rawId": "54458-891",
+    "name": "Lettuce - Frisee",
+    "quantity": 39,
+    "cost": "$39079.97",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 217,
+    "rawId": "35356-692",
+    "name": "Nantucket - Pomegranate Pear",
+    "quantity": 86,
+    "cost": "$48979.43",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 218,
+    "rawId": "0641-6001",
+    "name": "Ranchero - Primerba, Paste",
+    "quantity": 46,
+    "cost": "$21812.15",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 219,
+    "rawId": "41163-369",
+    "name": "Wine - Chianti Classica Docg",
+    "quantity": 57,
+    "cost": "$45506.03",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 220,
+    "rawId": "0363-4816",
+    "name": "Icecream - Dstk Super Cone",
+    "quantity": 85,
+    "cost": "$49582.58",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 221,
+    "rawId": "46122-050",
+    "name": "Appetizer - Assorted Box",
+    "quantity": 45,
+    "cost": "$41284.67",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 222,
+    "rawId": "59779-472",
+    "name": "Appetizer - Mango Chevre",
+    "quantity": 60,
+    "cost": "$31855.10",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 223,
+    "rawId": "42291-278",
+    "name": "Corn Syrup",
+    "quantity": 71,
+    "cost": "$47404.13",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 224,
+    "rawId": "0591-3670",
+    "name": "Crackers - Trio",
+    "quantity": 33,
+    "cost": "$48022.50",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 225,
+    "rawId": "13668-185",
+    "name": "Truffle - Peelings",
+    "quantity": 71,
+    "cost": "$37958.79",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 226,
+    "rawId": "0713-0109",
+    "name": "Pasta - Fettuccine, Egg, Fresh",
+    "quantity": 86,
+    "cost": "$49719.46",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 227,
+    "rawId": "76439-103",
+    "name": "Soup - Beef, Base Mix",
+    "quantity": 23,
+    "cost": "$19253.11",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 228,
+    "rawId": "60691-115",
+    "name": "Pork - Sausage, Medium",
+    "quantity": 35,
+    "cost": "$28174.47",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 229,
+    "rawId": "46122-103",
+    "name": "Beer - Moosehead",
+    "quantity": 85,
+    "cost": "$26015.50",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 230,
+    "rawId": "55319-502",
+    "name": "Water - Green Tea Refresher",
+    "quantity": 35,
+    "cost": "$27489.31",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 231,
+    "rawId": "42333-100",
+    "name": "Quail - Jumbo",
+    "quantity": 83,
+    "cost": "$24575.64",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 232,
+    "rawId": "51079-076",
+    "name": "Wine - Chianti Classico Riserva",
+    "quantity": 94,
+    "cost": "$36670.83",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 233,
+    "rawId": "23155-001",
+    "name": "Tray - Foam, Square 4 - S",
+    "quantity": 76,
+    "cost": "$45633.23",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 234,
+    "rawId": "68428-031",
+    "name": "Lamb - Sausage Casings",
+    "quantity": 97,
+    "cost": "$45587.71",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 235,
+    "rawId": "17478-715",
+    "name": "Juice - Orange, Concentrate",
+    "quantity": 23,
+    "cost": "$20147.45",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 236,
+    "rawId": "68001-196",
+    "name": "Fish - Bones",
+    "quantity": 77,
+    "cost": "$35764.98",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 237,
+    "rawId": "57525-013",
+    "name": "Foil Wrap",
+    "quantity": 28,
+    "cost": "$40168.23",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 238,
+    "rawId": "0406-8330",
+    "name": "Nacho Chips",
+    "quantity": 50,
+    "cost": "$17324.27",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 239,
+    "rawId": "68382-003",
+    "name": "Nut - Pecan, Pieces",
+    "quantity": 87,
+    "cost": "$16195.56",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 240,
+    "rawId": "61715-016",
+    "name": "Sprouts - Baby Pea Tendrils",
+    "quantity": 51,
+    "cost": "$15901.20",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 241,
+    "rawId": "50436-6304",
+    "name": "Cheese - Le Cheve Noir",
+    "quantity": 1,
+    "cost": "$28041.28",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 242,
+    "rawId": "17856-0685",
+    "name": "Sprouts - Baby Pea Tendrils",
+    "quantity": 42,
+    "cost": "$38980.87",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 243,
+    "rawId": "48102-003",
+    "name": "Soup - Campbells Chicken",
+    "quantity": 37,
+    "cost": "$44519.44",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 244,
+    "rawId": "59779-252",
+    "name": "Capon - Breast, Double, Wing On",
+    "quantity": 51,
+    "cost": "$48293.57",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 245,
+    "rawId": "0069-0122",
+    "name": "Crawfish",
+    "quantity": 62,
+    "cost": "$29855.55",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 246,
+    "rawId": "50111-433",
+    "name": "Flax Seed",
+    "quantity": 89,
+    "cost": "$36620.55",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 247,
+    "rawId": "66391-0046",
+    "name": "Mushroom - Oyster, Fresh",
+    "quantity": 62,
+    "cost": "$26899.27",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 248,
+    "rawId": "67457-483",
+    "name": "Table Cloth 81x81 White",
+    "quantity": 7,
+    "cost": "$38390.09",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 249,
+    "rawId": "0019-1333",
+    "name": "Flower - Daisies",
+    "quantity": 64,
+    "cost": "$22683.10",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 250,
+    "rawId": "59726-670",
+    "name": "Capers - Ox Eye Daisy",
+    "quantity": 65,
+    "cost": "$25826.73",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 251,
+    "rawId": "0378-0144",
+    "name": "Goat - Whole Cut",
+    "quantity": 13,
+    "cost": "$30535.31",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 252,
+    "rawId": "52685-322",
+    "name": "Oil - Shortening - All - Purpose",
+    "quantity": 90,
+    "cost": "$26347.87",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 253,
+    "rawId": "41250-913",
+    "name": "Cleaner - Bleach",
+    "quantity": 9,
+    "cost": "$22456.44",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 254,
+    "rawId": "49738-046",
+    "name": "Bread Sour Rolls",
+    "quantity": 40,
+    "cost": "$48667.95",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 255,
+    "rawId": "24338-126",
+    "name": "Juice - Mango",
+    "quantity": 67,
+    "cost": "$19001.31",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 256,
+    "rawId": "23155-140",
+    "name": "Pastry - Apple Large",
+    "quantity": 91,
+    "cost": "$23656.62",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 257,
+    "rawId": "49404-106",
+    "name": "Wine - Magnotta - Pinot Gris Sr",
+    "quantity": 16,
+    "cost": "$34689.93",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 258,
+    "rawId": "0264-7638",
+    "name": "Yogurt - Strawberry, 175 Gr",
+    "quantity": 57,
+    "cost": "$34044.28",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 259,
+    "rawId": "0067-4000",
+    "name": "Pie Filling - Pumpkin",
+    "quantity": 39,
+    "cost": "$37169.29",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 260,
+    "rawId": "67172-999",
+    "name": "Pork - Back, Short Cut, Boneless",
+    "quantity": 67,
+    "cost": "$44810.86",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 261,
+    "rawId": "36987-2649",
+    "name": "Broom - Corn",
+    "quantity": 46,
+    "cost": "$46612.32",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 262,
+    "rawId": "62085-1001",
+    "name": "Towels - Paper / Kraft",
+    "quantity": 90,
+    "cost": "$38697.87",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 263,
+    "rawId": "68788-9800",
+    "name": "Seedlings - Buckwheat, Organic",
+    "quantity": 90,
+    "cost": "$37532.23",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 264,
+    "rawId": "35356-387",
+    "name": "Juice - Grapefruit, 341 Ml",
+    "quantity": 37,
+    "cost": "$48734.49",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 265,
+    "rawId": "0023-2181",
+    "name": "Red Currant Jelly",
+    "quantity": 87,
+    "cost": "$32877.28",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 266,
+    "rawId": "10812-328",
+    "name": "Country Roll",
+    "quantity": 55,
+    "cost": "$47198.68",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 267,
+    "rawId": "51442-552",
+    "name": "Lamb - Bones",
+    "quantity": 68,
+    "cost": "$28559.56",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 268,
+    "rawId": "59663-120",
+    "name": "Chips Potato All Dressed - 43g",
+    "quantity": 23,
+    "cost": "$27865.04",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 269,
+    "rawId": "50436-4635",
+    "name": "Tomatoes - Yellow Hot House",
+    "quantity": 72,
+    "cost": "$15655.73",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 270,
+    "rawId": "55648-631",
+    "name": "Oil - Truffle, White",
+    "quantity": 56,
+    "cost": "$29891.22",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 271,
+    "rawId": "55316-173",
+    "name": "Chicken Thigh - Bone Out",
+    "quantity": 77,
+    "cost": "$18830.28",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 272,
+    "rawId": "41520-211",
+    "name": "Bandage - Fexible 1x3",
+    "quantity": 100,
+    "cost": "$49757.16",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 273,
+    "rawId": "0264-3125",
+    "name": "Bread - Dark Rye",
+    "quantity": 32,
+    "cost": "$43187.38",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 274,
+    "rawId": "52125-334",
+    "name": "Wine - Segura Viudas Aria Brut",
+    "quantity": 60,
+    "cost": "$18059.28",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 275,
+    "rawId": "0268-1263",
+    "name": "Flour - Semolina",
+    "quantity": 39,
+    "cost": "$20330.17",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 276,
+    "rawId": "59078-024",
+    "name": "Wine - Prosecco Valdobiaddene",
+    "quantity": 31,
+    "cost": "$41657.04",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 277,
+    "rawId": "55301-730",
+    "name": "Gelatine Leaves - Envelopes",
+    "quantity": 70,
+    "cost": "$42700.95",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 278,
+    "rawId": "0363-4009",
+    "name": "Chutney Sauce - Mango",
+    "quantity": 80,
+    "cost": "$46756.86",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 279,
+    "rawId": "58118-1349",
+    "name": "Sprouts - Pea",
+    "quantity": 19,
+    "cost": "$47664.93",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 280,
+    "rawId": "11822-0982",
+    "name": "Chocolate - White",
+    "quantity": 29,
+    "cost": "$27099.70",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 281,
+    "rawId": "67457-584",
+    "name": "Veal - Insides Provini",
+    "quantity": 59,
+    "cost": "$31619.94",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 282,
+    "rawId": "54575-116",
+    "name": "Pastry - Cherry Danish - Mini",
+    "quantity": 29,
+    "cost": "$28429.49",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 283,
+    "rawId": "11673-471",
+    "name": "Muffin Mix - Chocolate Chip",
+    "quantity": 67,
+    "cost": "$25476.99",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 284,
+    "rawId": "23155-119",
+    "name": "Pie Filling - Apple",
+    "quantity": 49,
+    "cost": "$31707.30",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 285,
+    "rawId": "49230-206",
+    "name": "Sansho Powder",
+    "quantity": 47,
+    "cost": "$48218.20",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 286,
+    "rawId": "63736-024",
+    "name": "Beans - French",
+    "quantity": 73,
+    "cost": "$48749.26",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 287,
+    "rawId": "41520-473",
+    "name": "Liners - Banana, Paper",
+    "quantity": 94,
+    "cost": "$41340.83",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 288,
+    "rawId": "53033-003",
+    "name": "Cheese - Havarti, Roasted Garlic",
+    "quantity": 76,
+    "cost": "$34525.79",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 289,
+    "rawId": "50458-346",
+    "name": "Blueberries - Frozen",
+    "quantity": 86,
+    "cost": "$38499.54",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 290,
+    "rawId": "49348-689",
+    "name": "Cilantro / Coriander - Fresh",
+    "quantity": 32,
+    "cost": "$17430.87",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 291,
+    "rawId": "55154-4376",
+    "name": "Shrimp - 31/40",
+    "quantity": 23,
+    "cost": "$26467.55",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 292,
+    "rawId": "52125-642",
+    "name": "Prunes - Pitted",
+    "quantity": 64,
+    "cost": "$31958.88",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 293,
+    "rawId": "64024-968",
+    "name": "Wine - Riesling Dr. Pauly",
+    "quantity": 8,
+    "cost": "$47992.99",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 294,
+    "rawId": "16714-343",
+    "name": "Arizona - Green Tea",
+    "quantity": 13,
+    "cost": "$16985.54",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 295,
+    "rawId": "35356-654",
+    "name": "Water - Evian 355 Ml",
+    "quantity": 25,
+    "cost": "$32475.56",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 296,
+    "rawId": "59316-206",
+    "name": "Pastry - Apple Muffins - Mini",
+    "quantity": 56,
+    "cost": "$16691.69",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 297,
+    "rawId": "51346-154",
+    "name": "Bread - Multigrain",
+    "quantity": 12,
+    "cost": "$20306.90",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 298,
+    "rawId": "47335-286",
+    "name": "Soup V8 Roasted Red Pepper",
+    "quantity": 43,
+    "cost": "$37612.37",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 299,
+    "rawId": "37000-785",
+    "name": "Plastic Arrow Stir Stick",
+    "quantity": 56,
+    "cost": "$42782.25",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 300,
+    "rawId": "41520-552",
+    "name": "Shiro Miso",
+    "quantity": 55,
+    "cost": "$40934.51",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 301,
+    "rawId": "58118-0553",
+    "name": "Pasta - Penne, Lisce, Dry",
+    "quantity": 35,
+    "cost": "$39808.42",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 302,
+    "rawId": "0904-5961",
+    "name": "Pasta - Bauletti, Chicken White",
+    "quantity": 99,
+    "cost": "$20187.72",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 303,
+    "rawId": "66689-711",
+    "name": "Tray - Foam, Square 4 - S",
+    "quantity": 93,
+    "cost": "$37759.26",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 304,
+    "rawId": "67905-0001",
+    "name": "Potatoes - Pei 10 Oz",
+    "quantity": 16,
+    "cost": "$33609.18",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 305,
+    "rawId": "36987-3276",
+    "name": "Rice Wine - Aji Mirin",
+    "quantity": 10,
+    "cost": "$36915.09",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 306,
+    "rawId": "75921-469",
+    "name": "Isomalt",
+    "quantity": 17,
+    "cost": "$49103.33",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 307,
+    "rawId": "59088-105",
+    "name": "Irish Cream - Butterscotch",
+    "quantity": 69,
+    "cost": "$24157.93",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 308,
+    "rawId": "55312-218",
+    "name": "Onion Powder",
+    "quantity": 98,
+    "cost": "$31041.09",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 309,
+    "rawId": "49693-2001",
+    "name": "Spice - Chili Powder Mexican",
+    "quantity": 33,
+    "cost": "$26084.70",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 310,
+    "rawId": "52125-411",
+    "name": "Salt And Pepper Mix - Black",
+    "quantity": 57,
+    "cost": "$33422.66",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 311,
+    "rawId": "63629-4075",
+    "name": "Pasta - Fettuccine, Egg, Fresh",
+    "quantity": 61,
+    "cost": "$25072.84",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 312,
+    "rawId": "65954-552",
+    "name": "Lumpfish Black",
+    "quantity": 38,
+    "cost": "$49756.72",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 313,
+    "rawId": "52125-581",
+    "name": "Wine - Barbera Alba Doc 2001",
+    "quantity": 20,
+    "cost": "$19574.18",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 314,
+    "rawId": "0641-6077",
+    "name": "Chicken - Whole Roasting",
+    "quantity": 69,
+    "cost": "$45393.64",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 315,
+    "rawId": "10812-002",
+    "name": "Papadam",
+    "quantity": 82,
+    "cost": "$32240.11",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 316,
+    "rawId": "53808-0934",
+    "name": "Jolt Cola - Electric Blue",
+    "quantity": 94,
+    "cost": "$35146.34",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 317,
+    "rawId": "42254-038",
+    "name": "Wine - Conde De Valdemar",
+    "quantity": 18,
+    "cost": "$33386.22",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 318,
+    "rawId": "64942-1308",
+    "name": "Bread - Roll, Calabrese",
+    "quantity": 45,
+    "cost": "$17506.91",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 319,
+    "rawId": "0363-0611",
+    "name": "Squash - Butternut",
+    "quantity": 32,
+    "cost": "$23936.24",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 320,
+    "rawId": "42291-597",
+    "name": "Potato - Sweet",
+    "quantity": 69,
+    "cost": "$36278.08",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 321,
+    "rawId": "54111-113",
+    "name": "Buffalo - Striploin",
+    "quantity": 70,
+    "cost": "$42836.89",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 322,
+    "rawId": "49349-145",
+    "name": "Cleaner - Lime Away",
+    "quantity": 56,
+    "cost": "$46100.45",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 323,
+    "rawId": "0363-0117",
+    "name": "Steam Pan - Half Size Deep",
+    "quantity": 73,
+    "cost": "$15862.46",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 324,
+    "rawId": "68726-167",
+    "name": "Wine - Chateau Timberlay",
+    "quantity": 87,
+    "cost": "$47658.68",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 325,
+    "rawId": "53346-1346",
+    "name": "Food Colouring - Green",
+    "quantity": 17,
+    "cost": "$49378.65",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 326,
+    "rawId": "49430-014",
+    "name": "Walkers Special Old Whiskey",
+    "quantity": 87,
+    "cost": "$38791.10",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 327,
+    "rawId": "63739-531",
+    "name": "Pasta - Detalini, White, Fresh",
+    "quantity": 38,
+    "cost": "$48227.28",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 328,
+    "rawId": "49852-025",
+    "name": "Glove - Cutting",
+    "quantity": 37,
+    "cost": "$41427.91",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 329,
+    "rawId": "63187-062",
+    "name": "Lettuce - Arugula",
+    "quantity": 40,
+    "cost": "$47328.51",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 330,
+    "rawId": "55648-742",
+    "name": "Muffin Batt - Blueberry Passion",
+    "quantity": 61,
+    "cost": "$47101.56",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 331,
+    "rawId": "68400-136",
+    "name": "Chicken - Leg, Boneless",
+    "quantity": 33,
+    "cost": "$40989.12",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 332,
+    "rawId": "36987-1041",
+    "name": "Pate - Liver",
+    "quantity": 22,
+    "cost": "$38936.26",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 333,
+    "rawId": "72036-227",
+    "name": "Potatoes - Parissienne",
+    "quantity": 82,
+    "cost": "$32204.27",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 334,
+    "rawId": "41520-191",
+    "name": "Squid U5 - Thailand",
+    "quantity": 46,
+    "cost": "$38873.85",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 335,
+    "rawId": "57344-126",
+    "name": "Stock - Fish",
+    "quantity": 7,
+    "cost": "$21395.66",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 336,
+    "rawId": "66663-103",
+    "name": "Pork - Loin, Center Cut",
+    "quantity": 56,
+    "cost": "$49119.94",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 337,
+    "rawId": "59762-6710",
+    "name": "Shiro Miso",
+    "quantity": 86,
+    "cost": "$36131.96",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 338,
+    "rawId": "36987-3309",
+    "name": "Tomatoes - Roma",
+    "quantity": 62,
+    "cost": "$17621.83",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 339,
+    "rawId": "0832-1074",
+    "name": "Seedlings - Mix, Organic",
+    "quantity": 43,
+    "cost": "$18445.50",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 340,
+    "rawId": "36987-1612",
+    "name": "Pastry - Plain Baked Croissant",
+    "quantity": 62,
+    "cost": "$25454.78",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 341,
+    "rawId": "68084-584",
+    "name": "Onions - Cippolini",
+    "quantity": 12,
+    "cost": "$35796.09",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 342,
+    "rawId": "61924-107",
+    "name": "Ecolab Silver Fusion",
+    "quantity": 71,
+    "cost": "$15303.47",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 343,
+    "rawId": "55289-406",
+    "name": "Mcguinness - Blue Curacao",
+    "quantity": 17,
+    "cost": "$31737.13",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 344,
+    "rawId": "10544-189",
+    "name": "Wine - Trimbach Pinot Blanc",
+    "quantity": 99,
+    "cost": "$36222.18",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 345,
+    "rawId": "0781-3178",
+    "name": "Foam Tray S2",
+    "quantity": 87,
+    "cost": "$40994.51",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 346,
+    "rawId": "47335-938",
+    "name": "Wine - Rubyport",
+    "quantity": 77,
+    "cost": "$47337.78",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 347,
+    "rawId": "66758-045",
+    "name": "Dill Weed - Dry",
+    "quantity": 87,
+    "cost": "$29509.95",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 348,
+    "rawId": "0615-1377",
+    "name": "Rum - Mount Gay Eclipes",
+    "quantity": 79,
+    "cost": "$36014.13",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 349,
+    "rawId": "0378-5051",
+    "name": "Bread - Mini Hamburger Bun",
+    "quantity": 81,
+    "cost": "$38376.06",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 350,
+    "rawId": "62756-755",
+    "name": "Flower - Daisies",
+    "quantity": 97,
+    "cost": "$48357.73",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 351,
+    "rawId": "33261-811",
+    "name": "Puree - Pear",
+    "quantity": 49,
+    "cost": "$47534.47",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 352,
+    "rawId": "57344-098",
+    "name": "Burger Veggie",
+    "quantity": 72,
+    "cost": "$15282.90",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 353,
+    "rawId": "41520-079",
+    "name": "Chicken - Breast, 5 - 7 Oz",
+    "quantity": 94,
+    "cost": "$36714.31",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 354,
+    "rawId": "53217-008",
+    "name": "Sprouts - Bean",
+    "quantity": 41,
+    "cost": "$33255.60",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 355,
+    "rawId": "61786-041",
+    "name": "Radish - Pickled",
+    "quantity": 66,
+    "cost": "$31870.60",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 356,
+    "rawId": "64679-953",
+    "name": "Cheese - St. Paulin",
+    "quantity": 47,
+    "cost": "$19535.05",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 357,
+    "rawId": "41163-346",
+    "name": "Turkey - Breast, Bone - In",
+    "quantity": 24,
+    "cost": "$18334.19",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 358,
+    "rawId": "0268-6682",
+    "name": "Lemonade - Mandarin, 591 Ml",
+    "quantity": 85,
+    "cost": "$26746.78",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 359,
+    "rawId": "55154-1916",
+    "name": "Seaweed Green Sheets",
+    "quantity": 42,
+    "cost": "$48724.09",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 360,
+    "rawId": "43353-733",
+    "name": "Cheese - St. Paulin",
+    "quantity": 38,
+    "cost": "$48702.55",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 361,
+    "rawId": "68084-272",
+    "name": "Chicken - Whole Roasting",
+    "quantity": 13,
+    "cost": "$32316.48",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 362,
+    "rawId": "43857-0259",
+    "name": "Orange Roughy 6/8 Oz",
+    "quantity": 3,
+    "cost": "$31037.77",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 363,
+    "rawId": "43742-0322",
+    "name": "Salmon Steak - Cohoe 6 Oz",
+    "quantity": 97,
+    "cost": "$33443.82",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 364,
+    "rawId": "63851-612",
+    "name": "Sauce - Fish 25 Ozf Bottle",
+    "quantity": 100,
+    "cost": "$49578.83",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 365,
+    "rawId": "49643-447",
+    "name": "Salt - Rock, Course",
+    "quantity": 35,
+    "cost": "$27309.67",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 366,
+    "rawId": "59726-227",
+    "name": "Broom - Push",
+    "quantity": 27,
+    "cost": "$46159.42",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 367,
+    "rawId": "43742-0326",
+    "name": "Pepper - Cubanelle",
+    "quantity": 97,
+    "cost": "$16516.58",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 368,
+    "rawId": "59726-238",
+    "name": "Sole - Iqf",
+    "quantity": 83,
+    "cost": "$42649.25",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 369,
+    "rawId": "59640-072",
+    "name": "Bagel - Plain",
+    "quantity": 3,
+    "cost": "$32751.00",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 370,
+    "rawId": "55714-1101",
+    "name": "Lettuce - Frisee",
+    "quantity": 88,
+    "cost": "$32628.71",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 371,
+    "rawId": "58990-000",
+    "name": "Ham - Cooked Italian",
+    "quantity": 95,
+    "cost": "$23427.71",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 372,
+    "rawId": "54868-6109",
+    "name": "Filter - Coffee",
+    "quantity": 8,
+    "cost": "$27327.65",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 373,
+    "rawId": "58517-320",
+    "name": "Sea Bass - Whole",
+    "quantity": 78,
+    "cost": "$45122.80",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 374,
+    "rawId": "37808-478",
+    "name": "Salmon - Smoked, Sliced",
+    "quantity": 71,
+    "cost": "$28159.48",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 375,
+    "rawId": "0338-0803",
+    "name": "Long Island Ice Tea",
+    "quantity": 54,
+    "cost": "$40988.46",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 376,
+    "rawId": "41163-069",
+    "name": "Peppercorns - Green",
+    "quantity": 17,
+    "cost": "$44361.97",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 377,
+    "rawId": "16714-371",
+    "name": "Stock - Chicken, White",
+    "quantity": 10,
+    "cost": "$23720.52",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 378,
+    "rawId": "10337-332",
+    "name": "Quail - Whole, Boneless",
+    "quantity": 44,
+    "cost": "$48611.26",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 379,
+    "rawId": "35356-837",
+    "name": "Coffee - Colombian, Portioned",
+    "quantity": 56,
+    "cost": "$40182.41",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 380,
+    "rawId": "57297-203",
+    "name": "Wine - Zinfandel California 2002",
+    "quantity": 15,
+    "cost": "$41261.36",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 381,
+    "rawId": "0378-4022",
+    "name": "Table Cloth 90x90 Colour",
+    "quantity": 52,
+    "cost": "$42035.19",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 382,
+    "rawId": "64525-0546",
+    "name": "Melon - Honey Dew",
+    "quantity": 68,
+    "cost": "$31416.58",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 383,
+    "rawId": "10056-503",
+    "name": "Juice - Apple, 341 Ml",
+    "quantity": 38,
+    "cost": "$21220.85",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 384,
+    "rawId": "24236-364",
+    "name": "Lettuce - Escarole",
+    "quantity": 28,
+    "cost": "$48065.60",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 385,
+    "rawId": "63868-331",
+    "name": "Sugar - Cubes",
+    "quantity": 67,
+    "cost": "$16004.64",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 386,
+    "rawId": "49614-123",
+    "name": "Creme De Banane - Marie",
+    "quantity": 28,
+    "cost": "$16583.59",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 387,
+    "rawId": "56062-468",
+    "name": "Caviar - Salmon",
+    "quantity": 57,
+    "cost": "$20201.91",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 388,
+    "rawId": "51346-149",
+    "name": "Capon - Whole",
+    "quantity": 27,
+    "cost": "$36584.44",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 389,
+    "rawId": "0406-9202",
+    "name": "Papadam",
+    "quantity": 81,
+    "cost": "$19214.60",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 390,
+    "rawId": "60432-604",
+    "name": "Crab - Dungeness, Whole",
+    "quantity": 26,
+    "cost": "$28674.74",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 391,
+    "rawId": "51125-006",
+    "name": "Bread - Bistro White",
+    "quantity": 49,
+    "cost": "$21353.80",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 392,
+    "rawId": "36987-3336",
+    "name": "Wine La Vielle Ferme Cote Du",
+    "quantity": 49,
+    "cost": "$47133.93",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 393,
+    "rawId": "30142-578",
+    "name": "Tomatoes Tear Drop",
+    "quantity": 75,
+    "cost": "$21612.92",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 394,
+    "rawId": "14783-201",
+    "name": "Steel Wool S.o.s",
+    "quantity": 73,
+    "cost": "$40722.28",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 395,
+    "rawId": "52380-1274",
+    "name": "Cheese - Pied De Vents",
+    "quantity": 20,
+    "cost": "$20713.87",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 396,
+    "rawId": "37000-714",
+    "name": "Spinach - Baby",
+    "quantity": 3,
+    "cost": "$31407.23",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 397,
+    "rawId": "42291-273",
+    "name": "Ecolab - Hobart Washarm End Cap",
+    "quantity": 42,
+    "cost": "$35132.02",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 398,
+    "rawId": "51523-117",
+    "name": "Paper Cocktail Umberlla 80 - 180",
+    "quantity": 59,
+    "cost": "$17159.21",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 399,
+    "rawId": "53808-0633",
+    "name": "Wine - Niagara,vqa Reisling",
+    "quantity": 85,
+    "cost": "$24532.57",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 400,
+    "rawId": "68180-401",
+    "name": "Potatoes - Idaho 100 Count",
+    "quantity": 81,
+    "cost": "$22997.22",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 401,
+    "rawId": "0615-7559",
+    "name": "Oil - Food, Lacquer Spray",
+    "quantity": 6,
+    "cost": "$31427.38",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 402,
+    "rawId": "0363-0227",
+    "name": "Bread - Wheat Baguette",
+    "quantity": 71,
+    "cost": "$44686.60",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 403,
+    "rawId": "63629-3177",
+    "name": "Jam - Apricot",
+    "quantity": 98,
+    "cost": "$18611.17",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 404,
+    "rawId": "62756-188",
+    "name": "Bread - Frozen Basket Variety",
+    "quantity": 85,
+    "cost": "$49514.36",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 405,
+    "rawId": "10812-387",
+    "name": "Coffee - Beans, Whole",
+    "quantity": 85,
+    "cost": "$45979.44",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 406,
+    "rawId": "50242-041",
+    "name": "Nantucket - Kiwi Berry Cktl.",
+    "quantity": 91,
+    "cost": "$17638.25",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 407,
+    "rawId": "0268-1520",
+    "name": "True - Vue Containers",
+    "quantity": 68,
+    "cost": "$21737.02",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 408,
+    "rawId": "63629-4179",
+    "name": "Beef - Cow Feet Split",
+    "quantity": 74,
+    "cost": "$22137.48",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 409,
+    "rawId": "58593-225",
+    "name": "Table Cloth 53x69 White",
+    "quantity": 42,
+    "cost": "$41621.74",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 410,
+    "rawId": "64942-0889",
+    "name": "Versatainer Nc - 888",
+    "quantity": 8,
+    "cost": "$42077.87",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 411,
+    "rawId": "50580-164",
+    "name": "Broom - Corn",
+    "quantity": 86,
+    "cost": "$19870.00",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 412,
+    "rawId": "55910-664",
+    "name": "Squid - Breaded",
+    "quantity": 38,
+    "cost": "$47311.16",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 413,
+    "rawId": "64942-0819",
+    "name": "Cheese - Provolone",
+    "quantity": 2,
+    "cost": "$29875.27",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 414,
+    "rawId": "65162-050",
+    "name": "Veal - Slab Bacon",
+    "quantity": 13,
+    "cost": "$28807.69",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 415,
+    "rawId": "47124-721",
+    "name": "Tomatoes",
+    "quantity": 13,
+    "cost": "$35550.01",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 416,
+    "rawId": "52343-009",
+    "name": "Spice - Pepper Portions",
+    "quantity": 93,
+    "cost": "$41848.22",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 417,
+    "rawId": "58118-0435",
+    "name": "Bread - Onion Focaccia",
+    "quantity": 96,
+    "cost": "$49644.80",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 418,
+    "rawId": "68927-0819",
+    "name": "Salad Dressing",
+    "quantity": 86,
+    "cost": "$47000.39",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 419,
+    "rawId": "67296-0556",
+    "name": "Cheese - Ermite Bleu",
+    "quantity": 36,
+    "cost": "$34110.46",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 420,
+    "rawId": "11523-7373",
+    "name": "Apricots - Halves",
+    "quantity": 30,
+    "cost": "$32105.91",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 421,
+    "rawId": "42411-050",
+    "name": "Pepper - Red Thai",
+    "quantity": 60,
+    "cost": "$33708.60",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 422,
+    "rawId": "65841-098",
+    "name": "Longos - Grilled Veg Sandwiches",
+    "quantity": 92,
+    "cost": "$25240.23",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 423,
+    "rawId": "36987-1097",
+    "name": "Wine - Carmenere Casillero Del",
+    "quantity": 31,
+    "cost": "$29383.03",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 424,
+    "rawId": "36987-2904",
+    "name": "Rice - Brown",
+    "quantity": 74,
+    "cost": "$49489.01",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 425,
+    "rawId": "0173-0752",
+    "name": "Chocolate - Dark Callets",
+    "quantity": 51,
+    "cost": "$17160.59",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 426,
+    "rawId": "55714-4518",
+    "name": "Soup - Campbells Chicken",
+    "quantity": 39,
+    "cost": "$25112.46",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 427,
+    "rawId": "51655-170",
+    "name": "Cookie Trail Mix",
+    "quantity": 36,
+    "cost": "$19784.89",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 428,
+    "rawId": "13310-146",
+    "name": "Bread - Raisin",
+    "quantity": 73,
+    "cost": "$42004.83",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 429,
+    "rawId": "0093-1122",
+    "name": "Gingerale - Schweppes, 355 Ml",
+    "quantity": 26,
+    "cost": "$45606.80",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 430,
+    "rawId": "66949-517",
+    "name": "Mints - Striped Red",
+    "quantity": 4,
+    "cost": "$33303.66",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 431,
+    "rawId": "55910-214",
+    "name": "Pizza Pizza Dough",
+    "quantity": 1,
+    "cost": "$30987.49",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 432,
+    "rawId": "0074-3058",
+    "name": "Chips Potato All Dressed - 43g",
+    "quantity": 58,
+    "cost": "$40842.38",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 433,
+    "rawId": "54569-5488",
+    "name": "Lamb - Racks, Frenched",
+    "quantity": 68,
+    "cost": "$49249.92",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 434,
+    "rawId": "65841-737",
+    "name": "Mustard Prepared",
+    "quantity": 77,
+    "cost": "$38024.02",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 435,
+    "rawId": "65044-2017",
+    "name": "Oil - Canola",
+    "quantity": 1,
+    "cost": "$22616.19",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 436,
+    "rawId": "55670-109",
+    "name": "Sauce - Cranberry",
+    "quantity": 24,
+    "cost": "$15775.01",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 437,
+    "rawId": "60505-2527",
+    "name": "Banana Turning",
+    "quantity": 40,
+    "cost": "$31649.42",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 438,
+    "rawId": "36987-2849",
+    "name": "Syrup - Monin - Blue Curacao",
+    "quantity": 13,
+    "cost": "$32851.61",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 439,
+    "rawId": "63629-1249",
+    "name": "Lettuce - Romaine, Heart",
+    "quantity": 77,
+    "cost": "$34677.80",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 440,
+    "rawId": "0363-0911",
+    "name": "Beets",
+    "quantity": 64,
+    "cost": "$44816.76",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 441,
+    "rawId": "0093-5414",
+    "name": "Wine - Touraine Azay - Le - Rideau",
+    "quantity": 30,
+    "cost": "$45019.92",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 442,
+    "rawId": "57520-0588",
+    "name": "Crackers - Trio",
+    "quantity": 25,
+    "cost": "$42601.58",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 443,
+    "rawId": "63941-311",
+    "name": "Quail - Jumbo",
+    "quantity": 71,
+    "cost": "$19724.55",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 444,
+    "rawId": "49884-931",
+    "name": "Salt - Seasoned",
+    "quantity": 70,
+    "cost": "$44338.30",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 445,
+    "rawId": "54575-968",
+    "name": "Soup - Campbells",
+    "quantity": 76,
+    "cost": "$37207.25",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 446,
+    "rawId": "58878-0001",
+    "name": "Chevril",
+    "quantity": 76,
+    "cost": "$49458.79",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 447,
+    "rawId": "0338-1021",
+    "name": "Puree - Strawberry",
+    "quantity": 59,
+    "cost": "$42555.80",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 448,
+    "rawId": "44183-890",
+    "name": "Sea Bass - Fillets",
+    "quantity": 96,
+    "cost": "$19180.78",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 449,
+    "rawId": "58479-006",
+    "name": "Compound - Raspberry",
+    "quantity": 32,
+    "cost": "$19197.76",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 450,
+    "rawId": "57664-166",
+    "name": "Lobster - Tail 6 Oz",
+    "quantity": 24,
+    "cost": "$37548.59",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 451,
+    "rawId": "68084-291",
+    "name": "Sprouts - Bean",
+    "quantity": 40,
+    "cost": "$47489.58",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 452,
+    "rawId": "42715-001",
+    "name": "Jam - Strawberry, 20 Ml Jar",
+    "quantity": 10,
+    "cost": "$17800.11",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 453,
+    "rawId": "0268-1102",
+    "name": "Water - Tonic",
+    "quantity": 4,
+    "cost": "$26672.70",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 454,
+    "rawId": "60681-5501",
+    "name": "Bread Sour Rolls",
+    "quantity": 43,
+    "cost": "$38650.75",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 455,
+    "rawId": "52709-0901",
+    "name": "Basil - Seedlings Cookstown",
+    "quantity": 29,
+    "cost": "$16723.73",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 456,
+    "rawId": "42549-592",
+    "name": "Versatainer Nc - 9388",
+    "quantity": 29,
+    "cost": "$34296.10",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 457,
+    "rawId": "42808-405",
+    "name": "Wine - Red, Harrow Estates, Cab",
+    "quantity": 12,
+    "cost": "$15254.12",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 458,
+    "rawId": "61096-0002",
+    "name": "Mangostein",
+    "quantity": 62,
+    "cost": "$17417.30",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 459,
+    "rawId": "49349-927",
+    "name": "Marsala - Sperone, Fine, D.o.c.",
+    "quantity": 38,
+    "cost": "$29346.47",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 460,
+    "rawId": "52546-100",
+    "name": "Pheasants - Whole",
+    "quantity": 95,
+    "cost": "$42306.61",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 461,
+    "rawId": "49349-263",
+    "name": "Energy Drink",
+    "quantity": 32,
+    "cost": "$40030.93",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 462,
+    "rawId": "16590-830",
+    "name": "Flour - Bread",
+    "quantity": 11,
+    "cost": "$41599.95",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 463,
+    "rawId": "63323-464",
+    "name": "Chef Hat 25cm",
+    "quantity": 16,
+    "cost": "$19024.82",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 464,
+    "rawId": "63304-459",
+    "name": "Beer - Corona",
+    "quantity": 90,
+    "cost": "$35153.38",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 465,
+    "rawId": "17478-069",
+    "name": "Sausage - Liver",
+    "quantity": 69,
+    "cost": "$46690.09",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 466,
+    "rawId": "24090-497",
+    "name": "Icecream - Dstk Strw Chseck",
+    "quantity": 45,
+    "cost": "$32731.34",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 467,
+    "rawId": "53217-005",
+    "name": "Cheese - Ricotta",
+    "quantity": 92,
+    "cost": "$18073.93",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 468,
+    "rawId": "10191-1797",
+    "name": "Asparagus - Green, Fresh",
+    "quantity": 4,
+    "cost": "$41850.48",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 469,
+    "rawId": "59762-0489",
+    "name": "Venison - Ground",
+    "quantity": 37,
+    "cost": "$34539.37",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 470,
+    "rawId": "68788-9884",
+    "name": "Ginger - Crystalized",
+    "quantity": 74,
+    "cost": "$46972.90",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 471,
+    "rawId": "10578-022",
+    "name": "Syrup - Monin - Passion Fruit",
+    "quantity": 91,
+    "cost": "$48475.51",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 472,
+    "rawId": "10819-7006",
+    "name": "Chocolate - Chips Compound",
+    "quantity": 35,
+    "cost": "$39406.89",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 473,
+    "rawId": "11523-1305",
+    "name": "Wine - Red, Wolf Blass, Yellow",
+    "quantity": 29,
+    "cost": "$16960.98",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 474,
+    "rawId": "68151-1334",
+    "name": "Coffee - Dark Roast",
+    "quantity": 6,
+    "cost": "$26071.78",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 475,
+    "rawId": "35356-570",
+    "name": "Shrimp - 31/40",
+    "quantity": 75,
+    "cost": "$21590.97",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 476,
+    "rawId": "0378-5041",
+    "name": "Cheese - Gouda Smoked",
+    "quantity": 65,
+    "cost": "$19218.50",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 477,
+    "rawId": "33261-172",
+    "name": "Lettuce - Curly Endive",
+    "quantity": 29,
+    "cost": "$33036.06",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 478,
+    "rawId": "43857-0285",
+    "name": "Bagels Poppyseed",
+    "quantity": 72,
+    "cost": "$43744.87",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 479,
+    "rawId": "62756-711",
+    "name": "Sprouts - Alfalfa",
+    "quantity": 94,
+    "cost": "$38357.15",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 480,
+    "rawId": "10356-840",
+    "name": "French Kiss Vanilla",
+    "quantity": 70,
+    "cost": "$25481.54",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 481,
+    "rawId": "62756-718",
+    "name": "Seaweed Green Sheets",
+    "quantity": 23,
+    "cost": "$44803.78",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 482,
+    "rawId": "51442-547",
+    "name": "Pur Value",
+    "quantity": 53,
+    "cost": "$24913.74",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 483,
+    "rawId": "36987-2256",
+    "name": "Thermometer Digital",
+    "quantity": 24,
+    "cost": "$17555.23",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 484,
+    "rawId": "57344-091",
+    "name": "Pesto - Primerba, Paste",
+    "quantity": 70,
+    "cost": "$44958.08",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 485,
+    "rawId": "67542-030",
+    "name": "Wine - Bouchard La Vignee Pinot",
+    "quantity": 4,
+    "cost": "$31941.72",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 486,
+    "rawId": "54738-555",
+    "name": "Mcguinness - Blue Curacao",
+    "quantity": 31,
+    "cost": "$45365.87",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 487,
+    "rawId": "63029-200",
+    "name": "Lemon Balm - Fresh",
+    "quantity": 3,
+    "cost": "$49452.65",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 488,
+    "rawId": "52125-163",
+    "name": "Peas Snow",
+    "quantity": 65,
+    "cost": "$45560.92",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 489,
+    "rawId": "0642-0204",
+    "name": "7up Diet, 355 Ml",
+    "quantity": 12,
+    "cost": "$39972.21",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 490,
+    "rawId": "55154-5092",
+    "name": "V8 - Berry Blend",
+    "quantity": 47,
+    "cost": "$36132.37",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 491,
+    "rawId": "11822-0104",
+    "name": "Wine - Valpolicella Masi",
+    "quantity": 32,
+    "cost": "$43073.72",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 492,
+    "rawId": "64117-535",
+    "name": "Spinach - Frozen",
+    "quantity": 18,
+    "cost": "$40416.58",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 493,
+    "rawId": "76419-111",
+    "name": "Shiratamako - Rice Flour",
+    "quantity": 53,
+    "cost": "$21855.25",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 494,
+    "rawId": "55289-158",
+    "name": "Garlic Powder",
+    "quantity": 19,
+    "cost": "$39781.27",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 495,
+    "rawId": "0069-0079",
+    "name": "Skirt - 29 Foot",
+    "quantity": 67,
+    "cost": "$46047.99",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 496,
+    "rawId": "48951-5047",
+    "name": "Wine - Pinot Noir Stoneleigh",
+    "quantity": 13,
+    "cost": "$41995.44",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 497,
+    "rawId": "43063-242",
+    "name": "Iced Tea - Lemon, 460 Ml",
+    "quantity": 20,
+    "cost": "$22816.33",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 498,
+    "rawId": "55315-099",
+    "name": "Wine - Cabernet Sauvignon",
+    "quantity": 62,
+    "cost": "$18993.62",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 499,
+    "rawId": "0270-5264",
+    "name": "Pasta - Orecchiette",
+    "quantity": 41,
+    "cost": "$26440.42",
+    "createdAt": "01/01/2025"
+  },
+  {
+    "id": 500,
+    "rawId": "36987-1679",
+    "name": "Schnappes Peppermint - Walker",
+    "quantity": 28,
+    "cost": "$20009.83",
+    "createdAt": "01/01/2025"
+  }
+]
