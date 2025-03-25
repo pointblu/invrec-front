@@ -50,7 +50,7 @@ const ContentContainer = styled.div`
   background: ${({ theme }) => theme.bgtotal};
   overflow: auto;
   margin-left: ${({ $sidebarOpen }) => ($sidebarOpen ? "220px" : "90px")};
-  transition: margin-left 0.5s ease-in-out;
+  transition: margin-left 0.3s ease-in-out;
   &::-webkit-scrollbar {
     width: 6px;
   }

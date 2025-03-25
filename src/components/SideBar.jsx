@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import logo from "../assets/logo-invrec.png";
 import { v } from "../styles/Variables";
 import PropTypes from "prop-types";
 import { AiOutlineLeft } from "react-icons/ai";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import {
-  MdOutlineInventory2,
+  MdInventory2,
   MdOutlineHome,
   MdOutlineShoppingCart,
   MdOutlineBuild,
@@ -15,7 +15,7 @@ import { TbCashRegister } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
-import { FaRegTrashCan } from "react-icons/fa6";
+import { FaBook, FaRecycle } from "react-icons/fa6";
 
 Sidebar.propTypes = {
   sidebarOpen: PropTypes.bool.isRequired,
@@ -49,10 +49,27 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }) {
             className={({ isActive }) => `Links${isActive ? " active" : ""}`}
           >
             <div className="Linkicon">{icon}</div>
-            {sidebarOpen && <span>{label}</span>}
+            <span className={`LinkText ${sidebarOpen ? "visible" : "hidden"}`}>
+              {label}
+            </span>
           </NavLink>
         </div>
       ))}
+      <Divider />
+      {dailyLinksArray.map(({ icon, label, to }) => (
+        <div className="LinkContainer" key={label}>
+          <NavLink
+            to={to}
+            className={({ isActive }) => `Links${isActive ? " active" : ""}`}
+          >
+            <div className="Linkicon">{icon}</div>
+            <span className={`LinkText ${sidebarOpen ? "visible" : "hidden"}`}>
+              {label}
+            </span>
+          </NavLink>
+        </div>
+      ))}
+
       <Divider />
       {secondarylinksArray.map(({ icon, label, to }) => (
         <div className="LinkContainer" key={label}>
@@ -61,7 +78,9 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }) {
             className={({ isActive }) => `Links${isActive ? " active" : ""}`}
           >
             <div className="Linkicon">{icon}</div>
-            {sidebarOpen && <span>{label}</span>}
+            <span className={`LinkText ${sidebarOpen ? "visible" : "hidden"}`}>
+              {label}
+            </span>
           </NavLink>
         </div>
       ))}
@@ -95,36 +114,20 @@ const linksArray = [
     icon: <MdOutlineHome />,
     to: "/",
   },
-
   {
     label: "Insumos",
-    icon: <MdOutlineInventory2 />,
+    icon: <MdInventory2 />,
     to: "/insumos",
   },
   {
-    label: "Producción",
-    icon: <MdOutlineBuild />,
+    label: "Productos",
+    icon: <FaBook />,
     to: "/produccion",
   },
   {
     label: "Devolución",
-    icon: <FaRegTrashCan />,
+    icon: <FaRecycle />,
     to: "/devolucion",
-  },
-  {
-    label: "Compras",
-    icon: <MdOutlineShoppingCart />,
-    to: "/compras",
-  },
-  {
-    label: "Ventas",
-    icon: <TbCashRegister />,
-    to: "/ventas",
-  },
-  {
-    label: "Estadisticas",
-    icon: <IoStatsChartOutline />,
-    to: "/estadisticas",
   },
 ];
 
@@ -140,7 +143,55 @@ const secondarylinksArray = [
 ];
 //#endregion
 
+//#region daily links
+const dailyLinksArray = [
+  {
+    label: "Compras",
+    icon: <MdOutlineShoppingCart />,
+    to: "/compras",
+  },
+  {
+    label: "Producción",
+    icon: <MdOutlineBuild />,
+    to: "/produccion",
+  },
+  {
+    label: "Ventas",
+    icon: <TbCashRegister />,
+    to: "/ventas",
+  },
+  {
+    label: "Estadisticas",
+    icon: <IoStatsChartOutline />,
+    to: "/estadisticas",
+  },
+];
+//#endregion
+
 //#region styled components
+
+// Animaciones
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+`;
 const Container = styled.div`
   background: ${(props) => props.theme.bg};
   color: ${(props) => props.theme.text};
@@ -149,7 +200,7 @@ const Container = styled.div`
   left: 0;
   width: ${({ $isOpen }) => ($isOpen ? "220px" : "90px")};
   height: calc(100vh - 60px);
-  transition: width 0.5s ease-in-out;
+  transition: width 0.3s ease-in-out;
 
   .sidebarbutton {
     position: absolute;
@@ -200,7 +251,6 @@ const Container = styled.div`
   }
   .LinkContainer {
     margin: 8px 0;
-
     padding: 0 15%;
     :hover {
       background: ${(props) => props.theme.bg3};
@@ -217,7 +267,6 @@ const Container = styled.div`
       .Linkicon {
         padding: ${v.smSpacing} ${v.mdSpacing};
         display: flex;
-
         svg {
           font-size: 25px;
         }
@@ -227,6 +276,16 @@ const Container = styled.div`
           svg {
             color: ${(props) => props.theme.bg4};
           }
+        }
+      }
+      .LinkText {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        &.visible {
+          animation: ${fadeIn} 0.3s ease-in-out forwards;
+        }
+        &.hidden {
+          animation: ${fadeOut} 0.3s ease-in-out forwards;
         }
       }
     }
@@ -288,7 +347,6 @@ const Container = styled.div`
               bottom: 0;
               background: ${({ $themeUse }) =>
                 $themeUse === "light" ? v.lightcheckbox : v.checkbox};
-
               transition: 0.4s;
               &::before {
                 position: absolute;
@@ -302,7 +360,6 @@ const Container = styled.div`
               }
               &.round {
                 border-radius: 24px;
-
                 &::before {
                   border-radius: 50%;
                 }

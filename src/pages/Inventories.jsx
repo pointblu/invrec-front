@@ -6,9 +6,14 @@ import {
   CustomContainer,
   RenderDescriptionCell,
   CustomButton,
+  CustomModal,
 } from "../components";
 import data from "../inventories_data.json";
 import PropTypes from "prop-types";
+import { useState } from "react";
+import { RecipeForm } from "./RecipeForm";
+import { InventoriesForm } from "./InventoriesForm";
+import { QuantityForm } from "./QuantityForm";
 
 function ImageCell({ value }) {
   return (
@@ -38,12 +43,12 @@ renderImageCell.propTypes = {
   getValue: PropTypes.func.isRequired,
 };
 
-function renderActionsCell({ row }, filterType) {
-  if (filterType === "processed" || filterType === "returned") {
+function renderActionsCell({ row }, filterType, openAddModal) {
+  if (filterType === "returned") {
     return (
       <CustomButton
         icon={<HiPlus />}
-        onClick={() => console.log("Agregar cantidad", row.original)}
+        onClick={() => openAddModal(row.original)}
         customStyle={{
           default: {
             backgroundColor: "#4CAF50",
@@ -67,6 +72,31 @@ function renderActionsCell({ row }, filterType) {
   return null; // No mostrar nada para "raw"
 }
 export function Inventories({ title, filterType }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCloseAddModal = () => {
+    setIsAddModalOpen(false);
+    setSelectedItem(null);
+  };
+
+  const handleOpenAddModal = (item) => {
+    if (!item) return; // Validación adicional
+    setSelectedItem(item);
+    setIsAddModalOpen(true);
+  };
+
+  const handleAddQuantity = ({ quantity }) => {
+    console.log("Agregar cantidad:", quantity, "al item:", selectedItem);
+    // Aquí iría la lógica para actualizar la cantidad
+    handleCloseAddModal();
+  };
+
   const columns = [
     {
       header: "Imagen",
@@ -98,12 +128,13 @@ export function Inventories({ title, filterType }) {
       header: "Costo promedio",
       accessorKey: "cost",
     },
-    ...(filterType !== "raw"
+    ...(filterType === "returned"
       ? [
           {
             header: "Acciones",
             accessorKey: "actions",
-            cell: ({ row }) => renderActionsCell({ row }, filterType),
+            cell: ({ row }) =>
+              renderActionsCell({ row }, filterType, handleOpenAddModal),
           },
         ]
       : []),
@@ -113,6 +144,12 @@ export function Inventories({ title, filterType }) {
     raw: <GiFlour />,
     processed: <FaBook />,
     returned: <FaRecycle />,
+  };
+
+  const modalTitleMap = {
+    raw: "NUEVO INSUMO",
+    processed: "NUEVO PRODUCTO",
+    returned: "NUEVO REUTILIZABLE",
   };
 
   const datum = data.filter((item) => item.type === filterType);
@@ -126,10 +163,38 @@ export function Inventories({ title, filterType }) {
         customButtons={
           <CustomButton
             icon={icon}
-            onClick={() => console.log("Agregar Insumo o producto")}
+            onClick={() => setIsModalOpen(true)}
           ></CustomButton>
         }
       />
+      <CustomModal
+        isOpen={isModalOpen}
+        title={modalTitleMap[filterType]}
+        onClose={handleCloseModal}
+      >
+        {filterType === "processed" ? (
+          <RecipeForm onFormSubmit={handleCloseModal} />
+        ) : (
+          <InventoriesForm onFormSubmit={handleCloseModal} />
+        )}
+      </CustomModal>
+
+      {/* Nuevo modal para agregar cantidad */}
+      <CustomModal
+        isOpen={isAddModalOpen}
+        title={`Agregar a: `}
+        onClose={handleCloseAddModal}
+      >
+        {selectedItem ? (
+          <QuantityForm
+            onSubmit={handleAddQuantity}
+            onClose={handleCloseAddModal}
+            item={selectedItem}
+          />
+        ) : (
+          <p>No se ha seleccionado ningún item</p>
+        )}
+      </CustomModal>
     </CustomContainer>
   );
 }

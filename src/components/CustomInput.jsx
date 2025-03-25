@@ -1,22 +1,36 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export function CustomInput({
-  type = "text",
-  id,
-  label,
-  icon,
-  placeholder = " ",
-  value,
-  onChange,
-  toggleVisibilityIcon,
-  isPassword = false,
-  maxWidth,
-}) {
+export const CustomInput = forwardRef(function CustomInput(
+  {
+    type = "text",
+    id,
+    label,
+    icon,
+    placeholder = " ",
+    value,
+    onChange,
+    toggleVisibilityIcon,
+    isPassword = false,
+    maxWidth,
+    readOnly,
+    min,
+    disabled,
+  },
+  ref // Añadimos el ref aquí
+) {
   const [visible, setVisible] = useState(false);
 
   const handleToggleVisibility = () => setVisible(!visible);
+
+  const handleChange = (e) => {
+    if (type === "number" && e.target.value < 0) {
+      // Si el valor es negativo, no se actualiza el estado
+      return;
+    }
+    onChange(e); // Llama a la función onChange proporcionada por el padre
+  };
 
   return (
     <InputContainer $maxWidth={maxWidth}>
@@ -25,9 +39,13 @@ export function CustomInput({
         id={id}
         placeholder={placeholder}
         value={value}
-        onChange={onChange}
+        onChange={handleChange}
+        ref={ref}
         required
         autoComplete="off"
+        readOnly={readOnly}
+        min={min}
+        disabled={disabled}
       />
       <Label htmlFor={id}>{label}</Label>
       {icon && <Icon>{icon}</Icon>}
@@ -41,7 +59,7 @@ export function CustomInput({
       )}
     </InputContainer>
   );
-}
+});
 
 // Validación de PropTypes
 CustomInput.propTypes = {
@@ -50,16 +68,20 @@ CustomInput.propTypes = {
   label: PropTypes.string.isRequired,
   icon: PropTypes.element,
   placeholder: PropTypes.string,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onChange: PropTypes.func,
   toggleVisibilityIcon: PropTypes.shape({
     visible: PropTypes.element.isRequired,
     hidden: PropTypes.element.isRequired,
   }),
   isPassword: PropTypes.bool,
   maxWidth: PropTypes.string,
+  readOnly: PropTypes.bool,
+  min: PropTypes.number,
+  disabled: PropTypes.bool,
 };
 
+// Estilos
 const InputContainer = styled.div`
   position: relative;
   display: flex;
@@ -69,7 +91,9 @@ const InputContainer = styled.div`
 
 const Input = styled.input`
   width: 100%;
-  padding: 10px 40px 10px 10px;
+  padding: 10px 10px 10px 10px;
+  value:${({ value }) => value || ""}
+  ref={ref}
   font-size: 16px;
   border: 1px solid ${({ theme }) => theme.text};
   border-radius: 5px;
