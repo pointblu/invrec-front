@@ -122,7 +122,7 @@ const linksArray = [
   {
     label: "Productos",
     icon: <FaBook />,
-    to: "/produccion",
+    to: "/productos",
   },
   {
     label: "Devolución",

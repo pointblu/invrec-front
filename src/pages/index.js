@@ -7,3 +7,5 @@ export * from "./Processed";
 export * from "./Returned";
 export * from "./Sales";
 export * from "./Purchases";
+export * from "./Production";
+export * from "./Statistics";

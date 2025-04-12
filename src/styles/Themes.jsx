@@ -28,6 +28,7 @@ export const Light = {
   bgtgderecha: "#fff",
   barrascroll: "#a8a7a7",
   cancelText: "rgb(255,255,255)",
+  cardBackground: "rgb(206, 210, 211)",
 
   gray900: "#000000",
   gray800: "#1f1f1f",
@@ -81,6 +82,7 @@ export const Dark = {
   bgtotal: "#21252B",
   barrascroll: "#A18AFF",
   cancelText: "rgb(255,255,255)",
+  cardBackground: "rgba(187, 168, 228, 0.5)",
 
   gray900: "#000000",
   gray800: "#1f1f1f",

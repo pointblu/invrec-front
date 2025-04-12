@@ -8,7 +8,7 @@ export const CustomSelect = forwardRef(function CustomSelect(
     id,
     label,
     options,
-    placeholder = "Seleccionar",
+    placeholder = "",
     value,
     onChange,
     maxWidth,

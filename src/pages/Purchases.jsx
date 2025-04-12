@@ -1,7 +1,20 @@
-import { CustomTable, CustomContainer, CustomButton } from "../components";
+import {
+  CustomTable,
+  CustomContainer,
+  CustomButton,
+  CustomModal,
+} from "../components";
 import data from "../purchases_data.json";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { useState } from "react";
+import { PurchaseForm } from "./PurchaseForm";
+
 export function Purchases() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   const columns = [
     {
       header: "Fecha",
@@ -33,10 +46,17 @@ export function Purchases() {
         customButtons={
           <CustomButton
             icon={<MdOutlineShoppingCart />}
-            onClick={() => console.log("Agregar compra")}
+            onClick={() => setIsModalOpen(true)}
           ></CustomButton>
         }
       />
+      <CustomModal
+        isOpen={isModalOpen}
+        title={"Compras"}
+        onClose={handleCloseModal}
+      >
+        <PurchaseForm onFormSubmit={handleCloseModal} />
+      </CustomModal>
     </CustomContainer>
   );
 }

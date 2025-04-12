@@ -1,7 +1,20 @@
-import { CustomTable, CustomContainer, CustomButton } from "../components";
+import {
+  CustomTable,
+  CustomContainer,
+  CustomButton,
+  CustomModal,
+} from "../components";
 import data from "../sales_data.json";
 import { TbCashRegister } from "react-icons/tb";
+import { SalesForm } from "./SalesForm";
+import { useState } from "react";
+
 export function Sales() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   const columns = [
     {
       header: "Fecha",
@@ -12,7 +25,7 @@ export function Sales() {
       accessorKey: "rawId",
     },
     {
-      header: "Insumo",
+      header: "Producto",
       accessorKey: "name",
     },
     {
@@ -37,10 +50,17 @@ export function Sales() {
         customButtons={
           <CustomButton
             icon={<TbCashRegister />}
-            onClick={() => console.log("Agregar venta")}
+            onClick={() => setIsModalOpen(true)}
           ></CustomButton>
         }
       />
+      <CustomModal
+        isOpen={isModalOpen}
+        title={"Venta"}
+        onClose={handleCloseModal}
+      >
+        <SalesForm onFormSubmit={handleCloseModal} />
+      </CustomModal>
     </CustomContainer>
   );
 }

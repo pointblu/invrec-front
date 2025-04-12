@@ -12,3 +12,4 @@ export * from "./CustomHForm";
 export * from "./CustomModal";
 export * from "./CustomMultiSelect";
 export * from "./CustomSelect";
+export * from "./CustomChart";
