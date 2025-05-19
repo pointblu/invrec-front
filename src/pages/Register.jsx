@@ -11,22 +11,60 @@ import {
   CustomButton,
   CustomInput,
 } from "../components";
+import { useNavigate } from "react-router-dom";
+import { createUser } from "../services/api";
 
 export const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleLoginSubmit = (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
-    console.log("Nombre:", name, "Email:", email, "Password:", password); // Lógica del registro
+    setLoading(true);
+    setError(null);
+
+    try {
+      const userData = {
+        name,
+        email,
+        password,
+        role: "user",
+        status: true,
+        subscription: "cf7dc273-4498-47cf-995f-0b326dcd3475",
+      };
+
+      // Llamada directa al endpoint
+      await createUser(userData);
+
+      navigate("/ingreso", {
+        state: {
+          registrationSuccess: true,
+          message: "Registro exitoso. Por favor inicia sesión.",
+        },
+      });
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Error en el registro";
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <CustomContainer>
       <h1>Registro</h1>
-      <CustomForm onSubmit={handleLoginSubmit}>
+      {error && (
+        <div style={{ color: "red", marginBottom: "1rem" }}>{error}</div>
+      )}
+      <CustomForm onSubmit={handleRegisterSubmit}>
         <CustomInput
           type="text"
           id="name"
@@ -62,7 +100,9 @@ export const Register = () => {
           onToggleVisibility={() => setPasswordVisible(!passwordVisible)}
         />
 
-        <CustomButton type="submit">Registrarse</CustomButton>
+        <CustomButton type="submit" disabled={loading}>
+          {loading ? "Creando cuenta..." : "Registrarse"}
+        </CustomButton>
       </CustomForm>
     </CustomContainer>
   );

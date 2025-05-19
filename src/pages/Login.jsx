@@ -10,17 +10,25 @@ import {
   CustomButton,
   CustomInput,
 } from "../components";
+import { useAuth } from "../hooks/useAuth";
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [recoveryEmail, setRecoveryEmail] = useState("");
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState("");
+  const { login } = useAuth();
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    console.log("Email:", email, "Password:", password);
+    const result = await login(credentials);
+    if (!result.success) {
+      setError(result.error);
+    }
   };
 
   const handleForgotPasswordClick = () => {
@@ -36,6 +44,7 @@ export const Login = () => {
   return (
     <CustomContainer>
       <h1>Ingreso</h1>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <CustomForm onSubmit={handleLoginSubmit}>
         <CustomInput
           type="email"
@@ -43,8 +52,10 @@ export const Login = () => {
           label="Correo Electrónico"
           placeholder=" "
           icon={<AiOutlineMail size={20} />}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={credentials.email}
+          onChange={(e) =>
+            setCredentials({ ...credentials, email: e.target.value })
+          }
         />
 
         <CustomInput
@@ -57,8 +68,10 @@ export const Login = () => {
             visible: <AiOutlineEyeInvisible size={20} />,
             hidden: <AiOutlineEye size={20} />,
           }}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={credentials.password}
+          onChange={(e) =>
+            setCredentials({ ...credentials, password: e.target.value })
+          }
           onToggleVisibility={() => setPasswordVisible(!passwordVisible)}
         />
 

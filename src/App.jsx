@@ -5,22 +5,31 @@ import styled, { ThemeProvider } from "styled-components";
 import { Light, Dark } from "./styles/Themes";
 import { ThemeContext } from "./context/ThemeContext";
 
+import { useLocation } from "react-router-dom";
+import { useAuth } from "./hooks/useAuth";
+
 function App() {
   const [theme, setTheme] = useState("light");
   const themeStyle = theme === "light" ? Light : Dark;
-
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const { user } = useAuth();
+  const location = useLocation();
+
+  const isAuthPage = ["/ingreso", "/registro"].includes(location.pathname);
   return (
     <ThemeContext.Provider value={{ setTheme, theme }}>
       <ThemeProvider theme={themeStyle}>
         <AppContainer>
+          {!isAuthPage && user && <Header />}
           <Header />
           <Container className={sidebarOpen ? "sidebarState active" : ""}>
-            <Sidebar
-              sidebarOpen={sidebarOpen}
-              setSidebarOpen={setSidebarOpen}
-            />
-            <ContentContainer $sidebarOpen={sidebarOpen}>
+            {!isAuthPage && user && (
+              <Sidebar
+                sidebarOpen={sidebarOpen}
+                setSidebarOpen={setSidebarOpen}
+              />
+            )}
+            <ContentContainer $sidebarOpen={!isAuthPage && sidebarOpen}>
               <AppRouter />
             </ContentContainer>
           </Container>

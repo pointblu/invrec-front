@@ -3,24 +3,29 @@ import { MdLogin, MdLogout } from "react-icons/md";
 import { HiOutlineUserAdd } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 import { v } from "../styles/Variables";
+import { useAuth } from "../hooks/useAuth";
 
 export function Header() {
-  const linksArray = [
-    { icon: <HiOutlineUserAdd />, label: "", to: "/registro" },
-  ];
+  const { user, logout } = useAuth();
+  const linksArray = user
+    ? []
+    : [{ icon: <HiOutlineUserAdd />, label: "", to: "/registro" }];
 
-  const secondarylinksArray = [
-    { icon: <MdLogin />, label: "", to: "/ingreso" },
-    {
-      icon: <MdLogout />,
-      label: "",
-      to: "/",
-    },
-  ];
+  const secondarylinksArray = user
+    ? [
+        {
+          icon: <MdLogout />,
+          label: "",
+          to: "#",
+          onClick: logout,
+        },
+      ]
+    : [{ icon: <MdLogin />, label: "", to: "/ingreso" }];
+
   return (
     <Container>
       {linksArray.map(({ icon, label, to }) => (
-        <div className="Linkcontainer" key={label}>
+        <div className="Linkcontainer" key={to}>
           <NavLink
             to={to}
             className={({ isActive }) => `Link${isActive ? " active" : ""}`}
@@ -30,16 +35,27 @@ export function Header() {
           </NavLink>
         </div>
       ))}
-      <Divider />
-      {secondarylinksArray.map(({ icon, label, to }) => (
+
+      {linksArray.length > 0 && <Divider />}
+
+      {secondarylinksArray.map(({ icon, label, to, onClick }) => (
         <div className="Linkcontainer" key={to}>
-          <NavLink
-            to={to}
-            className={({ isActive }) => `Link${isActive ? " active" : ""}`}
-          >
-            <div className="icon">{icon}</div>
-            <span>{label}</span>
-          </NavLink>
+          {onClick ? (
+            // Botón para logout (no es un NavLink)
+            <button className="Link" onClick={onClick}>
+              <div className="icon">{icon}</div>
+              <span>{label}</span>
+            </button>
+          ) : (
+            // NavLink normal para login
+            <NavLink
+              to={to}
+              className={({ isActive }) => `Link${isActive ? " active" : ""}`}
+            >
+              <div className="icon">{icon}</div>
+              <span>{label}</span>
+            </NavLink>
+          )}
         </div>
       ))}
     </Container>
@@ -82,6 +98,25 @@ const Container = styled.header`
       background-color: ${({ theme }) => theme.bg3};
       border-radius: 5px;
       transition: background-color 0.3s;
+    }
+  }
+
+  .Linkcontainer {
+    button.Link {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      margin: 0 10px;
+      padding: calc(${v.smSpacing} - 2px) 0;
+      color: ${({ theme }) => theme.text};
+      font-size: 1.4rem;
+      transition: color 0.3s;
+
+      &:hover {
+        color: ${({ theme }) => theme.bg4};
+      }
     }
   }
 `;
