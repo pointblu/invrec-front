@@ -35,3 +35,22 @@ export const getProfile = () =>
   }));
 
 export const createUser = (bodyUser) => api.post("/users", bodyUser);
+
+export const getAllUser = (pag = 1, take = 10) =>
+  api.get("/users", {
+    params: {
+      pag,
+      take,
+    },
+  });
+
+export const createInventory = (bodyInventory) =>
+  api.post("/inventories", bodyInventory);
+
+export const getAllInventories = (pag = 1, take = 10) =>
+  api.get("/inventories", {
+    params: {
+      pag,
+      take,
+    },
+  });

@@ -18,20 +18,53 @@ import { useState } from "react";
 import { CustomInput, CustomSubContainer } from "../components";
 import PropTypes from "prop-types";
 
-export function CustomTable({ data, columns, customButtons }) {
+export function CustomTable({
+  data,
+  columns,
+  customButtons,
+  onRowClick,
+  pagination = null,
+  onPageChange = () => {},
+}) {
   const [sorting, setSorting] = useState([]);
   const [filtering, setFiltering] = useState("");
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     state: { sorting, globalFilter: filtering },
     onSortingChange: setSorting,
     onGlobalFilterChange: setFiltering,
+    ...(!pagination && {
+      getPaginationRowModel: getPaginationRowModel(),
+      initialState: { pagination: { pageSize: 10 } },
+    }),
+    manualPagination: !!pagination,
+    pageCount: pagination
+      ? pagination.totalPages ??
+        Math.ceil(pagination.totalItems / pagination.pageSize)
+      : undefined,
   });
+
+  const handlePageChange = (pageIndex) => {
+    if (pagination) {
+      onPageChange(pageIndex + 1);
+    } else {
+      table.setPageIndex(pageIndex);
+    }
+  };
+
+  const currentPageIndex = pagination
+    ? pagination.page - 1
+    : table.getState().pagination.pageIndex;
+  const pageCount = pagination
+    ? pagination.totalPages ??
+      Math.ceil(pagination.totalItems / pagination.pageSize)
+    : table.getPageCount();
+
   return (
     <>
       <CustomSubContainer align="right">
@@ -69,7 +102,10 @@ export function CustomTable({ data, columns, customButtons }) {
         </StyledThead>
         <StyledTbody>
           {table.getRowModel().rows.map((row) => (
-            <StyledTr key={row.id}>
+            <StyledTr
+              key={row.id}
+              onClick={() => onRowClick && onRowClick(row.original)}
+            >
               {row.getVisibleCells().map((cell) => (
                 <StyledTd key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -95,15 +131,15 @@ export function CustomTable({ data, columns, customButtons }) {
       </StyledTable>
       <CustomSubContainer align="right">
         <PaginationButton
-          onClick={() => table.setPageIndex(0)}
-          disabled={!table.getCanPreviousPage()}
+          onClick={() => handlePageChange(0)}
+          disabled={currentPageIndex === 0}
         >
           <FaAngleDoubleLeft />
           <span></span>
         </PaginationButton>
         <PaginationButton
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
+          onClick={() => handlePageChange(currentPageIndex - 1)}
+          disabled={currentPageIndex === 0}
         >
           <FaAngleLeft />
           <span></span>
@@ -113,32 +149,30 @@ export function CustomTable({ data, columns, customButtons }) {
           Página{" "}
           <PageInput
             type="number"
-            value={table.getState().pagination.pageIndex + 1}
+            value={currentPageIndex + 1}
             onChange={(e) => {
               let page = e.target.value ? Number(e.target.value) - 1 : 0;
-              const maxPage = table.getPageCount() - 1;
+              const maxPage = pageCount - 1;
 
-              if (page > maxPage) {
-                page = maxPage;
-              } else if (page < 0) {
-                page = 0;
-              }
-              table.setPageIndex(page);
+              if (page > maxPage) page = maxPage;
+              if (page < 0) page = 0;
+
+              handlePageChange(page);
             }}
-          />
-          de {table.getPageCount()}
+          />{" "}
+          de {pageCount}
         </PageInputContainer>
 
         <PaginationButton
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
+          onClick={() => handlePageChange(currentPageIndex + 1)}
+          disabled={currentPageIndex >= pageCount - 1}
         >
           <FaAngleRight />
           <span></span>
         </PaginationButton>
         <PaginationButton
-          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-          disabled={!table.getCanNextPage()}
+          onClick={() => handlePageChange(pageCount - 1)}
+          disabled={currentPageIndex >= pageCount - 1}
         >
           <FaAngleDoubleRight />
           <span></span>
@@ -152,9 +186,18 @@ CustomTable.propTypes = {
   data: PropTypes.any,
   columns: PropTypes.any,
   customButtons: PropTypes.node,
+  onRowClick: PropTypes.func,
+  pagination: PropTypes.shape({
+    page: PropTypes.number.isRequired,
+    pageSize: PropTypes.number.isRequired,
+    totalItems: PropTypes.number.isRequired,
+    totalPages: PropTypes.number,
+  }),
+  onPageChange: PropTypes.func,
+  onPageSizeChange: PropTypes.func,
 };
 
-// Componentes estilizados
+// Componentes estilizados (mantenemos los mismos estilos)
 const StyledTable = styled.table`
   width: 97%;
   border-collapse: collapse;
@@ -193,6 +236,7 @@ const StyledTfoot = styled.tfoot`
 const StyledTr = styled.tr`
   &:hover {
     background-color: ${({ theme }) => theme.primaryHover};
+    cursor: pointer;
   }
 `;
 

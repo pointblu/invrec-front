@@ -8,12 +8,12 @@ import {
   CustomButton,
   CustomModal,
 } from "../components";
-import data from "../inventories_data.json";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RecipeForm } from "./RecipeForm";
 import { InventoriesForm } from "./InventoriesForm";
 import { QuantityForm } from "./QuantityForm";
+import { getAllInventories } from "../services/api";
 
 function ImageCell({ value }) {
   return (
@@ -25,7 +25,13 @@ function ImageCell({ value }) {
           style={{ width: 25, height: 25, objectFit: "cover" }}
         />
       ) : (
-        <span>N/A</span>
+        <img
+          src={
+            "https://res.cloudinary.com/diitm4dx7/image/upload/v1748043928/oe1pvye0dxn4wfczdyor.png"
+          }
+          alt="Producto"
+          style={{ width: 25, height: 25, objectFit: "cover" }}
+        />
       )}
     </>
   );
@@ -71,13 +77,49 @@ function renderActionsCell({ row }, filterType, openAddModal) {
   }
   return null; // No mostrar nada para "raw"
 }
+
 export function Inventories({ title, filterType }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [pagination, setPagination] = useState({
+    page: 1,
+    totalItems: 0,
+  });
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const response = await getAllInventories(pagination.page, 10); // Siempre 10 items por página
+      setData(response?.data?.result || []);
+      setPagination((prev) => ({
+        ...prev,
+        totalItems:
+          response?.data?.total || response?.data?.result?.length || 0,
+      }));
+      setError(null);
+    } catch (err) {
+      setError(err.message || "Error al cargar inventarios");
+      console.error("Error fetching inventories:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [pagination.page, filterType]);
+
+  const handlePageChange = (newPage) => {
+    setPagination((prev) => ({ ...prev, page: newPage }));
+  };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    fetchData();
   };
 
   const handleCloseAddModal = () => {
@@ -86,15 +128,15 @@ export function Inventories({ title, filterType }) {
   };
 
   const handleOpenAddModal = (item) => {
-    if (!item) return; // Validación adicional
+    if (!item) return;
     setSelectedItem(item);
     setIsAddModalOpen(true);
   };
 
   const handleAddQuantity = ({ quantity }) => {
     console.log("Agregar cantidad:", quantity, "al item:", selectedItem);
-    // Aquí iría la lógica para actualizar la cantidad
     handleCloseAddModal();
+    fetchData();
   };
 
   const columns = [
@@ -122,7 +164,7 @@ export function Inventories({ title, filterType }) {
     },
     {
       header: "Unidad",
-      accessorKey: "measureId",
+      accessorKey: "measurementUnit",
     },
     {
       header: "Costo promedio",
@@ -154,19 +196,31 @@ export function Inventories({ title, filterType }) {
 
   const datum = data.filter((item) => item.type === filterType);
   const icon = iconsMap[filterType];
+
+  if (loading) return <div>Cargando inventarios...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <CustomContainer>
       <h1>{title}</h1>
       <CustomTable
         data={datum}
         columns={columns}
+        pagination={{
+          page: pagination.page,
+          totalItems: pagination.totalItems,
+          pageSize: 10,
+        }}
+        onPageChange={handlePageChange}
         customButtons={
           <CustomButton
             icon={icon}
             onClick={() => setIsModalOpen(true)}
           ></CustomButton>
         }
+        onRowClick={(row) => console.log("Row clicked:", row)}
       />
+
       <CustomModal
         isOpen={isModalOpen}
         title={modalTitleMap[filterType]}
@@ -175,14 +229,16 @@ export function Inventories({ title, filterType }) {
         {filterType === "processed" ? (
           <RecipeForm onFormSubmit={handleCloseModal} />
         ) : (
-          <InventoriesForm onFormSubmit={handleCloseModal} />
+          <InventoriesForm
+            onFormSubmit={handleCloseModal}
+            inventoryType={filterType}
+          />
         )}
       </CustomModal>
 
-      {/* Nuevo modal para agregar cantidad */}
       <CustomModal
         isOpen={isAddModalOpen}
-        title={`Agregar a: `}
+        title={`Agregar a: ${selectedItem?.name || ""}`}
         onClose={handleCloseAddModal}
       >
         {selectedItem ? (

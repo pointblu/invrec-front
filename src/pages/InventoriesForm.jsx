@@ -2,28 +2,44 @@ import { Controller } from "react-hook-form";
 import * as z from "zod";
 import { CustomHForm, CustomInput, CustomButton } from "../components";
 import PropTypes from "prop-types";
+import { createInventory } from "../services/api";
 
 // Esquema de validación con Zod
 const inventoriesSchema = z.object({
-  code: z.string().min(1, "El código es requerido"),
   name: z.string().min(1, "El nombre es requerido"),
-  description: z.string().max(10, "La descripción no debe exceder 10 palabras"),
-  image: z.instanceof(File).optional(),
-  measureId: z.string().min(1, "La unidad de medida es requerida"),
+  description: z
+    .string()
+    .max(100, "La descripción no debe exceder 10 caracteres"),
+  type: z.string().min(1, "El tipo es requerido"),
+  measurementUnit: z.string().min(1, "La unidad de medida es requerida"),
 });
-export function InventoriesForm({ onFormSubmit }) {
-  const onSubmit = (data) => {
-    console.log("Datos del formulario:", data);
-    onFormSubmit();
+export function InventoriesForm({ onFormSubmit, inventoryType }) {
+  const onSubmit = async (data) => {
+    try {
+      const bodyInventory = {
+        name: data.name,
+        description: data.description,
+        type: data.type,
+        measurementUnit: data.measurementUnit,
+        ...(data.image && { image: data.image }),
+      };
+      console.log(bodyInventory);
+      const response = await createInventory(bodyInventory);
+      console.log("Respuesta de la API:", response);
+      onFormSubmit();
+    } catch (error) {
+      console.error("Error al crear el inventario:", error);
+    }
   };
+
   return (
     <CustomHForm
       schema={inventoriesSchema}
       defaultValues={{
-        code: "",
         name: "",
         description: "",
-        measureId: "",
+        type: inventoryType || "",
+        measurementUnit: "",
         image: null,
       }}
       onSubmit={onSubmit}
@@ -33,24 +49,12 @@ export function InventoriesForm({ onFormSubmit }) {
     >
       {/* Columna 1 */}
       <div>
-        {/* Campo: Código */}
         <Controller
-          name="code"
-          render={({ field, fieldState: { error } }) => (
-            <>
-              <CustomInput
-                {...field}
-                id="code"
-                label="Código"
-                placeholder=" " // Placeholder siempre es " "
-                value={field.value || ""} // Asegurar que value no sea undefined
-                onChange={field.onChange} // Pasar onChange directamente
-              />
-              {error && <span>{error.message}</span>}
-            </>
+          name="type"
+          render={({ field }) => (
+            <input type="hidden" {...field} value={inventoryType} />
           )}
         />
-
         {/* Campo: Nombre */}
         <Controller
           name="name"
@@ -83,11 +87,11 @@ export function InventoriesForm({ onFormSubmit }) {
 
         {/* Campo: Unidad de medida */}
         <Controller
-          name="measureId"
+          name="measurementUnit"
           render={({ field }) => (
             <CustomInput
               {...field}
-              id="measureId"
+              id="measurementUnit"
               label="Unidad"
               placeholder=" " // Placeholder siempre es " "
               value={field.value || ""} // Asegurar que value no sea undefined
@@ -95,16 +99,7 @@ export function InventoriesForm({ onFormSubmit }) {
             />
           )}
         />
-        {/* Campo: Imagen */}
-        <Controller
-          name="image"
-          render={({ field }) => (
-            <input
-              type="file"
-              onChange={(e) => field.onChange(e.target.files[0])}
-            />
-          )}
-        />
+
         <CustomButton
           type="submit"
           style={{ width: "100%", marginTop: "20px" }}
@@ -117,4 +112,5 @@ export function InventoriesForm({ onFormSubmit }) {
 }
 InventoriesForm.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
+  inventoryType: PropTypes.string,
 };
