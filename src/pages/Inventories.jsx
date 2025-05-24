@@ -93,12 +93,18 @@ export function Inventories({ title, filterType }) {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await getAllInventories(pagination.page, 500); // Siempre 10 items por página
-      setData(response?.data?.result || []);
+      const response = await getAllInventories(1, 500); // Traemos todos desde backend
+      const allItems = response?.data?.result || [];
+
+      const filtered = allItems.filter((item) => item.type === filterType);
+      const pageSize = 10;
+      const startIndex = (pagination.page - 1) * pageSize;
+      const endIndex = startIndex + pageSize;
+
+      setData(filtered.slice(startIndex, endIndex)); // solo 10 visibles
       setPagination((prev) => ({
         ...prev,
-        totalItems:
-          response?.data?.total || response?.data?.result?.length || 0,
+        totalItems: filtered.length,
       }));
       setError(null);
     } catch (err) {
@@ -165,6 +171,19 @@ export function Inventories({ title, filterType }) {
     {
       header: "Unidad",
       accessorKey: "measurementUnit",
+      cell: ({ getValue }) => {
+        const value = getValue();
+        switch (value) {
+          case "grams":
+            return "Gramos";
+          case "liters":
+            return "Litros";
+          case "units":
+            return "Unidades";
+          default:
+            return value;
+        }
+      },
     },
     {
       header: "Costo promedio",
@@ -194,7 +213,7 @@ export function Inventories({ title, filterType }) {
     returned: "NUEVO REUTILIZABLE",
   };
 
-  const datum = data.filter((item) => item.type === filterType);
+  const datum = data;
   const icon = iconsMap[filterType];
 
   if (loading) return <div>Cargando inventarios...</div>;
@@ -208,7 +227,7 @@ export function Inventories({ title, filterType }) {
         columns={columns}
         pagination={{
           page: pagination.page,
-          totalItems: datum.length, //pagination.totalItems,
+          totalItems: pagination.totalItems,
           pageSize: 10,
         }}
         onPageChange={handlePageChange}
