@@ -93,7 +93,7 @@ export function Inventories({ title, filterType }) {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await getAllInventories(pagination.page, 10); // Siempre 10 items por página
+      const response = await getAllInventories(pagination.page, 500); // Siempre 10 items por página
       setData(response?.data?.result || []);
       setPagination((prev) => ({
         ...prev,
@@ -208,7 +208,7 @@ export function Inventories({ title, filterType }) {
         columns={columns}
         pagination={{
           page: pagination.page,
-          totalItems: pagination.totalItems,
+          totalItems: datum.length, //pagination.totalItems,
           pageSize: 10,
         }}
         onPageChange={handlePageChange}

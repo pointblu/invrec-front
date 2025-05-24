@@ -12,7 +12,6 @@ import { useEffect } from "react";
 
 // Esquema de validación con Zod
 const ingredientSchema = z.object({
-  code: z.string().min(1, "El código es requerido"),
   name: z.string().min(1, "El nombre es requerido"),
   quantity: z.number().min(0, "La cantidad debe ser mayor o igual a 0"),
   measureId: z.string().min(1, "La unidad de medida es requerida"),
@@ -23,9 +22,8 @@ const recipeSchema = z.object({
   code: z.string().min(1, "El código es requerido"),
   name: z.string().min(1, "El nombre es requerido"),
   description: z.string().max(10, "La descripción no debe exceder 10 palabras"),
-  image: z.instanceof(File).optional(),
   stock: z.number().min(0, "Las existencias deben ser mayor o igual a 0"),
-  measureId: z.string().min(1, "La unidad de medida es requerida"),
+  measurementUnit: z.string().min(1, "La unidad de medida es requerida"),
   ingredients: z
     .array(ingredientSchema)
     .min(1, "Debe agregar al menos un ingrediente"),
@@ -79,11 +77,10 @@ export function RecipeForm({ onFormSubmit }) {
     <CustomHForm
       schema={recipeSchema}
       defaultValues={{
-        code: "",
         name: "",
         description: "",
         stock: 0,
-        measureId: "",
+        measurementUnit: "",
         image: null,
         ingredients: [],
         averageCost: 0,
@@ -96,24 +93,6 @@ export function RecipeForm({ onFormSubmit }) {
     >
       {/* Columna 1 */}
       <div>
-        {/* Campo: Código */}
-        <Controller
-          name="code"
-          render={({ field, fieldState: { error } }) => (
-            <>
-              <CustomInput
-                {...field}
-                id="code"
-                label="Código"
-                placeholder=" " // Placeholder siempre es " "
-                value={field.value || ""} // Asegurar que value no sea undefined
-                onChange={field.onChange} // Pasar onChange directamente
-              />
-              {error && <span>{error.message}</span>}
-            </>
-          )}
-        />
-
         {/* Campo: Nombre */}
         <Controller
           name="name"
@@ -146,11 +125,11 @@ export function RecipeForm({ onFormSubmit }) {
 
         {/* Campo: Unidad de medida */}
         <Controller
-          name="measureId"
+          name="measurementUnit"
           render={({ field }) => (
             <CustomInput
               {...field}
-              id="measureId"
+              id="measurementUnit"
               label="Unidad"
               placeholder=" " // Placeholder siempre es " "
               value={field.value || ""} // Asegurar que value no sea undefined
@@ -181,17 +160,6 @@ export function RecipeForm({ onFormSubmit }) {
 
       {/* Columna 2 */}
       <div>
-        {/* Campo: Imagen */}
-        <Controller
-          name="image"
-          render={({ field }) => (
-            <input
-              type="file"
-              onChange={(e) => field.onChange(e.target.files[0])}
-            />
-          )}
-        />
-
         {/* Campo: Ingredientes */}
         <CustomMultiSelect
           control={control}
