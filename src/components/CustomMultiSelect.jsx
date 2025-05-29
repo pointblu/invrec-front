@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export function CustomMultiSelect({ control, name, options, setValue }) {
   const [rows, setRows] = useState([
-    { id: uuidv4(), product: null, quantity: 0, cost: 0 },
+    { id: "uuidv4()", product: null, quantity: 0, cost: 0 },
   ]);
 
   // Obtener los productos ya seleccionados (excluyendo el actual)

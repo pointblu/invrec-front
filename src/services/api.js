@@ -54,3 +54,6 @@ export const getAllInventories = (pag = 1, take = 10) =>
       take,
     },
   });
+
+export const createIngredient = (bodyIngredient) =>
+  api.post("/ingredients", bodyIngredient);

@@ -15,7 +15,7 @@ const baseSchema = z.object({
   name: z.string().min(1, "El nombre es requerido"),
   description: z
     .string()
-    .max(100, "La descripción no debe exceder 10 caracteres"),
+    .max(100, "La descripción no debe exceder 100 caracteres"),
   type: z.string().min(1, "El tipo es requerido"),
   measurementUnit: z.string().min(1, "La unidad de medida es requerida"),
 });
@@ -122,8 +122,8 @@ export function InventoriesForm({ onFormSubmit, inventoryType }) {
 
   // Opciones para el combo box de unidades de medida
   const measurementUnitOptions = [
-    { value: "grams", label: "Gramos" },
-    { value: "liters", label: "Litros" },
+    { value: "grams", label: "Kilogramos" },
+    { value: "liters", label: "Mililitros" },
     { value: "units", label: "Unidades" },
   ];
 

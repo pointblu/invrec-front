@@ -10,10 +10,10 @@ import {
 } from "../components";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
-import { RecipeForm } from "./RecipeForm";
 import { InventoriesForm } from "./InventoriesForm";
 import { QuantityForm } from "./QuantityForm";
 import { getAllInventories } from "../services/api";
+import { RecipeFormWrapper } from "./RecipeFormWrapper";
 
 function ImageCell({ value }) {
   return (
@@ -93,7 +93,7 @@ export function Inventories({ title, filterType }) {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await getAllInventories(1, 500); // Traemos todos desde backend
+      const response = await getAllInventories(1, 3000); // Traemos todos desde backend
       const allItems = response?.data?.result || [];
 
       const filtered = allItems.filter((item) => item.type === filterType);
@@ -175,9 +175,9 @@ export function Inventories({ title, filterType }) {
         const value = getValue();
         switch (value) {
           case "grams":
-            return "Gramos";
+            return "Kilogramos";
           case "liters":
-            return "Litros";
+            return "Mililitros";
           case "units":
             return "Unidades";
           default:
@@ -246,7 +246,7 @@ export function Inventories({ title, filterType }) {
         onClose={handleCloseModal}
       >
         {filterType === "processed" ? (
-          <RecipeForm onFormSubmit={handleCloseModal} />
+          <RecipeFormWrapper onFormSubmit={handleCloseModal} />
         ) : (
           <InventoriesForm
             onFormSubmit={handleCloseModal}

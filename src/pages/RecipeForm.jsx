@@ -1,183 +1,249 @@
-import { Controller, useForm, useWatch } from "react-hook-form";
-import * as z from "zod";
+import { Controller, useFormContext, useWatch } from "react-hook-form";
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import {
-  CustomHForm,
+  getAllInventories,
+  createInventory,
+  createIngredient,
+} from "../services/api";
+import {
   CustomInput,
   CustomMultiSelect,
   CustomButton,
+  CustomSelect,
 } from "../components";
-import PropTypes from "prop-types";
-import data from "../inventories_data.json";
-import { useEffect } from "react";
+import * as z from "zod";
 
-// Esquema de validación con Zod
-const ingredientSchema = z.object({
+export const recipeSchema = z.object({
   name: z.string().min(1, "El nombre es requerido"),
-  quantity: z.number().min(0, "La cantidad debe ser mayor o igual a 0"),
-  measureId: z.string().min(1, "La unidad de medida es requerida"),
-  cost: z.number().min(0, "El costo debe ser mayor o igual a 0"),
+  description: z
+    .string()
+    .min(1, "La descripción es requerida")
+    .max(100, "Máximo 100 caracteres"),
+  measurementUnit: z.string().min(1, "Seleccione una unidad de medida"),
+  ingredients: z.array(z.any()).min(1, "Seleccione al menos un ingrediente"),
+  averageCost: z.number().min(0, "El costo debe ser ≥ 0"),
 });
 
-const recipeSchema = z.object({
-  code: z.string().min(1, "El código es requerido"),
-  name: z.string().min(1, "El nombre es requerido"),
-  description: z.string().max(10, "La descripción no debe exceder 10 palabras"),
-  stock: z.number().min(0, "Las existencias deben ser mayor o igual a 0"),
-  measurementUnit: z.string().min(1, "La unidad de medida es requerida"),
-  ingredients: z
-    .array(ingredientSchema)
-    .min(1, "Debe agregar al menos un ingrediente"),
-  averageCost: z
-    .number()
-    .min(0, "El costo promedio debe ser mayor o igual a 0"),
-});
+const parseCurrencyString = (value) => {
+  if (!value || typeof value !== "string") return 0;
+  const cleanedValue = value
+    .replace("$", "")
+    .replace(/\./g, "")
+    .replace(",", ".");
+  return parseFloat(cleanedValue) || 0;
+};
+
 export function RecipeForm({ onFormSubmit }) {
-  const { control, setValue } = useForm();
+  const {
+    control,
+    setValue,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useFormContext();
 
-  // Obtener los ingredientes disponibles
-  const availableIngredients = data.map((item) => ({
-    value: item.id, // Valor que se almacenará en el formulario
-    label: `[${item.measureId}] ${item.name}`, // Texto que se mostrará en el select
-    cost: parseFloat(item.cost.replace("$", "").replace(",", "")), // Costo del ingrediente
-    measureId: item.measureId, // Unidad de medida
-  }));
+  const [availableIngredients, setAvailableIngredients] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Observar cambios en el campo "ingredients"
+  // Fetch de ingredientes
+  useEffect(() => {
+    const fetchIngredients = async () => {
+      try {
+        setLoading(true);
+        const response = await getAllInventories(1, 3000);
+        const ingredientsData = response?.data?.result;
+
+        const unitMapping = {
+          grams: "Kg",
+          liters: "ml",
+          units: "Un",
+        };
+
+        const formattedIngredients = ingredientsData.map((item) => {
+          const friendlyUnit =
+            unitMapping[item.measurementUnit] || item.measurementUnit;
+
+          return {
+            value: item.id,
+            label: `[${friendlyUnit}] ${item.name}`,
+            cost: parseFloat(item.cost.replace("$", "").replace(",", "")),
+            measurementUnit: item.measurementUnit,
+          };
+        });
+
+        setAvailableIngredients(formattedIngredients);
+
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching ingredients:", err);
+        setError("Error al cargar los ingredientes");
+        setLoading(false);
+      }
+    };
+
+    fetchIngredients();
+  }, []);
+
   const selectedIngredients = useWatch({
     control,
     name: "ingredients",
-    defaultValue: [], // Asegurar que el valor inicial sea un array vacío
+    defaultValue: [],
   });
 
-  const averageCostValue = useWatch({ control, name: "averageCost" });
-  // Calcular el costo promedio cuando cambien los ingredientes seleccionados
   useEffect(() => {
     const totalCost = selectedIngredients?.reduce((sum, ingredient) => {
-      // Calcular el costo total del ingrediente (costo unitario * cantidad)
       return sum + (ingredient.cost || 0) * (ingredient.quantity || 0);
     }, 0);
-    const formattedCost = totalCost
-      ? `$ ${totalCost.toLocaleString("es-AR", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        })}`
-      : "$ 0,00";
+    setValue("averageCost", totalCost, { shouldValidate: true });
+  }, [selectedIngredients, setValue]);
 
-    setValue("averageCost", formattedCost, {
-      shouldValidate: true,
-      shouldDirty: true,
-    });
-  }, [selectedIngredients, setValue, averageCostValue]);
+  const onSubmit = async (data) => {
+    try {
+      const inventoryData = {
+        name: data.name,
+        description: data.description,
+        type: "processed",
+        measurementUnit: data.measurementUnit,
+        cost: data.averageCost,
+      };
 
-  const onSubmit = (data) => {
-    console.log("Datos del formulario:", data);
-    onFormSubmit();
+      const inventoryResponse = await createInventory(inventoryData);
+      const inventoryId = inventoryResponse.data.id;
+
+      const ingredientPromises = data.ingredients.map((ingredient) => {
+        const ingredientData = {
+          quantity: ingredient.quantity,
+          cost: ingredient.cost,
+          inventoryId,
+          ingredientId: ingredient.product.value,
+        };
+
+        return createIngredient(ingredientData);
+      });
+
+      await Promise.all(ingredientPromises);
+      onFormSubmit();
+    } catch (error) {
+      console.error("Error en el submit:", error);
+      setError("Ocurrió un error al guardar los datos");
+    }
   };
+
+  if (loading) return <div>Cargando ingredientes...</div>;
+  if (error) return <div>{error}</div>;
+
+  const measurementUnitOptions = [
+    { value: "grams", label: "Kilogramos" },
+    { value: "liters", label: "Mililitros" },
+    { value: "units", label: "Unidades" },
+  ];
+
+  const handleClick = () => {
+    handleSubmit(onSubmit)();
+  };
+  // ✅ Sin <form>, porque CustomForm ya lo provee
   return (
-    <CustomHForm
-      schema={recipeSchema}
-      defaultValues={{
-        name: "",
-        description: "",
-        stock: 0,
-        measurementUnit: "",
-        image: null,
-        ingredients: [],
-        averageCost: 0,
-      }}
-      onSubmit={onSubmit}
-      buttonTitle="Agregar"
-      customWidth="1000px" // Ajusta el ancho del formulario
-      firstColumnWidth="360px"
-      twoColumns
-    >
-      {/* Columna 1 */}
+    <>
+      {/* Columna 1 y 2 dentro del CustomForm */}
       <div>
-        {/* Campo: Nombre */}
         <Controller
           name="name"
+          control={control}
           render={({ field }) => (
             <CustomInput
               {...field}
               id="name"
               label="Nombre del Producto"
-              placeholder=" " // Placeholder siempre es " "
-              value={field.value || ""} // Asegurar que value no sea undefined
-              onChange={field.onChange} // Pasar onChange directamente
+              value={field.value ?? ""}
+              onChange={(e) => field.onChange(e.target.value)}
+              disabled={isSubmitting}
             />
           )}
         />
 
-        {/* Campo: Descripción */}
         <Controller
           name="description"
+          control={control}
           render={({ field }) => (
             <CustomInput
               {...field}
               id="description"
               label="Descripción"
-              placeholder=" " // Placeholder siempre es " "
-              value={field.value || ""} // Asegurar que value no sea undefined
-              onChange={field.onChange} // Pasar onChange directamente
+              value={field.value ?? ""}
+              onChange={(e) => field.onChange(e.target.value)}
+              disabled={isSubmitting}
             />
           )}
         />
 
-        {/* Campo: Unidad de medida */}
         <Controller
           name="measurementUnit"
+          control={control}
           render={({ field }) => (
-            <CustomInput
-              {...field}
+            <CustomSelect
               id="measurementUnit"
-              label="Unidad"
-              placeholder=" " // Placeholder siempre es " "
-              value={field.value || ""} // Asegurar que value no sea undefined
-              onChange={field.onChange} // Pasar onChange directamente
+              label="Unidad de medida"
+              options={measurementUnitOptions}
+              value={
+                measurementUnitOptions.find(
+                  (opt) => opt.value === field.value
+                ) || null
+              }
+              onChange={(option) => field.onChange(option?.value || "")}
+              isSearchable={false}
             />
           )}
         />
-
-        {/* Campo: Costo promedio */}
 
         <Controller
           name="averageCost"
           control={control}
-          render={({ field }) => (
-            <CustomInput
-              {...field}
-              id="averageCost"
-              label="Costo promedio"
-              placeholder=" "
-              value={field.value || ""}
-              onChange={(e) => {
-                field.onChange(e);
-              }}
-            />
-          )}
+          render={({ field }) => {
+            const formattedValue = new Intl.NumberFormat("es-AR", {
+              style: "currency",
+              currency: "ARS",
+            }).format(field.value || 0);
+
+            return (
+              <CustomInput
+                {...field}
+                id="averageCost"
+                label="Costo promedio"
+                value={formattedValue}
+                onChange={(e) => {
+                  const parsed = parseCurrencyString(e.target.value);
+                  field.onChange(isNaN(parsed) ? 0 : parsed);
+                }}
+                disabled={isSubmitting}
+              />
+            );
+          }}
         />
       </div>
 
-      {/* Columna 2 */}
       <div>
-        {/* Campo: Ingredientes */}
         <CustomMultiSelect
           control={control}
           name="ingredients"
           options={availableIngredients}
           setValue={setValue}
+          disabled={isSubmitting}
         />
 
         <CustomButton
-          type="submit"
+          type="button"
+          onClick={handleClick}
           style={{ width: "100%", marginTop: "20px" }}
+          disabled={isSubmitting}
         >
           Agregar
         </CustomButton>
       </div>
-    </CustomHForm>
+    </>
   );
 }
+
 RecipeForm.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
 };
