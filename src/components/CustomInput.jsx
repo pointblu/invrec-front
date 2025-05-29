@@ -37,6 +37,7 @@ export const CustomInput = forwardRef(function CustomInput(
       <Input
         type={isPassword && visible ? "text" : type}
         id={id}
+        name={id}
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
