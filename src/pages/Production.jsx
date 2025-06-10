@@ -15,6 +15,7 @@ export function Production() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [globalFilter, setGlobalFilter] = useState("");
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -84,7 +85,7 @@ export function Production() {
       accessorKey: "quantity",
     },
     {
-      header: "Costo",
+      header: "Costo ($)",
       accessorKey: "cost",
     },
     {
@@ -104,6 +105,8 @@ export function Production() {
       <CustomTable
         data={data}
         columns={columns}
+        filtering={globalFilter}
+        onFilteringChange={setGlobalFilter}
         customButtons={
           <>
             <CustomButton

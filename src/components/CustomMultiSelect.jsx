@@ -55,10 +55,37 @@ export function CustomMultiSelect({ control, name, options, setValue }) {
 
   const handleQuantityChange = (id, value) => {
     const updatedRows = rows.map((row) =>
-      row.id === id ? { ...row, quantity: parseFloat(value) || 0 } : row
+      row.id === id ? { ...row, quantity: value } : row
     );
     setRows(updatedRows);
-    setValue(name, updatedRows);
+
+    // Actualizar el valor del formulario con el valor numérico
+    setValue(
+      name,
+      updatedRows.map((row) => ({
+        ...row,
+        quantity: parseFloat(row.quantity) || 0,
+      }))
+    );
+  };
+
+  const handleQuantityBlur = (id) => {
+    const updatedRows = rows.map((row) => {
+      if (row.id === id) {
+        const numericValue = parseFloat(row.quantity) || 1;
+        const formattedValue = numericValue.toFixed(2);
+        return { ...row, quantity: formattedValue };
+      }
+      return row;
+    });
+    setRows(updatedRows);
+    setValue(
+      name,
+      updatedRows.map((row) => ({
+        ...row,
+        quantity: parseFloat(row.quantity) || 0,
+      }))
+    );
   };
 
   return (
@@ -102,11 +129,18 @@ export function CustomMultiSelect({ control, name, options, setValue }) {
                   <CustomInput
                     id={`quantity-${row.id}`}
                     label="Cantidad"
-                    type="number"
+                    type="text" // Cambiado a text para mejor control
                     value={row.quantity}
-                    onChange={(e) =>
-                      handleQuantityChange(row.id, e.target.value)
-                    }
+                    onChange={(e) => {
+                      // Permitir números, punto decimal y borrado
+                      const value = e.target.value.replace(/[^0-9.]/g, "");
+                      // Permitir solo un punto decimal
+                      const parts = value.split(".");
+                      if (parts.length <= 2) {
+                        handleQuantityChange(row.id, value);
+                      }
+                    }}
+                    onBlur={() => handleQuantityBlur(row.id)}
                     maxWidth="100px"
                     disabled={!row.product}
                   />

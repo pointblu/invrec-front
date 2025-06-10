@@ -8,15 +8,15 @@ import {
 } from "../components";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import data from "../purchases_data.json";
+import { createPurchase, getAllInventories } from "../services/api";
 
 // Esquema de validación con Zod
 const purchaseSchema = z.object({
   date: z.string(),
-  productId: z.string().min(1, "El producto es requerido"),
-  rawId: z.string(),
-  cost: z.number().min(0, "El costo debe ser positivo"),
-  quantity: z.number().min(1, "La cantidad debe ser al menos 1"),
+  inventoryId: z.string().min(1, "El producto es requerido"),
+  quantity: z.number().min(0.01, "La cantidad debe ser al menos 0.01"),
+  price: z.number().min(0.01, "El precio debe ser positivo"),
+  brand: z.string().min(1, "La marca es requerida"),
 });
 
 const formatCurrencyInput = (value) => {
@@ -56,33 +56,58 @@ const parseCurrencyInput = (formattedValue) => {
   return parseFloat(numericString) || 0;
 };
 
-// Función para parsear el costo de string a número
-
 export function PurchaseForm({ onFormSubmit }) {
   const [currentDate, setCurrentDate] = useState("");
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [inventories, setInventories] = useState([]);
+  const [selectedInventory, setSelectedInventory] = useState(null);
   const [quantity, setQuantity] = useState(1);
-  const [totalInput, setTotalInput] = useState("$ ");
-  const [totalValue, setTotalValue] = useState(0);
+  const [priceInput, setPriceInput] = useState("$ ");
+  const [priceValue, setPriceValue] = useState(0);
+  const [brand, setBrand] = useState("");
 
-  const handleTotalChange = (e) => {
+  // Cargar inventarios al montar el componente
+  useEffect(() => {
+    const loadInventories = async () => {
+      try {
+        const response = await getAllInventories();
+        // Filtrar solo inventarios de tipo raw (materia prima)
+        const rawInventories = response?.data?.result.filter(
+          (inv) => inv.type === "raw"
+        );
+        setInventories(rawInventories);
+      } catch (error) {
+        console.error("Error al cargar inventarios:", error);
+      }
+    };
+
+    loadInventories();
+  }, []);
+
+  // Generar fecha actual al cargar el componente
+  useEffect(() => {
+    const today = new Date();
+    const formattedDate = today.toISOString().split("T")[0]; // Formato YYYY-MM-DD
+    setCurrentDate(formattedDate);
+  }, []);
+
+  const handlePriceChange = (e) => {
     const inputValue = e.target.value;
 
-    // Si borró  restablece
+    // Si borró restablece
     if (inputValue === "" || inputValue === "$") {
-      setTotalInput("$ ");
-      setTotalValue(0);
+      setPriceInput("$ ");
+      setPriceValue(0);
       return;
     }
 
     // Manejo especial cuando el usuario está escribiendo decimales
     if (inputValue.includes(",")) {
       const currentFormatted = formatCurrencyInput(inputValue);
-      setTotalInput(currentFormatted);
+      setPriceInput(currentFormatted);
 
       // Solo actualiza el valor numérico si hay dígitos después de la coma
       if (inputValue.split(",")[1]) {
-        setTotalValue(parseCurrencyInput(currentFormatted));
+        setPriceValue(parseCurrencyInput(currentFormatted));
       }
       return;
     }
@@ -92,30 +117,32 @@ export function PurchaseForm({ onFormSubmit }) {
 
     // Formatea el valor
     const formattedValue = formatCurrencyInput(newValue);
-    setTotalInput(formattedValue);
+    setPriceInput(formattedValue);
 
     // Actualiza el valor numérico
-    setTotalValue(parseCurrencyInput(formattedValue));
+    setPriceValue(parseCurrencyInput(formattedValue));
   };
-
-  // Generar fecha actual al cargar el componente
-  useEffect(() => {
-    const today = new Date();
-    const formattedDate = `${String(today.getDate()).padStart(2, "0")}/${String(
-      today.getMonth() + 1
-    ).padStart(2, "0")}/${today.getFullYear()}`;
-    setCurrentDate(formattedDate);
-  }, []);
 
   // Obtener los valores actualizados para el formulario
   const getFormValues = () => {
     return {
-      date: currentDate,
-      productId: selectedProduct?.id.toString() || "",
-      rawId: selectedProduct?.rawId || "",
-      quantity: quantity,
-      cost: totalValue,
+      inventoryId: selectedInventory?.id || "",
+      quantity: parseFloat(quantity),
+      price: priceValue,
+      brand: brand,
+      purchaseDate: currentDate,
     };
+  };
+
+  const handleSubmit = async () => {
+    const formData = getFormValues();
+    try {
+      await createPurchase(formData);
+      onFormSubmit(formData);
+    } catch (error) {
+      console.error("Error al crear la compra:", error);
+      // Puedes manejar el error aquí (mostrar mensaje al usuario, etc.)
+    }
   };
 
   return (
@@ -123,16 +150,12 @@ export function PurchaseForm({ onFormSubmit }) {
       schema={purchaseSchema}
       defaultValues={{
         date: currentDate,
-        productId: "",
-        rawId: "",
+        inventoryId: "",
         quantity: 1,
-        cost: 0,
+        price: 0,
+        brand: "",
       }}
-      onSubmit={() => {
-        const formData = getFormValues();
-        console.log("Datos del formulario:", formData);
-        onFormSubmit(formData);
-      }}
+      onSubmit={handleSubmit}
       buttonTitle="Agregar"
       customWidth="500px"
     >
@@ -144,6 +167,7 @@ export function PurchaseForm({ onFormSubmit }) {
             {...field}
             id="date"
             label="Fecha"
+            type="date"
             value={currentDate}
             readOnly
           />
@@ -152,34 +176,34 @@ export function PurchaseForm({ onFormSubmit }) {
 
       {/* Campo: Producto (combobox) */}
       <Controller
-        name="productId"
+        name="inventoryId"
         render={({ field, fieldState: { error } }) => (
           <div>
             <CustomSelect
-              id="product"
+              id="inventory"
               label="Producto"
               value={
                 field.value
                   ? {
                       value: field.value,
                       label:
-                        data.find((p) => p.id.toString() === field.value)
+                        inventories.find((inv) => inv.id === field.value)
                           ?.name || "",
                     }
                   : { value: "", label: "Seleccione un insumo" }
               }
               onChange={(selectedOption) => {
-                const product = data.find(
-                  (p) => p.id.toString() === selectedOption.value
+                const inventory = inventories.find(
+                  (inv) => inv.id === selectedOption.value
                 );
-                setSelectedProduct(product);
+                setSelectedInventory(inventory);
                 field.onChange(selectedOption.value);
               }}
               options={[
                 { value: "", label: "Seleccione un insumo" },
-                ...data.map((product) => ({
-                  value: product.id.toString(),
-                  label: product.name,
+                ...inventories.map((inventory) => ({
+                  value: inventory.id,
+                  label: inventory.name,
                 })),
               ]}
             />
@@ -192,21 +216,7 @@ export function PurchaseForm({ onFormSubmit }) {
         )}
       />
 
-      {/* Campo: Código (solo lectura) */}
-      <Controller
-        name="rawId"
-        render={({ field }) => (
-          <CustomInput
-            {...field}
-            id="rawId"
-            label="Código"
-            value={selectedProduct?.rawId || ""}
-            readOnly
-          />
-        )}
-      />
-
-      {/* Campo: Cantidad */}
+      {/* Campo: Cantidad (con decimales) */}
       <Controller
         name="quantity"
         render={({ field, fieldState: { error } }) => (
@@ -216,13 +226,37 @@ export function PurchaseForm({ onFormSubmit }) {
               id="quantity"
               label="Cantidad"
               type="number"
-              min={1}
+              step="any"
+              min="any"
               value={quantity}
               onChange={(e) => {
-                const value = parseInt(e.target.value, 10) || 1;
-                const newQuantity = Math.max(1, value);
-                setQuantity(newQuantity);
-                field.onChange(newQuantity);
+                // Permitir entrada vacía temporalmente
+                if (e.target.value === "") {
+                  setQuantity("");
+                  field.onChange("");
+                  return;
+                }
+
+                // Convertir a número
+                const value = parseFloat(e.target.value);
+
+                // Validar que sea un número válido y positivo
+                if (!isNaN(value) && value >= 0.01) {
+                  const newQuantity = value;
+                  setQuantity(newQuantity);
+                  field.onChange(newQuantity);
+                }
+              }}
+              onBlur={(e) => {
+                // Asegurar un valor válido al salir del campo
+                if (
+                  e.target.value === "" ||
+                  isNaN(parseFloat(e.target.value))
+                ) {
+                  const defaultQuantity = 1;
+                  setQuantity(defaultQuantity);
+                  field.onChange(defaultQuantity);
+                }
               }}
             />
             {error && (
@@ -234,19 +268,44 @@ export function PurchaseForm({ onFormSubmit }) {
         )}
       />
 
+      {/* Campo: Precio */}
       <Controller
-        name="cost"
+        name="price"
         render={({ field, fieldState: { error } }) => (
           <div>
             <CustomInput
               {...field}
-              id="cost"
-              label="Costo"
-              value={totalInput}
+              id="price"
+              label="Precio"
+              value={priceInput}
               onChange={(e) => {
-                handleTotalChange(e);
+                handlePriceChange(e);
                 // Actualiza react-hook-form con el valor numérico
                 field.onChange(parseCurrencyInput(e.target.value));
+              }}
+            />
+            {error && (
+              <span style={{ color: "red", fontSize: "12px" }}>
+                {error.message}
+              </span>
+            )}
+          </div>
+        )}
+      />
+
+      {/* Campo: Marca */}
+      <Controller
+        name="brand"
+        render={({ field, fieldState: { error } }) => (
+          <div>
+            <CustomInput
+              {...field}
+              id="brand"
+              label="Marca"
+              value={brand}
+              onChange={(e) => {
+                setBrand(e.target.value);
+                field.onChange(e.target.value);
               }}
             />
             {error && (

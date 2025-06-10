@@ -85,6 +85,7 @@ export function Inventories({ title, filterType }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [globalFilter, setGlobalFilter] = useState("");
   const [pagination, setPagination] = useState({
     page: 1,
     totalItems: 0,
@@ -186,7 +187,7 @@ export function Inventories({ title, filterType }) {
       },
     },
     {
-      header: "Costo promedio",
+      header: "Costo promedio ($)",
       accessorKey: "cost",
     },
     ...(filterType === "returned"
@@ -231,6 +232,8 @@ export function Inventories({ title, filterType }) {
           pageSize: 10,
         }}
         onPageChange={handlePageChange}
+        filtering={globalFilter}
+        onFilteringChange={setGlobalFilter}
         customButtons={
           <CustomButton
             icon={icon}

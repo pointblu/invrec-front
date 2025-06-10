@@ -11,6 +11,7 @@ import { useState } from "react";
 
 export function Sales() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [globalFilter, setGlobalFilter] = useState("");
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -47,6 +48,8 @@ export function Sales() {
       <CustomTable
         data={data}
         columns={columns}
+        filtering={globalFilter}
+        onFilteringChange={setGlobalFilter}
         customButtons={
           <CustomButton
             icon={<TbCashRegister />}

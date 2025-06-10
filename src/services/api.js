@@ -57,3 +57,16 @@ export const getAllInventories = (pag = 1, take = 10) =>
 
 export const createIngredient = (bodyIngredient) =>
   api.post("/ingredients", bodyIngredient);
+
+export const getAllPurchases = (startDate, endDate, pag = 1, take = 10) =>
+  api.get("/purchases", {
+    params: {
+      pag,
+      take,
+      startDate: startDate ? new Date(startDate).toISOString() : undefined,
+      endDate: endDate ? new Date(endDate).toISOString() : undefined,
+    },
+  });
+
+export const createPurchase = (bodyPurchase) =>
+  api.post("/purchases", bodyPurchase);

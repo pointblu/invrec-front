@@ -7,6 +7,7 @@ export function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [globalFilter, setGlobalFilter] = useState("");
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -76,6 +77,8 @@ export function Users() {
       <CustomTable
         data={users}
         columns={columns}
+        filtering={globalFilter}
+        onFilteringChange={setGlobalFilter}
         customButtons={
           <CustomButton
             icon={<HiOutlineUserAdd />}

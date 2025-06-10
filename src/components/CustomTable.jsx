@@ -22,12 +22,14 @@ export function CustomTable({
   data,
   columns,
   customButtons,
+  customFilters,
   onRowClick,
   pagination = null,
   onPageChange = () => {},
+  filtering,
+  onFilteringChange,
 }) {
   const [sorting, setSorting] = useState([]);
-  const [filtering, setFiltering] = useState("");
 
   const table = useReactTable({
     data,
@@ -37,7 +39,7 @@ export function CustomTable({
     getFilteredRowModel: getFilteredRowModel(),
     state: { sorting, globalFilter: filtering },
     onSortingChange: setSorting,
-    onGlobalFilterChange: setFiltering,
+    onGlobalFilterChange: onFilteringChange,
     ...(!pagination && {
       getPaginationRowModel: getPaginationRowModel(),
       initialState: { pagination: { pageSize: 10 } },
@@ -69,6 +71,7 @@ export function CustomTable({
     <>
       <CustomSubContainer align="right">
         {customButtons && <ButtonGroup>{customButtons}</ButtonGroup>}
+        {customFilters && <ButtonGroup>{customFilters}</ButtonGroup>}
         <CustomInput
           maxWidth="240px"
           type="text"
@@ -77,7 +80,7 @@ export function CustomTable({
           placeholder=" "
           icon={<AiOutlineSearch size={20} />}
           value={filtering}
-          onChange={(e) => setFiltering(e.target.value)}
+          onChange={(e) => onFilteringChange(e.target.value)}
         />
       </CustomSubContainer>
 
@@ -186,6 +189,7 @@ CustomTable.propTypes = {
   data: PropTypes.any,
   columns: PropTypes.any,
   customButtons: PropTypes.node,
+  customFilters: PropTypes.node,
   onRowClick: PropTypes.func,
   pagination: PropTypes.shape({
     page: PropTypes.number.isRequired,
@@ -195,6 +199,8 @@ CustomTable.propTypes = {
   }),
   onPageChange: PropTypes.func,
   onPageSizeChange: PropTypes.func,
+  filtering: PropTypes.string,
+  onFilteringChange: PropTypes.func,
 };
 
 // Componentes estilizados (mantenemos los mismos estilos)
