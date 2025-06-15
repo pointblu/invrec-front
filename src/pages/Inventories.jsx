@@ -4,7 +4,6 @@ import { HiPlus } from "react-icons/hi";
 import {
   CustomTable,
   CustomContainer,
-  RenderDescriptionCell,
   CustomButton,
   CustomModal,
 } from "../components";
@@ -12,8 +11,9 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { InventoriesForm } from "./InventoriesForm";
 import { QuantityForm } from "./QuantityForm";
-import { getAllInventories } from "../services/api";
+import { getAllInventories, getInventoryById } from "../services/api";
 import { RecipeFormWrapper } from "./RecipeFormWrapper";
+import styled from "styled-components";
 
 function ImageCell({ value }) {
   return (
@@ -78,6 +78,59 @@ function renderActionsCell({ row }, filterType, openAddModal) {
   return null; // No mostrar nada para "raw"
 }
 
+function renderIngredientsCell({ getValue }) {
+  const ingredients = getValue();
+
+  if (!ingredients || ingredients.length === 0) {
+    return <span>No tiene ingredientes</span>;
+  }
+  const formatUnit = (unit) => {
+    switch (unit) {
+      case "units":
+        return "Un.";
+      case "grams":
+        return "Kg.";
+      case "liters":
+        return "ml.";
+      default:
+        return unit;
+    }
+  };
+  return (
+    <IngredientsContainer>
+      <IngredientsSummary>
+        {ingredients.length} ingrediente{ingredients.length !== 1 ? "s" : ""}
+      </IngredientsSummary>
+      <IngredientsDropdown>
+        {ingredients.map((ing) => (
+          <IngredientItem key={ing.id}>
+            {ing.quantity} {formatUnit(ing.ingredient.measurementUnit)} de{" "}
+            {ing.ingredient.name}
+          </IngredientItem>
+        ))}
+      </IngredientsDropdown>
+    </IngredientsContainer>
+  );
+}
+renderIngredientsCell.propTypes = {
+  getValue: PropTypes.func.isRequired,
+};
+
+function RenderDescriptionCell({ getValue }) {
+  // Cambiado para usar getValue
+  const value = getValue();
+  return (
+    <DescriptionContainer>
+      <DescriptionSummary>{value}</DescriptionSummary>
+      <DescriptionTooltip>{value}</DescriptionTooltip>
+    </DescriptionContainer>
+  );
+}
+
+RenderDescriptionCell.propTypes = {
+  getValue: PropTypes.string.isRequired,
+};
+
 export function Inventories({ title, filterType }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -90,7 +143,6 @@ export function Inventories({ title, filterType }) {
     page: 1,
     totalItems: 0,
   });
-
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -102,7 +154,29 @@ export function Inventories({ title, filterType }) {
       const startIndex = (pagination.page - 1) * pageSize;
       const endIndex = startIndex + pageSize;
 
-      setData(filtered.slice(startIndex, endIndex)); // solo 10 visibles
+      if (filterType === "processed") {
+        const itemsWithIngredients = await Promise.all(
+          filtered.map(async (item) => {
+            try {
+              // Asumo que tienes una función getInventoryById en tus servicios
+              const detailResponse = await getInventoryById(item.id);
+              return {
+                ...item,
+                ingredients: detailResponse.data?.ingredients || [],
+              };
+            } catch (err) {
+              console.error(`Error loading details for ${item.id}:`, err);
+              return {
+                ...item,
+                ingredients: [],
+              };
+            }
+          })
+        );
+        setData(itemsWithIngredients.slice(startIndex, endIndex));
+      } else {
+        setData(filtered.slice(startIndex, endIndex)); // solo 10 visibles
+      }
       setPagination((prev) => ({
         ...prev,
         totalItems: filtered.length,
@@ -165,6 +239,15 @@ export function Inventories({ title, filterType }) {
       accessorKey: "description",
       cell: RenderDescriptionCell,
     },
+    ...(filterType === "processed"
+      ? [
+          {
+            header: "Ingredientes",
+            accessorKey: "ingredients",
+            cell: renderIngredientsCell,
+          },
+        ]
+      : []),
     {
       header: "Existencias",
       accessorKey: "stock",
@@ -281,3 +364,80 @@ Inventories.propTypes = {
   title: PropTypes.string.isRequired,
   filterType: PropTypes.string.isRequired,
 };
+
+const IngredientsContainer = styled.div`
+  position: relative;
+  display: inline-block;
+  width: 100%;
+`;
+
+const IngredientsSummary = styled.div`
+  padding: 4px 8px;
+  cursor: default;
+`;
+
+const IngredientsDropdown = styled.div`
+  display: none;
+  position: absolute;
+  background: ${({ theme }) => theme.bg2};
+  min-width: 300px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 4px;
+  padding: 8px;
+  max-height: 500px;
+  overflow-y: auto;
+  left: 0;
+  top: 100%;
+  border: 1px solid #ddd;
+
+  ${IngredientsContainer}:hover & {
+    display: block;
+  }
+`;
+
+const IngredientItem = styled.div`
+  padding: 4px 0;
+  border-bottom: 1px solid #eee;
+
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+// Descriptioncell
+
+const DescriptionContainer = styled.div`
+  position: relative;
+  display: inline-block;
+  width: 100%;
+`;
+
+const DescriptionSummary = styled.div`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+  cursor: default;
+`;
+
+const DescriptionTooltip = styled.div`
+  display: none;
+  position: absolute;
+  background: ${({ theme }) => theme.bg2};
+  min-width: 300px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 4px;
+  padding: 8px;
+  left: 0;
+  top: 100%;
+  border: 1px solid #ddd;
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 500px;
+
+  ${DescriptionContainer}:hover & {
+    display: block;
+  }
+`;

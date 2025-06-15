@@ -26,8 +26,10 @@ const StyledDescription = styled.div`
     padding: 5px;
     border-radius: 5px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    min-width: 300px;
     max-width: 600px;
     width: auto;
     transform: translateZ(0);
+    border: 1px solid #ddd;
   }
 `;

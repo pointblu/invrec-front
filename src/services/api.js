@@ -55,6 +55,8 @@ export const getAllInventories = (pag = 1, take = 10) =>
     },
   });
 
+export const getInventoryById = (id) => api.get(`/inventories/${id}`);
+
 export const createIngredient = (bodyIngredient) =>
   api.post("/ingredients", bodyIngredient);
 
