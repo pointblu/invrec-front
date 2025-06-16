@@ -69,7 +69,7 @@ export function PurchaseForm({ onFormSubmit }) {
   useEffect(() => {
     const loadInventories = async () => {
       try {
-        const response = await getAllInventories();
+        const response = await getAllInventories(1, 3000);
         // Filtrar solo inventarios de tipo raw (materia prima)
         const rawInventories = response?.data?.result.filter(
           (inv) => inv.type === "raw"

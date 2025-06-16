@@ -128,7 +128,7 @@ function RenderDescriptionCell({ getValue }) {
 }
 
 RenderDescriptionCell.propTypes = {
-  getValue: PropTypes.string.isRequired,
+  getValue: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };
 
 export function Inventories({ title, filterType }) {
