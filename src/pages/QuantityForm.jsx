@@ -66,6 +66,6 @@ QuantityForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   item: PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
   }).isRequired,
 };

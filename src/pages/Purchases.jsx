@@ -63,11 +63,15 @@ export function Purchases() {
       header: "Fecha",
       accessorKey: "purchaseDate",
       cell: (info) => {
-        const date = new Date(info.getValue());
+        const dateStr = info.getValue(); // "2025-06-20"
+        const [year, month, day] = dateStr.split("-");
+        const date = new Date(Date.UTC(year, month - 1, day));
+
         return date.toLocaleDateString("es-ES", {
           day: "2-digit",
           month: "2-digit",
           year: "numeric",
+          timeZone: "UTC", // Forzar a mostrar en UTC
         });
       },
     },

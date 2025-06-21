@@ -72,3 +72,22 @@ export const getAllPurchases = (startDate, endDate, pag = 1, take = 10) =>
 
 export const createPurchase = (bodyPurchase) =>
   api.post("/purchases", bodyPurchase);
+
+export const createProduction = (bodyProduction) =>
+  api.post("/productions", bodyProduction);
+
+export const getAllProduction = (startDate, endDate, pag = 1, take = 10) =>
+  api.get("/productions", {
+    params: {
+      pag,
+      take,
+      startDate: startDate ? new Date(startDate).toISOString() : undefined,
+      endDate: endDate ? new Date(endDate).toISOString() : undefined,
+    },
+  });
+
+export const downloadReport = (bodyProduction) =>
+  api.post("/productions/download-report", bodyProduction);
+
+export const madeProduction = (productionId, bodyProduction) =>
+  api.put(`/productions/${productionId}`, bodyProduction);
