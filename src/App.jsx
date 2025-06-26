@@ -4,9 +4,10 @@ import { Header, Sidebar } from "./components";
 import styled, { ThemeProvider } from "styled-components";
 import { Light, Dark } from "./styles/Themes";
 import { ThemeContext } from "./context/ThemeContext";
-
 import { useLocation } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -33,6 +34,15 @@ function App() {
               <AppRouter />
             </ContentContainer>
           </Container>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            pauseOnHover
+            draggable
+          />
         </AppContainer>
       </ThemeProvider>
     </ThemeContext.Provider>

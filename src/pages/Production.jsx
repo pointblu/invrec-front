@@ -12,6 +12,7 @@ import { HiCheck } from "react-icons/hi";
 import { QuantityForm } from "./QuantityForm";
 import { ProductionForm } from "./ProductionForm";
 import { getAllProduction, madeProduction } from "../services/api";
+import { toast } from "react-toastify";
 
 export function Production() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -84,10 +85,14 @@ export function Production() {
       };
 
       await madeProduction(selectedItem.id, bodyProduction);
-
-      handleCloseAddModal();
+      toast.success("Producción finalizada con éxito", {
+        onClose: () => handleCloseAddModal(),
+      });
     } catch (error) {
       console.error("Error al actualizar la producción:", error);
+      toast.error(error?.message || "Error al finalizar la producción", {
+        onClose: () => handleCloseAddModal(),
+      });
     }
   };
 

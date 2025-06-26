@@ -9,6 +9,7 @@ import {
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { createProduction, getAllInventories } from "../services/api";
+import { toast } from "react-toastify";
 
 // Esquema de validación con Zod
 const productionSchema = z.object({
@@ -77,10 +78,34 @@ export function ProductionForm({ onFormSubmit }) {
     const formData = getFormValues();
     try {
       await createProduction(formData);
-      onFormSubmit(formData);
+      toast.success("Producción creada con éxito", {
+        onClose: () => onFormSubmit(formData),
+      });
     } catch (error) {
       console.error("Error al crear la producción:", error);
-      // Puedes manejar el error aquí (mostrar mensaje al usuario, etc.)
+
+      // Detectar si la respuesta es de stock insuficiente
+      if (
+        error?.message === "Insufficient ingredients stock" &&
+        Array.isArray(error?.data)
+      ) {
+        const deficitList = error.data.map(
+          (item) => `${parseFloat(item.deficit.toFixed(2))} ${item.name}`
+        );
+
+        toast.error(
+          `Ingredientes insuficientes: tienes un déficit de ${deficitList.join(
+            " y "
+          )}`,
+          {
+            onClose: () => onFormSubmit(formData),
+          }
+        );
+      } else {
+        toast.error(
+          "Ocurrió un error al crear la producción. Inténtalo de nuevo."
+        );
+      }
     }
   };
 
