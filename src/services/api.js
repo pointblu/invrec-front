@@ -60,6 +60,11 @@ export const getInventoryById = (id) => api.get(`/inventories/${id}`);
 export const createIngredient = (bodyIngredient) =>
   api.post("/ingredients", bodyIngredient);
 
+export const setPercentageProfit = (inventoryId, profitPercentage) =>
+  api.patch(`/inventories/${inventoryId}/profit-percentage`, {
+    profitPercentage,
+  });
+
 export const getAllPurchases = (startDate, endDate, pag = 1, take = 10) =>
   api.get("/purchases", {
     params: {
@@ -91,3 +96,17 @@ export const downloadReport = (bodyProduction) =>
 
 export const madeProduction = (productionId, bodyProduction) =>
   api.put(`/productions/${productionId}`, bodyProduction);
+
+export const createSale = (bodySale) => api.post("/sales", bodySale);
+
+export const getAllSales = (startDate, endDate, pag = 1, take = 10) =>
+  api.get("/sales", {
+    params: {
+      pag,
+      take,
+      startDate: startDate ? new Date(startDate).toISOString() : undefined,
+      endDate: endDate ? new Date(endDate).toISOString() : undefined,
+    },
+  });
+
+export const deleteSale = (saleId) => api.delete(`/sales/${saleId}`);

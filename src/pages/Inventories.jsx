@@ -1,4 +1,5 @@
 import { GiFlour } from "react-icons/gi";
+import { MdPercent } from "react-icons/md";
 import { FaBook, FaRecycle } from "react-icons/fa6";
 import { HiPlus } from "react-icons/hi";
 import {
@@ -11,9 +12,15 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { InventoriesForm } from "./InventoriesForm";
 import { QuantityForm } from "./QuantityForm";
-import { getAllInventories, getInventoryById } from "../services/api";
+import {
+  getAllInventories,
+  getInventoryById,
+  setPercentageProfit,
+} from "../services/api";
 import { RecipeFormWrapper } from "./RecipeFormWrapper";
 import styled from "styled-components";
+import { toast } from "react-toastify";
+import { ProfitForm } from "./profitForm";
 
 function ImageCell({ value }) {
   return (
@@ -220,6 +227,19 @@ export function Inventories({ title, filterType }) {
     fetchData();
   };
 
+  const [isProfitModalOpen, setIsProfitModalOpen] = useState(false);
+  const [selectedProfitItem, setSelectedProfitItem] = useState(null);
+
+  const openProfitModal = (item) => {
+    setSelectedProfitItem(item);
+    setIsProfitModalOpen(true);
+  };
+
+  const closeProfitModal = () => {
+    setIsProfitModalOpen(false);
+    setSelectedProfitItem(null);
+  };
+
   const columns = [
     {
       header: "Imagen",
@@ -280,6 +300,53 @@ export function Inventories({ title, filterType }) {
             accessorKey: "actions",
             cell: ({ row }) =>
               renderActionsCell({ row }, filterType, handleOpenAddModal),
+          },
+        ]
+      : []),
+
+    ...(filterType === "processed"
+      ? [
+          {
+            header: "Ganancia",
+            accessorKey: "actions",
+            cell: ({ row }) => {
+              const { profitPercentage } = row.original;
+
+              return (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
+                >
+                  <span style={{ fontSize: "0.875rem", color: "#333" }}>
+                    {profitPercentage ? `${profitPercentage}` : "—"}
+                  </span>
+                  <CustomButton
+                    icon={<MdPercent />}
+                    onClick={() => openProfitModal(row.original)}
+                    customStyle={{
+                      default: {
+                        backgroundColor: "#4CAF50",
+                        border: "1px solid white",
+                        color: "white",
+                        width: "1.8rem",
+                        height: "1.8rem",
+                      },
+                      hover: {
+                        backgroundColor: "#4caf82",
+                        transform: "scale(1.05)",
+                      },
+                      active: {
+                        backgroundColor: "#af4cab",
+                        transform: "scale(0.95)",
+                      },
+                    }}
+                  />
+                </div>
+              );
+            },
           },
         ]
       : []),
@@ -354,6 +421,29 @@ export function Inventories({ title, filterType }) {
           />
         ) : (
           <p>No se ha seleccionado ningún item</p>
+        )}
+      </CustomModal>
+      <CustomModal
+        isOpen={isProfitModalOpen}
+        title={`Asignar ganancia a: ${selectedProfitItem?.name || ""}`}
+        onClose={closeProfitModal}
+      >
+        {selectedProfitItem && (
+          <ProfitForm
+            item={selectedProfitItem}
+            onSubmit={async ({ inventoryId, profitPercentage }) => {
+              try {
+                await setPercentageProfit(inventoryId, profitPercentage);
+                toast.success("Porcentaje de ganancia actualizado");
+                closeProfitModal();
+                fetchData();
+              } catch (error) {
+                toast.error("Error al actualizar la ganancia");
+                console.error(error);
+              }
+            }}
+            onClose={closeProfitModal}
+          />
         )}
       </CustomModal>
     </CustomContainer>
