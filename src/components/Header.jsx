@@ -4,50 +4,69 @@ import { HiOutlineUserAdd } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 import { v } from "../styles/Variables";
 import { useAuth } from "../hooks/useAuth";
+import { Tooltip } from "react-tooltip";
 
 export function Header() {
   const { user, logout } = useAuth();
   const linksArray = user
     ? []
-    : [{ icon: <HiOutlineUserAdd />, label: "", to: "/registro" }];
+    : [
+        {
+          icon: (
+            <HiOutlineUserAdd
+              data-tooltip-id="tooltiph-id"
+              data-tooltip-content="Registrarse"
+            />
+          ),
+          label: "",
+          to: "/registro",
+        },
+      ];
 
   const secondarylinksArray = user
     ? [
         {
-          icon: <MdLogout />,
+          icon: (
+            <MdLogout
+              data-tooltip-id="tooltiph-id"
+              data-tooltip-content="Salir"
+            />
+          ),
           label: "",
           to: "#",
           onClick: logout,
         },
       ]
-    : [{ icon: <MdLogin />, label: "", to: "/ingreso" }];
+    : [
+        {
+          icon: (
+            <MdLogin
+              data-tooltip-id="tooltiph-id"
+              data-tooltip-content="Ingresar"
+            />
+          ),
+          label: "",
+          to: "/ingreso",
+        },
+      ];
 
   return (
-    <Container>
-      {linksArray.map(({ icon, label, to }) => (
-        <div className="Linkcontainer" key={to}>
-          <NavLink
-            to={to}
-            className={({ isActive }) => `Link${isActive ? " active" : ""}`}
-          >
-            <div className="icon">{icon}</div>
-            <span>{label}</span>
-          </NavLink>
-        </div>
-      ))}
-
-      {linksArray.length > 0 && <Divider />}
-
-      {secondarylinksArray.map(({ icon, label, to, onClick }) => (
-        <div className="Linkcontainer" key={to}>
-          {onClick ? (
-            // Botón para logout (no es un NavLink)
-            <button className="Link" onClick={onClick}>
-              <div className="icon">{icon}</div>
-              <span>{label}</span>
-            </button>
-          ) : (
-            // NavLink normal para login
+    <>
+      <Tooltip
+        id="tooltiph-id"
+        place="bottom"
+        offset={30}
+        style={{
+          backgroundColor: "#9247FC",
+          color: "#fff",
+          padding: "6px 12px",
+          borderRadius: "4px",
+          fontSize: "0.9rem",
+        }}
+      />
+      <Container>
+        {linksArray.map(({ icon, label, to }) => (
+          <div className="Linkcontainer" key={to}>
             <NavLink
               to={to}
               className={({ isActive }) => `Link${isActive ? " active" : ""}`}
@@ -55,10 +74,33 @@ export function Header() {
               <div className="icon">{icon}</div>
               <span>{label}</span>
             </NavLink>
-          )}
-        </div>
-      ))}
-    </Container>
+          </div>
+        ))}
+
+        {linksArray.length > 0 && <Divider />}
+
+        {secondarylinksArray.map(({ icon, label, to, onClick }) => (
+          <div className="Linkcontainer" key={to}>
+            {onClick ? (
+              // Botón para logout (no es un NavLink)
+              <button className="Link" onClick={onClick}>
+                <div className="icon">{icon}</div>
+                <span>{label}</span>
+              </button>
+            ) : (
+              // NavLink normal para login
+              <NavLink
+                to={to}
+                className={({ isActive }) => `Link${isActive ? " active" : ""}`}
+              >
+                <div className="icon">{icon}</div>
+                <span>{label}</span>
+              </NavLink>
+            )}
+          </div>
+        ))}
+      </Container>
+    </>
   );
 }
 

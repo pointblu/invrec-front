@@ -13,6 +13,7 @@ import { QuantityForm } from "./QuantityForm";
 import { ProductionForm } from "./ProductionForm";
 import { getAllProduction, madeProduction } from "../services/api";
 import { toast } from "react-toastify";
+import { Tooltip } from "react-tooltip";
 
 export function Production() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -188,71 +189,89 @@ export function Production() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <CustomContainer>
-      <h1>Producción</h1>
-      <CustomTable
-        data={tableData}
-        columns={columns}
-        pagination={{
-          page: pagination.page,
-          totalItems: pagination.totalItems,
-          pageSize: 10,
+    <>
+      <Tooltip
+        id="tooltip-id"
+        place="left"
+        style={{
+          backgroundColor: "#9247FC",
+          color: "#fff",
+          padding: "6px 12px",
+          borderRadius: "4px",
+          fontSize: "0.9rem",
         }}
-        onPageChange={(newPage) =>
-          setPagination((prev) => ({ ...prev, page: newPage }))
-        }
-        filtering={globalFilter}
-        onFilteringChange={setGlobalFilter}
-        customButtons={
-          <>
-            <CustomButton
-              icon={<FaHammer />}
-              onClick={() => setIsModalOpen(true)}
-            ></CustomButton>
-            <ProductionPrintButton bodyProduction={{ startDate, endDate }} />
-          </>
-        }
-        customFilters={[
-          <CustomInput
-            key="start"
-            id="startDate"
-            label="Desde"
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />,
-          <CustomInput
-            key="end"
-            id="endDate"
-            label="Hasta"
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />,
-        ]}
       />
-      <CustomModal
-        isOpen={isModalOpen}
-        title={"Pre-producción"}
-        onClose={handleCloseModal}
-      >
-        <ProductionForm onFormSubmit={handleCloseModal} />
-      </CustomModal>
-      <CustomModal
-        isOpen={isAddModalOpen}
-        title={` ${selectedItem?.inventory?.name || ""}`}
-        onClose={handleCloseAddModal}
-      >
-        {selectedItem ? (
-          <QuantityForm
-            onSubmit={handleAddQuantity}
-            onClose={handleCloseAddModal}
-            item={selectedItem}
-          />
-        ) : (
-          <p>No se ha seleccionado ningún item</p>
-        )}
-      </CustomModal>
-    </CustomContainer>
+      <CustomContainer>
+        <h1>Producción</h1>
+        <CustomTable
+          data={tableData}
+          columns={columns}
+          pagination={{
+            page: pagination.page,
+            totalItems: pagination.totalItems,
+            pageSize: 10,
+          }}
+          onPageChange={(newPage) =>
+            setPagination((prev) => ({ ...prev, page: newPage }))
+          }
+          filtering={globalFilter}
+          onFilteringChange={setGlobalFilter}
+          customButtons={
+            <>
+              <CustomButton
+                icon={
+                  <FaHammer
+                    data-tooltip-id="tooltip-id"
+                    data-tooltip-content="Crear orden de producción"
+                  />
+                }
+                onClick={() => setIsModalOpen(true)}
+              ></CustomButton>
+              <ProductionPrintButton bodyProduction={{ startDate, endDate }} />
+            </>
+          }
+          customFilters={[
+            <CustomInput
+              key="start"
+              id="startDate"
+              label="Desde"
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />,
+            <CustomInput
+              key="end"
+              id="endDate"
+              label="Hasta"
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />,
+          ]}
+        />
+        <CustomModal
+          isOpen={isModalOpen}
+          title={"Pre-producción"}
+          onClose={handleCloseModal}
+        >
+          <ProductionForm onFormSubmit={handleCloseModal} />
+        </CustomModal>
+        <CustomModal
+          isOpen={isAddModalOpen}
+          title={` ${selectedItem?.inventory?.name || ""}`}
+          onClose={handleCloseAddModal}
+        >
+          {selectedItem ? (
+            <QuantityForm
+              onSubmit={handleAddQuantity}
+              onClose={handleCloseAddModal}
+              item={selectedItem}
+            />
+          ) : (
+            <p>No se ha seleccionado ningún item</p>
+          )}
+        </CustomModal>
+      </CustomContainer>
+    </>
   );
 }

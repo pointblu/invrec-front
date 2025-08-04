@@ -9,6 +9,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { useCallback, useEffect, useState } from "react";
 import { PurchaseForm } from "./PurchaseForm";
 import { getAllPurchases } from "../services/api";
+import { Tooltip } from "react-tooltip";
 
 export function Purchases() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -116,51 +117,69 @@ export function Purchases() {
   if (loading) return <div>Cargando...</div>;
   if (error) return <div>Error: {error}</div>;
   return (
-    <CustomContainer>
-      <h1>Compras</h1>
-      <CustomTable
-        data={purchases}
-        columns={columns}
-        pagination={{
-          page: pagination.page,
-          totalItems: pagination.totalItems,
-          pageSize: 10,
+    <>
+      <Tooltip
+        id="tooltip-id"
+        place="left"
+        style={{
+          backgroundColor: "#9247FC",
+          color: "#fff",
+          padding: "6px 12px",
+          borderRadius: "4px",
+          fontSize: "0.9rem",
         }}
-        onPageChange={handlePageChange}
-        filtering={globalFilter}
-        onFilteringChange={setGlobalFilter}
-        customButtons={
-          <CustomButton
-            icon={<MdOutlineShoppingCart />}
-            onClick={() => setIsModalOpen(true)}
-          ></CustomButton>
-        }
-        customFilters={[
-          <CustomInput
-            key="start"
-            id="startDate"
-            label="Desde"
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />,
-          <CustomInput
-            key="end"
-            id="endDate"
-            label="Hasta"
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />,
-        ]}
       />
-      <CustomModal
-        isOpen={isModalOpen}
-        title={"Compras"}
-        onClose={handleCloseModal}
-      >
-        <PurchaseForm onFormSubmit={handleCloseModal} />
-      </CustomModal>
-    </CustomContainer>
+      <CustomContainer>
+        <h1>Compras</h1>
+        <CustomTable
+          data={purchases}
+          columns={columns}
+          pagination={{
+            page: pagination.page,
+            totalItems: pagination.totalItems,
+            pageSize: 10,
+          }}
+          onPageChange={handlePageChange}
+          filtering={globalFilter}
+          onFilteringChange={setGlobalFilter}
+          customButtons={
+            <CustomButton
+              icon={
+                <MdOutlineShoppingCart
+                  data-tooltip-id="tooltip-id"
+                  data-tooltip-content="Crear compra"
+                />
+              }
+              onClick={() => setIsModalOpen(true)}
+            ></CustomButton>
+          }
+          customFilters={[
+            <CustomInput
+              key="start"
+              id="startDate"
+              label="Desde"
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />,
+            <CustomInput
+              key="end"
+              id="endDate"
+              label="Hasta"
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />,
+          ]}
+        />
+        <CustomModal
+          isOpen={isModalOpen}
+          title={"Compras"}
+          onClose={handleCloseModal}
+        >
+          <PurchaseForm onFormSubmit={handleCloseModal} />
+        </CustomModal>
+      </CustomContainer>
+    </>
   );
 }

@@ -3,6 +3,7 @@ import { downloadReport } from "../services/api";
 import PropTypes from "prop-types";
 import { CustomButton } from "./CustomButton";
 import * as XLSX from "xlsx";
+import { Tooltip } from "react-tooltip";
 
 const getCurrentDate = () => {
   const today = new Date();
@@ -103,11 +104,30 @@ export const ProductionPrintButton = ({ bodyProduction }) => {
   };
 
   return (
-    <CustomButton
-      icon={<FaPrint />}
-      onClick={handlePrint}
-      title="Imprimir orden de producción"
-    />
+    <>
+      <Tooltip
+        id="tooltip2-id"
+        place="top"
+        offset={30}
+        style={{
+          backgroundColor: "#9247FC",
+          color: "#fff",
+          padding: "6px 12px",
+          borderRadius: "4px",
+          fontSize: "0.9rem",
+        }}
+      />
+      <CustomButton
+        icon={
+          <FaPrint
+            data-tooltip-id="tooltip2-id"
+            data-tooltip-content="Imprimir orden de producción"
+          />
+        }
+        onClick={handlePrint}
+        title="Imprimir orden de producción"
+      />
+    </>
   );
 };
 

@@ -21,6 +21,7 @@ import { RecipeFormWrapper } from "./RecipeFormWrapper";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import { ProfitForm } from "./profitForm";
+import { Tooltip } from "react-tooltip";
 
 function ImageCell({ value }) {
   return (
@@ -353,9 +354,24 @@ export function Inventories({ title, filterType }) {
   ];
 
   const iconsMap = {
-    raw: <GiFlour />,
-    processed: <FaBook />,
-    returned: <FaRecycle />,
+    raw: (
+      <GiFlour
+        data-tooltip-id="tooltip-id"
+        data-tooltip-content="Crear insumo"
+      />
+    ),
+    processed: (
+      <FaBook
+        data-tooltip-id="tooltip-id"
+        data-tooltip-content="Crear producto"
+      />
+    ),
+    returned: (
+      <FaRecycle
+        data-tooltip-id="tooltip-id"
+        data-tooltip-content="Crear reutilizable"
+      />
+    ),
   };
 
   const modalTitleMap = {
@@ -371,82 +387,95 @@ export function Inventories({ title, filterType }) {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <CustomContainer>
-      <h1>{title}</h1>
-      <CustomTable
-        data={datum}
-        columns={columns}
-        pagination={{
-          page: pagination.page,
-          totalItems: pagination.totalItems,
-          pageSize: 10,
+    <>
+      <Tooltip
+        id="tooltip-id"
+        place="left"
+        style={{
+          backgroundColor: "#9247FC",
+          color: "#fff",
+          padding: "6px 12px",
+          borderRadius: "4px",
+          fontSize: "0.9rem",
         }}
-        onPageChange={handlePageChange}
-        filtering={globalFilter}
-        onFilteringChange={setGlobalFilter}
-        customButtons={
-          <CustomButton
-            icon={icon}
-            onClick={() => setIsModalOpen(true)}
-          ></CustomButton>
-        }
-        onRowClick={(row) => console.log("Row clicked:", row)}
       />
+      <CustomContainer>
+        <h1>{title}</h1>
+        <CustomTable
+          data={datum}
+          columns={columns}
+          pagination={{
+            page: pagination.page,
+            totalItems: pagination.totalItems,
+            pageSize: 10,
+          }}
+          onPageChange={handlePageChange}
+          filtering={globalFilter}
+          onFilteringChange={setGlobalFilter}
+          customButtons={
+            <CustomButton
+              icon={icon}
+              onClick={() => setIsModalOpen(true)}
+            ></CustomButton>
+          }
+          onRowClick={(row) => console.log("Row clicked:", row)}
+        />
 
-      <CustomModal
-        isOpen={isModalOpen}
-        title={modalTitleMap[filterType]}
-        onClose={handleCloseModal}
-      >
-        {filterType === "processed" ? (
-          <RecipeFormWrapper onFormSubmit={handleCloseModal} />
-        ) : (
-          <InventoriesForm
-            onFormSubmit={handleCloseModal}
-            inventoryType={filterType}
-          />
-        )}
-      </CustomModal>
+        <CustomModal
+          isOpen={isModalOpen}
+          title={modalTitleMap[filterType]}
+          onClose={handleCloseModal}
+        >
+          {filterType === "processed" ? (
+            <RecipeFormWrapper onFormSubmit={handleCloseModal} />
+          ) : (
+            <InventoriesForm
+              onFormSubmit={handleCloseModal}
+              inventoryType={filterType}
+            />
+          )}
+        </CustomModal>
 
-      <CustomModal
-        isOpen={isAddModalOpen}
-        title={`Agregar a: ${selectedItem?.name || ""}`}
-        onClose={handleCloseAddModal}
-      >
-        {selectedItem ? (
-          <QuantityForm
-            onSubmit={handleAddQuantity}
-            onClose={handleCloseAddModal}
-            item={selectedItem}
-          />
-        ) : (
-          <p>No se ha seleccionado ningún item</p>
-        )}
-      </CustomModal>
-      <CustomModal
-        isOpen={isProfitModalOpen}
-        title={`Asignar ganancia a: ${selectedProfitItem?.name || ""}`}
-        onClose={closeProfitModal}
-      >
-        {selectedProfitItem && (
-          <ProfitForm
-            item={selectedProfitItem}
-            onSubmit={async ({ inventoryId, profitPercentage }) => {
-              try {
-                await setPercentageProfit(inventoryId, profitPercentage);
-                toast.success("Porcentaje de ganancia actualizado");
-                closeProfitModal();
-                fetchData();
-              } catch (error) {
-                toast.error("Error al actualizar la ganancia");
-                console.error(error);
-              }
-            }}
-            onClose={closeProfitModal}
-          />
-        )}
-      </CustomModal>
-    </CustomContainer>
+        <CustomModal
+          isOpen={isAddModalOpen}
+          title={`Agregar a: ${selectedItem?.name || ""}`}
+          onClose={handleCloseAddModal}
+        >
+          {selectedItem ? (
+            <QuantityForm
+              onSubmit={handleAddQuantity}
+              onClose={handleCloseAddModal}
+              item={selectedItem}
+            />
+          ) : (
+            <p>No se ha seleccionado ningún item</p>
+          )}
+        </CustomModal>
+        <CustomModal
+          isOpen={isProfitModalOpen}
+          title={`Asignar ganancia a: ${selectedProfitItem?.name || ""}`}
+          onClose={closeProfitModal}
+        >
+          {selectedProfitItem && (
+            <ProfitForm
+              item={selectedProfitItem}
+              onSubmit={async ({ inventoryId, profitPercentage }) => {
+                try {
+                  await setPercentageProfit(inventoryId, profitPercentage);
+                  toast.success("Porcentaje de ganancia actualizado");
+                  closeProfitModal();
+                  fetchData();
+                } catch (error) {
+                  toast.error("Error al actualizar la ganancia");
+                  console.error(error);
+                }
+              }}
+              onClose={closeProfitModal}
+            />
+          )}
+        </CustomModal>
+      </CustomContainer>
+    </>
   );
 }
 

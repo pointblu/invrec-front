@@ -10,6 +10,7 @@ import { SalesForm } from "./SalesForm";
 import { useCallback, useEffect, useState } from "react";
 import { getAllSales, deleteSale } from "../services/api";
 import { toast } from "react-toastify";
+import { Tooltip } from "react-tooltip";
 
 export function Sales() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -219,51 +220,69 @@ export function Sales() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <CustomContainer>
-      <h1>Ventas</h1>
-      <CustomTable
-        data={sales}
-        columns={columns}
-        pagination={{
-          page: pagination.page,
-          totalItems: pagination.totalItems,
-          pageSize: 10,
+    <>
+      <Tooltip
+        id="tooltip-id"
+        place="left"
+        style={{
+          backgroundColor: "#9247FC",
+          color: "#fff",
+          padding: "6px 12px",
+          borderRadius: "4px",
+          fontSize: "0.9rem",
         }}
-        onPageChange={handlePageChange}
-        filtering={globalFilter}
-        onFilteringChange={setGlobalFilter}
-        customButtons={
-          <CustomButton
-            icon={<TbCashRegister />}
-            onClick={() => setIsModalOpen(true)}
-          />
-        }
-        customFilters={[
-          <CustomInput
-            key="start"
-            id="startDate"
-            label="Desde"
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />,
-          <CustomInput
-            key="end"
-            id="endDate"
-            label="Hasta"
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />,
-        ]}
       />
-      <CustomModal
-        isOpen={isModalOpen}
-        title={"Ventas"}
-        onClose={handleCloseModal}
-      >
-        <SalesForm onFormSubmit={handleCloseModal} />
-      </CustomModal>
-    </CustomContainer>
+      <CustomContainer>
+        <h1>Ventas</h1>
+        <CustomTable
+          data={sales}
+          columns={columns}
+          pagination={{
+            page: pagination.page,
+            totalItems: pagination.totalItems,
+            pageSize: 10,
+          }}
+          onPageChange={handlePageChange}
+          filtering={globalFilter}
+          onFilteringChange={setGlobalFilter}
+          customButtons={
+            <CustomButton
+              icon={
+                <TbCashRegister
+                  data-tooltip-id="tooltip-id"
+                  data-tooltip-content="Crear venta"
+                />
+              }
+              onClick={() => setIsModalOpen(true)}
+            />
+          }
+          customFilters={[
+            <CustomInput
+              key="start"
+              id="startDate"
+              label="Desde"
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />,
+            <CustomInput
+              key="end"
+              id="endDate"
+              label="Hasta"
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />,
+          ]}
+        />
+        <CustomModal
+          isOpen={isModalOpen}
+          title={"Ventas"}
+          onClose={handleCloseModal}
+        >
+          <SalesForm onFormSubmit={handleCloseModal} />
+        </CustomModal>
+      </CustomContainer>
+    </>
   );
 }
