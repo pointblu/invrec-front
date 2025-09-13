@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import { InventoriesForm } from "./InventoriesForm";
 import { QuantityForm } from "./QuantityForm";
 import {
+  deleteInventory,
   getAllInventories,
   getInventoryById,
   setPercentageProfit,
@@ -22,6 +23,7 @@ import styled from "styled-components";
 import { toast } from "react-toastify";
 import { ProfitForm } from "./profitForm";
 import { Tooltip } from "react-tooltip";
+import { IoMdTrash } from "react-icons/io";
 
 function ImageCell({ value }) {
   return (
@@ -140,6 +142,7 @@ RenderDescriptionCell.propTypes = {
 };
 
 export function Inventories({ title, filterType }) {
+  const [modalMode, setModalMode] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -214,11 +217,13 @@ export function Inventories({ title, filterType }) {
   const handleCloseAddModal = () => {
     setIsAddModalOpen(false);
     setSelectedItem(null);
+    fetchData();
   };
 
   const handleOpenAddModal = (item) => {
     if (!item) return;
     setSelectedItem(item);
+    setModalMode("addQuantity");
     setIsAddModalOpen(true);
   };
 
@@ -239,6 +244,23 @@ export function Inventories({ title, filterType }) {
   const closeProfitModal = () => {
     setIsProfitModalOpen(false);
     setSelectedProfitItem(null);
+  };
+
+  const handleDelete = async (item) => {
+    try {
+      await deleteInventory(item.id);
+      toast.success(`Eliminacion exitosa de "${item.name}"`, {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      fetchData(); // recarga la tabla
+    } catch (error) {
+      toast.error(`${error.message}`, {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      console.error("Error eliminando inventario:", error);
+    }
   };
 
   const columns = [
@@ -291,7 +313,7 @@ export function Inventories({ title, filterType }) {
       },
     },
     {
-      header: "Costo promedio ($)",
+      header: "Costo prom. ($)",
       accessorKey: "cost",
     },
     ...(filterType === "returned"
@@ -351,6 +373,37 @@ export function Inventories({ title, filterType }) {
           },
         ]
       : []),
+    {
+      header: "Acciones",
+      cell: ({ row }) => {
+        const item = row.original;
+        return (
+          <div style={{ display: "flex", gap: "8px" }}>
+            <CustomButton
+              icon={<IoMdTrash />}
+              onClick={() => handleDelete(item)}
+              customStyle={{
+                default: {
+                  backgroundColor: "#dd1f1fff",
+                  border: "1px solid white",
+                  color: "white",
+                  width: "1.8rem",
+                  height: "1.8rem",
+                },
+                hover: {
+                  backgroundColor: "#da5959ff",
+                  transform: "scale(1.05)",
+                },
+                active: {
+                  backgroundColor: "#c20c0cff",
+                  transform: "scale(0.95)",
+                },
+              }}
+            />
+          </div>
+        );
+      },
+    },
   ];
 
   const iconsMap = {
@@ -438,15 +491,34 @@ export function Inventories({ title, filterType }) {
 
         <CustomModal
           isOpen={isAddModalOpen}
-          title={`Agregar a: ${selectedItem?.name || ""}`}
+          title={
+            modalMode === "edit"
+              ? `Editar: ${selectedItem?.name || ""}`
+              : `Agregar a: ${selectedItem?.name || ""}`
+          }
           onClose={handleCloseAddModal}
         >
           {selectedItem ? (
-            <QuantityForm
-              onSubmit={handleAddQuantity}
-              onClose={handleCloseAddModal}
-              item={selectedItem}
-            />
+            modalMode === "edit" ? (
+              selectedItem.type === "processed" ? (
+                <RecipeFormWrapper
+                  onFormSubmit={handleCloseAddModal}
+                  initialData={selectedItem}
+                />
+              ) : (
+                <InventoriesForm
+                  onFormSubmit={handleCloseAddModal}
+                  inventoryType={filterType}
+                  initialData={selectedItem}
+                />
+              )
+            ) : (
+              <QuantityForm
+                onSubmit={handleAddQuantity}
+                onClose={handleCloseAddModal}
+                item={selectedItem}
+              />
+            )
           ) : (
             <p>No se ha seleccionado ningún item</p>
           )}

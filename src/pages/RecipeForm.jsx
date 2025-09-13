@@ -5,6 +5,9 @@ import {
   getAllInventories,
   createInventory,
   createIngredient,
+  updateInventory,
+  updateIngredient,
+  deleteIngredient,
 } from "../services/api";
 import {
   CustomInput,
@@ -34,7 +37,7 @@ const parseCurrencyString = (value) => {
   return parseFloat(cleanedValue) || 0;
 };
 
-export function RecipeForm({ onFormSubmit }) {
+export function RecipeForm({ onFormSubmit, initialData }) {
   const {
     control,
     setValue,
@@ -45,6 +48,11 @@ export function RecipeForm({ onFormSubmit }) {
   const [availableIngredients, setAvailableIngredients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isEditMode, setIsEditMode] = useState(false);
+
+  useEffect(() => {
+    setIsEditMode(!!initialData?.id);
+  }, [initialData]);
 
   // Fetch de ingredientes
   useEffect(() => {
@@ -73,7 +81,6 @@ export function RecipeForm({ onFormSubmit }) {
         });
 
         setAvailableIngredients(formattedIngredients);
-
         setLoading(false);
       } catch (err) {
         console.error("Error fetching ingredients:", err);
@@ -100,29 +107,82 @@ export function RecipeForm({ onFormSubmit }) {
 
   const onSubmit = async (data) => {
     try {
-      const inventoryData = {
-        name: data.name,
-        description: data.description,
-        type: "processed",
-        measurementUnit: data.measurementUnit,
-        cost: data.averageCost,
-      };
-
-      const inventoryResponse = await createInventory(inventoryData);
-      const inventoryId = inventoryResponse.data.id;
-
-      const ingredientPromises = data.ingredients.map((ingredient) => {
-        const ingredientData = {
-          quantity: ingredient.quantity,
-          cost: ingredient.cost,
-          inventoryId,
-          ingredientId: ingredient.product.value,
+      let inventoryId;
+      
+      if (isEditMode) {
+        // Actualizar inventario existente
+        const inventoryData = {
+          name: data.name,
+          description: data.description,
+          type: "processed",
+          measurementUnit: data.measurementUnit,
+          cost: data.averageCost,
+        };
+        
+        await updateInventory(initialData.id, inventoryData);
+        inventoryId = initialData.id;
+        
+        // Manejar ingredientes: actualizar, crear nuevos y eliminar
+        const ingredientPromises = [];
+        const processedExistingIds = new Set();
+        
+        // Procesar ingredientes actuales
+        for (const ingredient of data.ingredients) {
+          const ingredientData = {
+            quantity: ingredient.quantity,
+            cost: ingredient.cost,
+            inventoryId,
+            ingredientId: ingredient.product.value,
+          };
+          
+          if (ingredient.existingId) {
+            // Actualizar ingrediente existente
+            ingredientPromises.push(
+              updateIngredient(ingredient.existingId, ingredientData)
+            );
+            processedExistingIds.add(ingredient.existingId);
+          } else {
+            // Crear nuevo ingrediente
+            ingredientPromises.push(createIngredient(ingredientData));
+          }
+        }
+        
+        // Eliminar ingredientes que ya no están en la lista
+        const originalIngredients = initialData.ingredients || [];
+        for (const originalIngredient of originalIngredients) {
+          if (!processedExistingIds.has(originalIngredient.id)) {
+            ingredientPromises.push(deleteIngredient(originalIngredient.id));
+          }
+        }
+        
+        await Promise.all(ingredientPromises);
+      } else {
+        // Crear nuevo inventario
+        const inventoryData = {
+          name: data.name,
+          description: data.description,
+          type: "processed",
+          measurementUnit: data.measurementUnit,
+          cost: data.averageCost,
         };
 
-        return createIngredient(ingredientData);
-      });
+        const inventoryResponse = await createInventory(inventoryData);
+        inventoryId = inventoryResponse.data.id;
 
-      await Promise.all(ingredientPromises);
+        const ingredientPromises = data.ingredients.map((ingredient) => {
+          const ingredientData = {
+            quantity: ingredient.quantity,
+            cost: ingredient.cost,
+            inventoryId,
+            ingredientId: ingredient.product.value,
+          };
+
+          return createIngredient(ingredientData);
+        });
+
+        await Promise.all(ingredientPromises);
+      }
+      
       onFormSubmit();
     } catch (error) {
       console.error("Error en el submit:", error);
@@ -142,10 +202,9 @@ export function RecipeForm({ onFormSubmit }) {
   const handleClick = () => {
     handleSubmit(onSubmit)();
   };
-  // ✅ Sin <form>, porque CustomForm ya lo provee
+
   return (
     <>
-      {/* Columna 1 y 2 dentro del CustomForm */}
       <div>
         <Controller
           name="name"
@@ -229,6 +288,7 @@ export function RecipeForm({ onFormSubmit }) {
           options={availableIngredients}
           setValue={setValue}
           disabled={isSubmitting}
+          isEditMode={isEditMode}
         />
 
         <CustomButton
@@ -237,7 +297,7 @@ export function RecipeForm({ onFormSubmit }) {
           style={{ width: "100%", marginTop: "20px" }}
           disabled={isSubmitting}
         >
-          Agregar
+          {isEditMode ? "Actualizar" : "Agregar"}
         </CustomButton>
       </div>
     </>
@@ -246,4 +306,5 @@ export function RecipeForm({ onFormSubmit }) {
 
 RecipeForm.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
+  initialData: PropTypes.object,
 };

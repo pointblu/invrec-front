@@ -7,7 +7,7 @@ import {
   CustomSelect,
 } from "../components";
 import PropTypes from "prop-types";
-import { createInventory } from "../services/api";
+import { createInventory, updateInventory } from "../services/api";
 import { useState } from "react";
 
 // Esquema de validación con Zod
@@ -23,20 +23,15 @@ const baseSchema = z.object({
 const formatCurrencyInput = (value) => {
   if (!value) return "$ ";
 
-  // Limpia el valor (permite solo números y una coma)
   const cleanValue = value.replace(/[^\d,]/g, "").replace(/(,.*?),/g, "$1");
-
-  // Separa parte entera y decimal
   const parts = cleanValue.split(",");
   let integerPart = parts[0].replace(/\D/g, "") || "";
   let decimalPart = parts[1] ? parts[1].replace(/\D/g, "").substring(0, 2) : "";
 
-  // Agrega separadores de miles
   if (integerPart.length > 3) {
     integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
-  // Construye el resultado
   let result = `$ ${integerPart}`;
   if (cleanValue.includes(",")) {
     result += decimalPart ? `,${decimalPart}` : ",";
@@ -45,7 +40,6 @@ const formatCurrencyInput = (value) => {
   return result;
 };
 
-// Parsea a número (ej: "$ 1.234.567,89" → 1234567.89)
 const parseCurrencyInput = (formattedValue) => {
   if (!formattedValue || formattedValue === "$ ") return "";
 
@@ -57,10 +51,16 @@ const parseCurrencyInput = (formattedValue) => {
   return parseFloat(numericString) || "";
 };
 
-export function InventoriesForm({ onFormSubmit, inventoryType }) {
-  const [totalInput, setTotalInput] = useState("$ ");
-  const [totalValue, setTotalValue] = useState("");
-  // Extender el esquema si el tipo es "returned"
+export function InventoriesForm({
+  onFormSubmit,
+  inventoryType = "",
+  initialData = null,
+}) {
+  const [totalInput, setTotalInput] = useState(
+    initialData?.cost ? `$ ${initialData.cost}` : "$ "
+  );
+  const [totalValue, setTotalValue] = useState(initialData?.cost || "");
+
   const extendedSchema =
     inventoryType === "returned"
       ? baseSchema.extend({
@@ -71,33 +71,24 @@ export function InventoriesForm({ onFormSubmit, inventoryType }) {
   const handleTotalChange = (e) => {
     const inputValue = e.target.value;
 
-    // Si borró  restablece
     if (inputValue === "" || inputValue === "$") {
       setTotalInput("$ ");
       setTotalValue("");
       return;
     }
 
-    // Manejo especial cuando el usuario está escribiendo decimales
     if (inputValue.includes(",")) {
       const currentFormatted = formatCurrencyInput(inputValue);
       setTotalInput(currentFormatted);
-
-      // Solo actualiza el valor numérico si hay dígitos después de la coma
       if (inputValue.split(",")[1]) {
         setTotalValue(parseCurrencyInput(currentFormatted));
       }
       return;
     }
 
-    // Mantiene el símbolo $ al principio
     let newValue = inputValue.startsWith("$") ? inputValue : `$ ${inputValue}`;
-
-    // Formatea el valor
     const formattedValue = formatCurrencyInput(newValue);
     setTotalInput(formattedValue);
-
-    // Actualiza el valor numérico
     setTotalValue(parseCurrencyInput(formattedValue));
   };
 
@@ -111,16 +102,21 @@ export function InventoriesForm({ onFormSubmit, inventoryType }) {
         ...(data.image && { image: data.image }),
         ...(inventoryType === "returned" && { cost: totalValue }),
       };
-      console.log(bodyInventory);
-      const response = await createInventory(bodyInventory);
-      console.log("Respuesta de la API:", response);
+
+      if (initialData?.id) {
+        // Editar
+        await updateInventory(initialData.id, bodyInventory);
+      } else {
+        // Crear
+        await createInventory(bodyInventory);
+      }
+
       onFormSubmit();
     } catch (error) {
-      console.error("Error al crear el inventario:", error);
+      console.error("Error al guardar el inventario:", error);
     }
   };
 
-  // Opciones para el combo box de unidades de medida
   const measurementUnitOptions = [
     { value: "grams", label: "Kilogramos" },
     { value: "liters", label: "Mililitros" },
@@ -131,19 +127,18 @@ export function InventoriesForm({ onFormSubmit, inventoryType }) {
     <CustomHForm
       schema={extendedSchema}
       defaultValues={{
-        name: "",
-        description: "",
+        name: initialData?.name || "",
+        description: initialData?.description || "",
         type: inventoryType || "",
-        measurementUnit: "",
-        image: null,
-        ...(inventoryType === "returned" && { cost: 0 }),
+        measurementUnit: initialData?.measurementUnit || "",
+        image: initialData?.image || null,
+        ...(inventoryType === "returned" && { cost: initialData?.cost || 0 }),
       }}
       onSubmit={onSubmit}
-      buttonTitle="Agregar"
+      buttonTitle={initialData ? "Actualizar" : "Agregar"}
       customWidth="500px"
       twoColumns
     >
-      {/* Columna 1 */}
       <div>
         <Controller
           name="type"
@@ -151,7 +146,7 @@ export function InventoriesForm({ onFormSubmit, inventoryType }) {
             <input type="hidden" {...field} value={inventoryType} />
           )}
         />
-        {/* Campo: Nombre */}
+
         <Controller
           name="name"
           render={({ field }) => (
@@ -166,7 +161,6 @@ export function InventoriesForm({ onFormSubmit, inventoryType }) {
           )}
         />
 
-        {/* Campo: Descripción */}
         <Controller
           name="description"
           render={({ field }) => (
@@ -181,7 +175,6 @@ export function InventoriesForm({ onFormSubmit, inventoryType }) {
           )}
         />
 
-        {/* Campo: Unidad de medida (usando CustomSelect) */}
         <Controller
           name="measurementUnit"
           render={({ field }) => (
@@ -202,7 +195,6 @@ export function InventoriesForm({ onFormSubmit, inventoryType }) {
           )}
         />
 
-        {/* Campo: Costo (solo para tipo "returned") */}
         {inventoryType === "returned" && (
           <Controller
             name="cost"
@@ -212,12 +204,11 @@ export function InventoriesForm({ onFormSubmit, inventoryType }) {
                 id="cost"
                 label="Costo"
                 placeholder=" "
-                min="0"
-                step="0.01"
+                min={0}
+                step={0.01}
                 value={totalInput}
                 onChange={(e) => {
                   handleTotalChange(e);
-                  // Actualiza react-hook-form con el valor numérico
                   field.onChange(parseCurrencyInput(e.target.value));
                 }}
               />
@@ -229,7 +220,7 @@ export function InventoriesForm({ onFormSubmit, inventoryType }) {
           type="submit"
           style={{ width: "100%", marginTop: "20px" }}
         >
-          Agregar
+          {initialData ? "Actualizar" : "Agregar"}
         </CustomButton>
       </div>
     </CustomHForm>
@@ -239,4 +230,5 @@ export function InventoriesForm({ onFormSubmit, inventoryType }) {
 InventoriesForm.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
   inventoryType: PropTypes.string,
+  initialData: PropTypes.object,
 };

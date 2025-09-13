@@ -57,6 +57,16 @@ export const getAllInventories = (pag = 1, take = 10) =>
 
 export const getInventoryById = (id) => api.get(`/inventories/${id}`);
 
+export const updateInventory = (id, data) =>
+  api.put(`/inventories/${id}`, data);
+
+export const deleteInventory = async (id) => api.delete(`/inventories/${id}`);
+
+export const updateIngredient = (id, data) =>
+  api.put(`/ingredients/${id}`, data);
+
+export const deleteIngredient = async (id) => api.delete(`/ingredients/${id}`);
+
 export const createIngredient = (bodyIngredient) =>
   api.post("/ingredients", bodyIngredient);
 
