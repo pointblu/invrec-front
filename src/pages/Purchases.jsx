@@ -8,8 +8,10 @@ import {
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { useCallback, useEffect, useState } from "react";
 import { PurchaseForm } from "./PurchaseForm";
-import { getAllPurchases } from "../services/api";
+import { deletePurchase, getAllPurchases } from "../services/api";
 import { Tooltip } from "react-tooltip";
+import { IoMdTrash } from "react-icons/io";
+import { toast } from "react-toastify";
 
 export function Purchases() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -57,6 +59,23 @@ export function Purchases() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     fetchPurchases(); // Recargar datos después de cerrar el modal
+  };
+
+  const handleDeletePurchase = async (id) => {
+    try {
+      await deletePurchase(id);
+      toast.success("Eliminación exitosa", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      fetchPurchases(); // recargar la lista
+    } catch (err) {
+      toast.error(err?.message || "Error al eliminar la compra", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      alert(`Error al eliminar la compra: ${err?.message || err}`);
+    }
   };
 
   const columns = [
@@ -112,6 +131,32 @@ export function Purchases() {
     {
       header: "Costo ($)",
       accessorKey: "price",
+    },
+    {
+      header: "Acciones",
+      cell: ({ row }) => (
+        <CustomButton
+          icon={<IoMdTrash />}
+          onClick={() => handleDeletePurchase(row.original.id)}
+          customStyle={{
+            default: {
+              backgroundColor: "#dd1f1fff",
+              border: "1px solid white",
+              color: "white",
+              width: "1.8rem",
+              height: "1.8rem",
+            },
+            hover: {
+              backgroundColor: "#da5959ff",
+              transform: "scale(1.05)",
+            },
+            active: {
+              backgroundColor: "#c20c0cff",
+              transform: "scale(0.95)",
+            },
+          }}
+        />
+      ),
     },
   ];
   if (loading) return <div>Cargando...</div>;

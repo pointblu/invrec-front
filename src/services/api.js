@@ -120,3 +120,6 @@ export const getAllSales = (startDate, endDate, pag = 1, take = 10) =>
   });
 
 export const deleteSale = (saleId) => api.delete(`/sales/${saleId}`);
+
+export const deletePurchase = (purchaseId) =>
+  api.delete(`/purchases/${purchaseId}`);

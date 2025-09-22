@@ -227,7 +227,7 @@ export function PurchaseForm({ onFormSubmit }) {
               label="Cantidad"
               type="number"
               step="any"
-              min="any"
+              min={0.01}
               value={quantity}
               onChange={(e) => {
                 // Permitir entrada vacía temporalmente
