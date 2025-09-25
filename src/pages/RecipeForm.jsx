@@ -16,6 +16,7 @@ import {
   CustomSelect,
 } from "../components";
 import * as z from "zod";
+import { toast } from "react-toastify";
 
 export const recipeSchema = z.object({
   name: z.string().min(1, "El nombre es requerido"),
@@ -108,7 +109,7 @@ export function RecipeForm({ onFormSubmit, initialData }) {
   const onSubmit = async (data) => {
     try {
       let inventoryId;
-      
+
       if (isEditMode) {
         // Actualizar inventario existente
         const inventoryData = {
@@ -118,23 +119,23 @@ export function RecipeForm({ onFormSubmit, initialData }) {
           measurementUnit: data.measurementUnit,
           cost: data.averageCost,
         };
-        
+
         await updateInventory(initialData.id, inventoryData);
         inventoryId = initialData.id;
-        
+
         // Manejar ingredientes: actualizar, crear nuevos y eliminar
         const ingredientPromises = [];
         const processedExistingIds = new Set();
-        
+
         // Procesar ingredientes actuales
         for (const ingredient of data.ingredients) {
           const ingredientData = {
-            quantity: ingredient.quantity,
+            quantity: parseFloat(ingredient.quantity),
             cost: ingredient.cost,
             inventoryId,
             ingredientId: ingredient.product.value,
           };
-          
+
           if (ingredient.existingId) {
             // Actualizar ingrediente existente
             ingredientPromises.push(
@@ -146,7 +147,7 @@ export function RecipeForm({ onFormSubmit, initialData }) {
             ingredientPromises.push(createIngredient(ingredientData));
           }
         }
-        
+
         // Eliminar ingredientes que ya no están en la lista
         const originalIngredients = initialData.ingredients || [];
         for (const originalIngredient of originalIngredients) {
@@ -154,7 +155,7 @@ export function RecipeForm({ onFormSubmit, initialData }) {
             ingredientPromises.push(deleteIngredient(originalIngredient.id));
           }
         }
-        
+
         await Promise.all(ingredientPromises);
       } else {
         // Crear nuevo inventario
@@ -171,7 +172,7 @@ export function RecipeForm({ onFormSubmit, initialData }) {
 
         const ingredientPromises = data.ingredients.map((ingredient) => {
           const ingredientData = {
-            quantity: ingredient.quantity,
+            quantity: parseFloat(ingredient.quantity),
             cost: ingredient.cost,
             inventoryId,
             ingredientId: ingredient.product.value,
@@ -181,12 +182,26 @@ export function RecipeForm({ onFormSubmit, initialData }) {
         });
 
         await Promise.all(ingredientPromises);
+
+        toast.success("Receta creada con éxito ✅", {
+          position: "top-right",
+          autoClose: 3000,
+        });
       }
-      
+
       onFormSubmit();
     } catch (error) {
       console.error("Error en el submit:", error);
       setError("Ocurrió un error al guardar los datos");
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Error al guardar la receta",
+        {
+          position: "top-right",
+          autoClose: 5000,
+        }
+      );
     }
   };
 

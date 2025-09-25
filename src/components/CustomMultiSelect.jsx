@@ -42,13 +42,13 @@ export function CustomMultiSelect({ control, name, options, setValue }) {
     // Verificar que haya opciones disponibles antes de agregar
     const availableOptions = getAvailableOptions();
     if (availableOptions.length > 0) {
-      const newRow = { 
-        id: uuidv4(), 
-        product: null, 
-        quantity: 0, 
+      const newRow = {
+        id: uuidv4(),
+        product: null,
+        quantity: 0,
         cost: 0,
         // Los nuevos ingredientes NO tienen existingId ni isExisting
-        isExisting: false
+        isExisting: false,
       };
       const newRows = [...rows, newRow];
       setRows(newRows);
@@ -71,19 +71,15 @@ export function CustomMultiSelect({ control, name, options, setValue }) {
   };
 
   const handleQuantityChange = (id, value) => {
-    const updatedRows = rows.map((row) =>
-      row.id === id ? { ...row, quantity: value } : row // Preservar todas las propiedades
+    // Actualizar las filas con el valor tal como se escribe (string)
+    const updatedRows = rows.map(
+      (row) => (row.id === id ? { ...row, quantity: value } : row)
     );
     setRows(updatedRows);
 
-    // Actualizar el valor del formulario con el valor numérico
-    setValue(
-      name,
-      updatedRows.map((row) => ({
-        ...row, // Preservar existingId e isExisting
-        quantity: parseFloat(row.quantity) || 0,
-      }))
-    );
+    // NO convertir a número aquí, mantener el valor como string mientras se escribe
+    // Solo actualizar el formulario con el valor tal como está
+    setValue(name, updatedRows);
   };
 
   const removeRow = (id) => {
@@ -150,19 +146,34 @@ export function CustomMultiSelect({ control, name, options, setValue }) {
                 </div>
 
                 {/* CustomInput para la cantidad */}
-                <div style={{ flex: 0.3 }}>
+                <div style={{ flex: 0.3 }}>  
                   <CustomInput
                     id={`quantity-${row.id}`}
                     label="Cantidad"
                     type="text"
                     value={row.quantity}
                     onChange={(e) => {
-                      // Permitir números, punto decimal y borrado
-                      const value = e.target.value.replace(/[^0-9.]/g, "");
-                      // Permitir solo un punto decimal
-                      const parts = value.split(".");
-                      if (parts.length <= 2) {
-                        handleQuantityChange(row.id, value);
+                      const value = e.target.value;
+                      
+                      // Permitir campo vacío para poder borrar completamente
+                      if (value === "") {
+                        handleQuantityChange(row.id, "");
+                        return;
+                      }
+                      
+                      // Permitir números, punto decimal y coma decimal
+                      // También permitir valores que terminen en punto para poder escribir decimales
+                      const regex = /^\d*[.,]?\d*$/;
+                      
+                      if (regex.test(value)) {
+                        // Reemplazar coma por punto para consistencia interna
+                        const normalizedValue = value.replace(",", ".");
+                        
+                        // Verificar que no haya más de un punto decimal
+                        const parts = normalizedValue.split(".");
+                        if (parts.length <= 2) {
+                          handleQuantityChange(row.id, normalizedValue);
+                        }
                       }
                     }}
                     onBlur={() => handleQuantityBlur(row.id)}

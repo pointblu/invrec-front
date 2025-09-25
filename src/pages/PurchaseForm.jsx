@@ -14,23 +14,29 @@ import { createPurchase, getAllInventories } from "../services/api";
 const purchaseSchema = z.object({
   date: z.string(),
   inventoryId: z.string().min(1, "El producto es requerido"),
-  quantity: z.number().min(0.01, "La cantidad debe ser al menos 0.01"),
+  quantity: z.number().min(0.001, "La cantidad debe ser mayor a 0"), // Cambiado a 0.001
   price: z.number().min(0.01, "El precio debe ser positivo"),
   brand: z.string().min(1, "La marca es requerida"),
 });
 
 const formatCurrencyInput = (value) => {
-  if (!value) return "$ ";
+  if (!value || value === "$ ") return "$ ";
 
   // Limpia el valor (permite solo números y una coma)
   const cleanValue = value.replace(/[^\d,]/g, "").replace(/(,.*?),/g, "$1");
 
+  // Si después de limpiar está vacío, retorna solo el símbolo $
+  if (cleanValue === "") return "$ ";
+
   // Separa parte entera y decimal
   const parts = cleanValue.split(",");
-  let integerPart = parts[0].replace(/\D/g, "") || "0";
+  let integerPart = parts[0].replace(/\D/g, "") || ""; // Cambiado a string vacío
   let decimalPart = parts[1] ? parts[1].replace(/\D/g, "").substring(0, 2) : "";
 
-  // Agrega separadores de miles
+  // Si no hay parte entera, retorna solo el símbolo $
+  if (integerPart === "") return "$ ";
+
+  // Agrega separadores de miles solo si hay dígitos
   if (integerPart.length > 3) {
     integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
@@ -51,9 +57,11 @@ const parseCurrencyInput = (formattedValue) => {
   const numericString = formattedValue
     .replace("$", "")
     .replace(/\./g, "")
-    .replace(",", ".");
+    .replace(",", ".")
+    .trim();
 
-  return parseFloat(numericString) || 0;
+  const result = parseFloat(numericString);
+  return isNaN(result) ? 0 : result;
 };
 
 export function PurchaseForm({ onFormSubmit }) {
@@ -93,8 +101,15 @@ export function PurchaseForm({ onFormSubmit }) {
   const handlePriceChange = (e) => {
     const inputValue = e.target.value;
 
-    // Si borró restablece
+    // Si borró todo, restablece
     if (inputValue === "" || inputValue === "$") {
+      setPriceInput("$ ");
+      setPriceValue(0);
+      return;
+    }
+
+    // Si solo escribió "$ " o está vacío
+    if (inputValue === "$ " || inputValue.trim() === "$") {
       setPriceInput("$ ");
       setPriceValue(0);
       return;
@@ -105,14 +120,13 @@ export function PurchaseForm({ onFormSubmit }) {
       const currentFormatted = formatCurrencyInput(inputValue);
       setPriceInput(currentFormatted);
 
-      // Solo actualiza el valor numérico si hay dígitos después de la coma
-      if (inputValue.split(",")[1]) {
-        setPriceValue(parseCurrencyInput(currentFormatted));
-      }
+      // Actualizar el valor numérico
+      const numericValue = parseCurrencyInput(currentFormatted);
+      setPriceValue(numericValue);
       return;
     }
 
-    // Mantiene el símbolo $ al principio
+    // Mantiene el símbolo $ al principio si no lo tiene
     let newValue = inputValue.startsWith("$") ? inputValue : `$ ${inputValue}`;
 
     // Formatea el valor
@@ -120,7 +134,8 @@ export function PurchaseForm({ onFormSubmit }) {
     setPriceInput(formattedValue);
 
     // Actualiza el valor numérico
-    setPriceValue(parseCurrencyInput(formattedValue));
+    const numericValue = parseCurrencyInput(formattedValue);
+    setPriceValue(numericValue);
   };
 
   // Obtener los valores actualizados para el formulario
@@ -225,37 +240,66 @@ export function PurchaseForm({ onFormSubmit }) {
               {...field}
               id="quantity"
               label="Cantidad"
-              type="number"
-              step="any"
-              min={0.01}
+              type="text" // Cambiar a text para mayor control
               value={quantity}
               onChange={(e) => {
-                // Permitir entrada vacía temporalmente
-                if (e.target.value === "") {
+                const inputValue = e.target.value;
+
+                // Permitir entrada vacía
+                if (inputValue === "") {
                   setQuantity("");
                   field.onChange("");
                   return;
                 }
 
+                // Validar que solo contenga números, coma o punto
+                const validFormat = /^[0-9]*[,.]?[0-9]*$/.test(inputValue);
+                if (!validFormat) return;
+
+                // Reemplazar coma por punto para el valor numérico
+                const numericValue = inputValue.replace(",", ".");
+
                 // Convertir a número
-                const value = parseFloat(e.target.value);
+                const value = parseFloat(numericValue);
 
                 // Validar que sea un número válido y positivo
-                if (!isNaN(value) && value >= 0.01) {
-                  const newQuantity = value;
-                  setQuantity(newQuantity);
-                  field.onChange(newQuantity);
+                if (!isNaN(value) && value > 0) {
+                  setQuantity(inputValue); // Mantener el formato original (con coma o punto)
+                  field.onChange(value); // Enviar el valor numérico a react-hook-form
+                } else if (inputValue === "0," || inputValue === "0.") {
+                  // Permitir que el usuario empiece a escribir "0," o "0."
+                  setQuantity(inputValue);
+                  field.onChange(0);
                 }
               }}
               onBlur={(e) => {
-                // Asegurar un valor válido al salir del campo
+                const inputValue = e.target.value;
+
+                // Si está vacío o no es válido, establecer valor por defecto
                 if (
-                  e.target.value === "" ||
-                  isNaN(parseFloat(e.target.value))
+                  inputValue === "" ||
+                  !/^[0-9]+[,.]?[0-9]*$/.test(inputValue)
                 ) {
-                  const defaultQuantity = 1;
+                  const defaultQuantity = "1";
                   setQuantity(defaultQuantity);
-                  field.onChange(defaultQuantity);
+                  field.onChange(1);
+                  return;
+                }
+
+                // Formatear el valor al salir del campo
+                const numericValue = parseFloat(inputValue.replace(",", "."));
+
+                if (!isNaN(numericValue) && numericValue > 0) {
+                  // Formatear con coma decimal al salir
+                  const formattedValue = numericValue
+                    .toString()
+                    .replace(".", ",");
+                  setQuantity(formattedValue);
+                  field.onChange(numericValue);
+                } else {
+                  const defaultQuantity = "1";
+                  setQuantity(defaultQuantity);
+                  field.onChange(1);
                 }
               }}
             />
@@ -280,9 +324,15 @@ export function PurchaseForm({ onFormSubmit }) {
               value={priceInput}
               onChange={(e) => {
                 handlePriceChange(e);
-                // Actualiza react-hook-form con el valor numérico
-                field.onChange(parseCurrencyInput(e.target.value));
+                field.onChange(priceValue);
               }}
+              onFocus={() => {
+                // Eliminamos el parámetro 'e' que no se usa
+                if (priceInput === "$ " || priceInput === "$0") {
+                  setPriceInput("$ ");
+                }
+              }}
+              placeholder="$ 0,00"
             />
             {error && (
               <span style={{ color: "red", fontSize: "12px" }}>
