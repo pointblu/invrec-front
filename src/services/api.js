@@ -123,3 +123,6 @@ export const deleteSale = (saleId) => api.delete(`/sales/${saleId}`);
 
 export const deletePurchase = (purchaseId) =>
   api.delete(`/purchases/${purchaseId}`);
+
+export const deleteProduction = (productionId) =>
+  api.delete(`/productions/${productionId}`);

@@ -9,9 +9,14 @@ import {
 } from "../components";
 import { FaHammer } from "react-icons/fa";
 import { HiCheck } from "react-icons/hi";
+import { IoMdTrash } from "react-icons/io";
 import { QuantityForm } from "./QuantityForm";
 import { ProductionForm } from "./ProductionForm";
-import { getAllProduction, madeProduction } from "../services/api";
+import {
+  getAllProduction,
+  madeProduction,
+  deleteProduction,
+} from "../services/api";
 import { toast } from "react-toastify";
 import { Tooltip } from "react-tooltip";
 
@@ -75,6 +80,24 @@ export function Production() {
     setIsAddModalOpen(true);
   };
 
+  const handleDeleteProduction = async (id) => {
+    try {
+      await deleteProduction(id);
+      toast.success("Producción eliminada con éxito", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      fetchProductionData(); // Recargar la lista
+    } catch (err) {
+      const errorMessage = err?.message || "Error al eliminar la producción";
+      toast.error(errorMessage, {
+        position: "top-right",
+        autoClose: 5000,
+      });
+      console.error("Error al eliminar producción:", err);
+    }
+  };
+
   const handleAddQuantity = async ({ quantity }) => {
     try {
       if (!selectedItem || !quantity) return;
@@ -101,7 +124,7 @@ export function Production() {
     return status === "en_proceso" ? "En proceso" : "Hecho";
   };
 
-  function renderActionsCell({ row }, openAddModal, isDisabled = false) {
+  function renderCheckButton({ row }, openAddModal, isDisabled = false) {
     return (
       <CustomButton
         icon={<HiCheck />}
@@ -123,6 +146,36 @@ export function Production() {
           },
           active: {
             backgroundColor: isDisabled ? "#cccccc" : "#af4cab",
+            transform: isDisabled ? "none" : "scale(0.95)",
+          },
+        }}
+      />
+    );
+  }
+
+  function renderDeleteButton({ row }, handleDelete, isDisabled = false) {
+    return (
+      <CustomButton
+        icon={<IoMdTrash />}
+        onClick={() => !isDisabled && handleDelete(row.original.id)}
+        disabled={isDisabled}
+        customStyle={{
+          default: {
+            backgroundColor: isDisabled ? "#cccccc" : "#dd1f1fff",
+            border: "1px solid white",
+            color: "white",
+            width: "1.8rem",
+            height: "1.8rem",
+            marginLeft: "5px",
+            cursor: isDisabled ? "not-allowed" : "pointer",
+            opacity: isDisabled ? 0.6 : 1,
+          },
+          hover: {
+            backgroundColor: isDisabled ? "#cccccc" : "#da5959ff",
+            transform: isDisabled ? "none" : "scale(1.05)",
+          },
+          active: {
+            backgroundColor: isDisabled ? "#cccccc" : "#c20c0cff",
             transform: isDisabled ? "none" : "scale(0.95)",
           },
         }}
@@ -180,7 +233,16 @@ export function Production() {
       accessorKey: "actions",
       cell: ({ row }) => {
         const isDone = row.original.status === "hecho";
-        return renderActionsCell({ row }, handleOpenAddModal, isDone);
+        return (
+          // 💡 Contenedor con display: flex para alinear los botones
+          <div style={{ display: "flex", gap: "5px" }}>
+            {/* Botón de Finalizar Producción */}
+            {renderCheckButton({ row }, handleOpenAddModal, isDone)}
+
+            {/* Botón de Eliminar Producción */}
+            {renderDeleteButton({ row }, handleDeleteProduction, isDone)}
+          </div>
+        );
       },
     },
   ];
