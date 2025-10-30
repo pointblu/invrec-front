@@ -97,11 +97,11 @@ function renderIngredientsCell({ getValue }) {
   const formatUnit = (unit) => {
     switch (unit) {
       case "units":
-        return "Un.";
+        return "Un";
       case "grams":
-        return "Kg.";
+        return "Kg";
       case "liters":
-        return "ml.";
+        return "ml";
       default:
         return unit;
     }
@@ -302,11 +302,11 @@ export function Inventories({ title, filterType }) {
         const value = getValue();
         switch (value) {
           case "grams":
-            return "Kilogramos";
+            return "Kg";
           case "liters":
-            return "Mililitros";
+            return "ml";
           case "units":
-            return "Unidades";
+            return "Un";
           default:
             return value;
         }

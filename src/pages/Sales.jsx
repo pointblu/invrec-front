@@ -187,11 +187,11 @@ export function Sales() {
         const value = getValue();
         switch (value) {
           case "grams":
-            return "Kilogramos";
+            return "Kg";
           case "liters":
-            return "Mililitros";
+            return "ml";
           case "units":
-            return "Unidades";
+            return "Un";
           default:
             return value;
         }

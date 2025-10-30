@@ -110,7 +110,7 @@ const Input = styled.input`
   &:focus + label,
   &:not(:placeholder-shown) + label {
     top: -10px;
-    font-size: 12px;
+    font-size: 11px;
     color: ${({ theme }) => theme.primary};
   }
 `;
@@ -119,7 +119,7 @@ const Label = styled.label`
   position: absolute;
   top: 10px;
   left: 10px;
-  font-size: 16px;
+  font-size: 14px;
   color: ${({ theme }) => theme.text};
   pointer-events: none;
   transition: all 0.3s;

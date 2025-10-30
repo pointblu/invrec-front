@@ -28,6 +28,7 @@ const chartElementPropTypes = {
     PropTypes.number,
     PropTypes.arrayOf(PropTypes.number),
   ]),
+  stackId: PropTypes.string,
 };
 
 export function CustomChart({
@@ -43,9 +44,15 @@ export function CustomChart({
   showTooltip = true,
   barProps = [],
   lineProps = [],
-  xAxisDataKey = "name",
+  xAxisDataKey,
   className,
   responsive = true,
+  // nuevos props para control avanzado:
+  xAxisProps = {},
+  yAxisProps = {},
+  chartProps = {},
+  layout = "horizontal", // solo aplica a barras
+  barSize,
 }) {
   const renderChartContent = () => {
     // Obtenemos los colores del tema desde styled-components
@@ -57,7 +64,7 @@ export function CustomChart({
     };
 
     const axisStyle = {
-      tick: { fill: themeColors.text },
+      tick: { fill: themeColors.text, fontSize: 11 },
       axisLine: { stroke: themeColors.gray300 },
       tickLine: { stroke: themeColors.gray300 },
     };
@@ -71,19 +78,44 @@ export function CustomChart({
       backgroundColor: themeColors.cardBackground,
       borderColor: themeColors.gray300,
       color: themeColors.text,
+      fontSize: "11px",
     };
 
     const legendStyle = {
       color: themeColors.text,
+      fontSize: "11px",
     };
+
+    // Para gráficos no responsivos, Recharts requiere width y height numéricos
+    const chartWidth = responsive
+      ? undefined
+      : typeof width === "number"
+      ? width
+      : 600;
+    const chartHeight = responsive
+      ? undefined
+      : typeof height === "number"
+      ? height
+      : 300;
 
     switch (type) {
       case "bar":
         return (
-          <BarChart data={data} margin={margin}>
+          <BarChart
+            data={data}
+            margin={margin}
+            layout={layout}
+            width={chartWidth}
+            height={chartHeight}
+            {...chartProps}
+          >
             {showGrid && <CartesianGrid {...gridStyle} />}
-            <XAxis dataKey={xAxisDataKey} {...axisStyle} />
-            <YAxis {...axisStyle} />
+            <XAxis
+              {...axisStyle}
+              {...xAxisProps}
+              {...(xAxisDataKey ? { dataKey: xAxisDataKey } : {})}
+            />
+            <YAxis {...axisStyle} {...yAxisProps} />
             {showTooltip && <Tooltip contentStyle={tooltipStyle} />}
             {showLegend && <Legend wrapperStyle={legendStyle} />}
             {barProps.map((props, index) => (
@@ -91,6 +123,7 @@ export function CustomChart({
                 key={`bar-${props.dataKey}-${index}`}
                 dataKey={props.dataKey}
                 fill={colors[index % colors.length]}
+                barSize={barSize}
                 {...props}
               />
             ))}
@@ -98,10 +131,20 @@ export function CustomChart({
         );
       case "line":
         return (
-          <LineChart data={data} margin={margin}>
+          <LineChart
+            data={data}
+            margin={margin}
+            width={chartWidth}
+            height={chartHeight}
+            {...chartProps}
+          >
             {showGrid && <CartesianGrid {...gridStyle} />}
-            <XAxis dataKey={xAxisDataKey} {...axisStyle} />
-            <YAxis {...axisStyle} />
+            <XAxis
+              {...axisStyle}
+              {...xAxisProps}
+              {...(xAxisDataKey ? { dataKey: xAxisDataKey } : {})}
+            />
+            <YAxis {...axisStyle} {...yAxisProps} />
             {showTooltip && <Tooltip contentStyle={tooltipStyle} />}
             {showLegend && <Legend wrapperStyle={legendStyle} />}
             {lineProps.map((props, index) => (
@@ -116,7 +159,7 @@ export function CustomChart({
         );
       case "pie":
         return (
-          <PieChart>
+          <PieChart width={chartWidth} height={chartHeight}>
             <Pie
               data={data}
               cx="50%"
@@ -159,43 +202,14 @@ export function CustomChart({
   );
 }
 
-// Estilos con acceso al theme
-const ChartContainer = styled.div`
-  background: ${({ theme }) => theme.cardBackground || "#fff"};
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
-  width: ${({ $width }) =>
-    typeof $width === "number" ? `${$width}px` : $width};
-`;
-
-const ChartTitle = styled.h3`
-  color: ${({ theme }) => theme.text || "#2d3748"};
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-  text-align: center;
-`;
-
-// Validación de PropTypes
 CustomChart.propTypes = {
   type: PropTypes.oneOf(["bar", "line", "pie"]),
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      value: PropTypes.number,
-    })
-  ),
+  data: PropTypes.arrayOf(PropTypes.object),
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  height: PropTypes.number,
   title: PropTypes.string,
   colors: PropTypes.arrayOf(PropTypes.string),
-  margin: PropTypes.shape({
-    top: PropTypes.number,
-    right: PropTypes.number,
-    left: PropTypes.number,
-    bottom: PropTypes.number,
-  }),
+  margin: PropTypes.object,
   showLegend: PropTypes.bool,
   showGrid: PropTypes.bool,
   showTooltip: PropTypes.bool,
@@ -204,4 +218,20 @@ CustomChart.propTypes = {
   xAxisDataKey: PropTypes.string,
   className: PropTypes.string,
   responsive: PropTypes.bool,
+  xAxisProps: PropTypes.object,
+  yAxisProps: PropTypes.object,
+  chartProps: PropTypes.object,
+  layout: PropTypes.oneOf(["horizontal", "vertical"]),
+  barSize: PropTypes.number,
 };
+
+const ChartContainer = styled.div`
+  width: ${({ $width }) => ($width ? $width : "100%")};
+`;
+
+const ChartTitle = styled.h3`
+  margin: 0 0 10px 0;
+  color: #2d3748;
+  font-weight: 600;
+  font-size: 1rem;
+`;

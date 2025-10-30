@@ -153,7 +153,7 @@ const Label = styled.label`
   position: absolute;
   top: ${({ $float }) => ($float ? "-10px" : "10px")};
   left: 10px;
-  font-size: ${({ $float }) => ($float ? "12px" : "16px")};
+  font-size: ${({ $float }) => ($float ? "11px" : "14px")};
   color: ${({ theme, $float }) => ($float ? theme.primary : theme.text)};
   pointer-events: none;
   transition: all 0.3s;
