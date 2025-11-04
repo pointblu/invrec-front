@@ -14,7 +14,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CustomInput, CustomSubContainer } from "../components";
 import PropTypes from "prop-types";
 
@@ -67,6 +67,24 @@ export function CustomTable({
       Math.ceil(pagination.totalItems / pagination.pageSize)
     : table.getPageCount();
 
+  useEffect(() => {
+    if (!pagination) {
+      table.setPageIndex(0);
+    }
+  }, [filtering]);
+
+  // Normalización del texto del filtro (corrige MP'00021 -> MP-00021)
+  const handleFilterChange = (raw) => {
+    const normalized =
+      typeof raw === "string"
+        ? raw
+            .replace(/[\r\n\t]/g, "")
+            .replace(/['’]/g, "-")
+            .trim()
+        : raw;
+    onFilteringChange(normalized);
+  };
+
   return (
     <>
       <CustomSubContainer align="right">
@@ -80,7 +98,7 @@ export function CustomTable({
           placeholder=" "
           icon={<AiOutlineSearch size={20} />}
           value={filtering}
-          onChange={(e) => onFilteringChange(e.target.value)}
+          onChange={(e) => handleFilterChange(e.target.value)}
         />
       </CustomSubContainer>
 

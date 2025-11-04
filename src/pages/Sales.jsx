@@ -24,6 +24,8 @@ export function Sales() {
     page: 1,
     totalItems: 0,
   });
+  // Nuevo: dataset completo para filtrar sin paginación manual
+  const [fullSales, setFullSales] = useState([]);
 
   const fetchSales = useCallback(async () => {
     try {
@@ -50,6 +52,25 @@ export function Sales() {
   useEffect(() => {
     fetchSales();
   }, [fetchSales]);
+
+  // Nuevo: cargar dataset completo cuando cambian los filtros de fecha
+  useEffect(() => {
+    const fetchAll = async () => {
+      try {
+        const resp = await getAllSales(startDate, endDate, 1, 3000);
+        setFullSales(resp?.data?.result || []);
+        // eslint-disable-next-line no-unused-vars
+      } catch (err) {
+        // se puede loguear el error si es necesario
+      }
+    };
+    fetchAll();
+  }, [startDate, endDate]);
+
+  // Resetear a la primera página al cambiar el filtro (modo servidor)
+  useEffect(() => {
+    setPagination((prev) => ({ ...prev, page: 1 }));
+  }, [globalFilter]);
 
   const handlePageChange = (newPage) => {
     setPagination((prev) => ({ ...prev, page: newPage }));
@@ -235,13 +256,17 @@ export function Sales() {
       <CustomContainer>
         <h1>Ventas</h1>
         <CustomTable
-          data={sales}
+          data={globalFilter?.trim() ? fullSales : sales}
           columns={columns}
-          pagination={{
-            page: pagination.page,
-            totalItems: pagination.totalItems,
-            pageSize: 10,
-          }}
+          pagination={
+            globalFilter?.trim()
+              ? null
+              : {
+                  page: pagination.page,
+                  totalItems: pagination.totalItems,
+                  pageSize: 10,
+                }
+          }
           onPageChange={handlePageChange}
           filtering={globalFilter}
           onFilteringChange={setGlobalFilter}

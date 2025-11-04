@@ -34,6 +34,8 @@ export function Production() {
     page: 1,
     totalItems: 0,
   });
+  // Nuevo: dataset completo para filtrar sin paginación manual
+  const [fullTableData, setFullTableData] = useState([]);
 
   const fetchProductionData = useCallback(async () => {
     try {
@@ -62,6 +64,26 @@ export function Production() {
   useEffect(() => {
     fetchProductionData();
   }, [fetchProductionData]);
+
+  // Nuevo: cargar dataset completo cuando cambian los filtros de fecha
+  useEffect(() => {
+    const fetchAll = async () => {
+      try {
+        const resp = await getAllProduction(startDate, endDate, 1, 3000);
+        if (resp.success) {
+          setFullTableData(resp?.data?.result || []);
+        }
+        // eslint-disable-next-line no-unused-vars
+      } catch (err) {
+        // se puede loguear el error si es necesario
+      }
+    };
+    fetchAll();
+  }, [startDate, endDate]);
+
+  useEffect(() => {
+    setPagination((prev) => ({ ...prev, page: 1 }));
+  }, [globalFilter]);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -266,13 +288,17 @@ export function Production() {
       <CustomContainer>
         <h1>Producción</h1>
         <CustomTable
-          data={tableData}
+          data={globalFilter?.trim() ? fullTableData : tableData}
           columns={columns}
-          pagination={{
-            page: pagination.page,
-            totalItems: pagination.totalItems,
-            pageSize: 10,
-          }}
+          pagination={
+            globalFilter?.trim()
+              ? null
+              : {
+                  page: pagination.page,
+                  totalItems: pagination.totalItems,
+                  pageSize: 10,
+                }
+          }
           onPageChange={(newPage) =>
             setPagination((prev) => ({ ...prev, page: newPage }))
           }

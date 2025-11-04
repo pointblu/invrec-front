@@ -25,6 +25,8 @@ export function Purchases() {
     page: 1,
     totalItems: 0,
   });
+  // Nuevo: dataset completo para filtrar sin paginación manual
+  const [fullPurchases, setFullPurchases] = useState([]);
 
   const fetchPurchases = useCallback(async () => {
     try {
@@ -46,11 +48,29 @@ export function Purchases() {
     } finally {
       setLoading(false);
     }
-  }, [pagination.page, startDate, endDate]); // Dependencias de la función
+  }, [pagination.page, startDate, endDate]);
 
   useEffect(() => {
     fetchPurchases();
   }, [fetchPurchases]);
+
+  // Nuevo: cargar dataset completo cuando cambian los filtros de fecha
+  useEffect(() => {
+    const fetchAll = async () => {
+      try {
+        const resp = await getAllPurchases(startDate, endDate, 1, 3000);
+        setFullPurchases(resp?.data?.result || []);
+        // eslint-disable-next-line no-unused-vars
+      } catch (err) {
+        // se puede loguear el error si es necesario
+      }
+    };
+    fetchAll();
+  }, [startDate, endDate]);
+
+  useEffect(() => {
+    setPagination((prev) => ({ ...prev, page: 1 }));
+  }, [globalFilter]);
 
   const handlePageChange = (newPage) => {
     setPagination((prev) => ({ ...prev, page: newPage }));
@@ -177,13 +197,17 @@ export function Purchases() {
       <CustomContainer>
         <h1>Compras</h1>
         <CustomTable
-          data={purchases}
+          data={globalFilter?.trim() ? fullPurchases : purchases}
           columns={columns}
-          pagination={{
-            page: pagination.page,
-            totalItems: pagination.totalItems,
-            pageSize: 10,
-          }}
+          pagination={
+            globalFilter?.trim()
+              ? null
+              : {
+                  page: pagination.page,
+                  totalItems: pagination.totalItems,
+                  pageSize: 10,
+                }
+          }
           onPageChange={handlePageChange}
           filtering={globalFilter}
           onFilteringChange={setGlobalFilter}

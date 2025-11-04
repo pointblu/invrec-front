@@ -154,6 +154,9 @@ export function Inventories({ title, filterType }) {
     page: 1,
     totalItems: 0,
   });
+  // Nuevo: mantener el dataset completo para filtrar
+  const [fullData, setFullData] = useState([]);
+
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -169,7 +172,6 @@ export function Inventories({ title, filterType }) {
         const itemsWithIngredients = await Promise.all(
           filtered.map(async (item) => {
             try {
-              // Asumo que tienes una función getInventoryById en tus servicios
               const detailResponse = await getInventoryById(item.id);
               return {
                 ...item,
@@ -184,8 +186,12 @@ export function Inventories({ title, filterType }) {
             }
           })
         );
+        // Nuevo: setear dataset completo y slice paginado
+        setFullData(itemsWithIngredients);
         setData(itemsWithIngredients.slice(startIndex, endIndex));
       } else {
+        // Nuevo: setear dataset completo y slice paginado
+        setFullData(filtered);
         setData(filtered.slice(startIndex, endIndex)); // solo 10 visibles
       }
       setPagination((prev) => ({
@@ -433,7 +439,7 @@ export function Inventories({ title, filterType }) {
     returned: "NUEVO REUTILIZABLE",
   };
 
-  const datum = data;
+  const datum = globalFilter?.trim() ? fullData : data;
   const icon = iconsMap[filterType];
 
   if (loading) return <div>Cargando inventarios...</div>;
@@ -457,11 +463,15 @@ export function Inventories({ title, filterType }) {
         <CustomTable
           data={datum}
           columns={columns}
-          pagination={{
-            page: pagination.page,
-            totalItems: pagination.totalItems,
-            pageSize: 10,
-          }}
+          pagination={
+            globalFilter?.trim()
+              ? null
+              : {
+                  page: pagination.page,
+                  totalItems: pagination.totalItems,
+                  pageSize: 10,
+                }
+          }
           onPageChange={handlePageChange}
           filtering={globalFilter}
           onFilteringChange={setGlobalFilter}
